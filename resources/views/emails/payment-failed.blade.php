@@ -45,10 +45,10 @@ Retry Payment
 
 ### Option 2: Bank Transfer
 **Bank Details:**
-- **Bank:** People's Bank
-- **Account Name:** MSK Computers (Pvt) Ltd
-- **Account Number:** 0123456789
-- **Branch:** Maradana
+- **Bank:** Commercial Bank
+- **Account Name:** MSK Computers
+- **Account Number:** 1000578810
+- **Branch:** Ragama Branch
 
 **Instructions:**
 1. Transfer LKR {{ number_format($order->total_amount, 2) }}
