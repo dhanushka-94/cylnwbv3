@@ -182,35 +182,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Bank Accounts</h2>
-            <p class="text-lg text-gray-400">Choose any of our bank accounts for secure payments</p>
+            <p class="text-lg text-gray-400">Choose from our bank accounts for secure payments</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- People Bank -->
-            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8 hover:border-[#f59e0b]/30 transition-all duration-300">
-                <div class="text-center mb-6">
-                    <div class="w-20 h-20 bg-white/5 rounded-lg flex items-center justify-center mx-auto mb-4 p-2">
-                        <img src="{{ asset('images/people_bank.png') }}" 
-                             alt="People's Bank Logo" 
-                             class="w-full h-full object-contain">
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">People's Bank</h3>
-                    <p class="text-gray-400 text-sm">Kadawatha branch</p>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="bg-gray-800/50 rounded-lg p-4">
-                        <p class="text-gray-400 text-xs mb-1">Account Name</p>
-                        <p class="text-white font-medium">S.D MANUKA SHAMINDA</p>
-                    </div>
-                    
-                    <div class="bg-gray-800/50 rounded-lg p-4">
-                        <p class="text-gray-400 text-xs mb-1">Account Number</p>
-                        <p class="text-[#f59e0b] font-bold text-lg">273100140018638</p>
-                    </div>
-                </div>
-            </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <!-- Commercial Bank -->
             <div class="bg-[#1a1a1c] border border-[#f59e0b]/50 rounded-xl p-8 relative overflow-hidden">
                 <div class="absolute top-4 right-4">
