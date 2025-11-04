@@ -716,12 +716,16 @@
         document.getElementById('specialOrderEmail').href = `mailto:info@mskcomputers.lk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
         
         // Show modal
-        document.getElementById('specialOrderContactModal').classList.remove('hidden');
+        const modal = document.getElementById('specialOrderContactModal');
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
 
     function hideSpecialOrderContact() {
-        document.getElementById('specialOrderContactModal').classList.add('hidden');
+        const modal = document.getElementById('specialOrderContactModal');
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 
@@ -740,7 +744,7 @@
 @endpush
 
 <!-- Special Order Contact Modal -->
-<div id="specialOrderContactModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+<div id="specialOrderContactModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" style="display: none !important;">
     <div class="bg-gradient-to-br from-gray-900 to-black border border-gray-700 rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
         <!-- Modal Header -->
         <div class="text-center mb-6">
