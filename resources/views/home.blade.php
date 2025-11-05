@@ -655,6 +655,9 @@
         }
         
         startAutoPlay() {
+            // Clear any existing interval first to prevent multiple intervals
+            this.stopAutoPlay();
+            
             // Auto-advance slides every 2 seconds (faster, more dynamic experience)
             this.autoPlayInterval = setInterval(() => {
                 this.nextSlide();
