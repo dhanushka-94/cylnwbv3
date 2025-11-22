@@ -66,6 +66,14 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
         Route::post('/sitemap-regenerate', [App\Http\Controllers\Admin\SitemapController::class, 'regenerate'])->name('sitemap.regenerate');
         Route::get('/sitemap-status', [App\Http\Controllers\Admin\SitemapController::class, 'status'])->name('sitemap.status');
         Route::get('/sitemap-download/{file}', [App\Http\Controllers\Admin\SitemapController::class, 'download'])->name('sitemap.download');
+
+        // Cache Management
+        Route::get('/cache', [App\Http\Controllers\Admin\CacheController::class, 'index'])->name('cache.index');
+        Route::post('/cache/clear-all', [App\Http\Controllers\Admin\CacheController::class, 'clearAll'])->name('cache.clear-all');
+        Route::post('/cache/clear-application', [App\Http\Controllers\Admin\CacheController::class, 'clearApplication'])->name('cache.clear-application');
+        Route::post('/cache/clear-views', [App\Http\Controllers\Admin\CacheController::class, 'clearViews'])->name('cache.clear-views');
+        Route::post('/cache/clear-products', [App\Http\Controllers\Admin\CacheController::class, 'clearProductCaches'])->name('cache.clear-products');
+        Route::post('/cache/warm-up', [App\Http\Controllers\Admin\CacheController::class, 'warmUp'])->name('cache.warm-up');
 });
 
 // Home Route
