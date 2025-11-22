@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         }
 
         return view('checkout.quotation');
-    }
+            }
 
     /**
      * Show payment checkout page
@@ -65,7 +65,7 @@ class CheckoutController extends Controller
         // Check if cart has items
         $cartItems = Cart::where('session_id', session()->getId())
             ->orWhere(function($query) {
-                if (Auth::check()) {
+        if (Auth::check()) {
                     $query->where('user_id', Auth::id());
                 }
             })

@@ -31,8 +31,6 @@ return [
 
     'connections' => [
 
-        // SQLite configuration removed - MSK Computers uses MySQL exclusively
-
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),

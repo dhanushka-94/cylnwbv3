@@ -51,13 +51,6 @@
     
     @stack('styles')
     
-    <!-- Halloween Theme -->
-    @if(isset($isHalloweenActive) && $isHalloweenActive)
-        <style>
-            @php echo file_get_contents(resource_path('css/halloween.css')); @endphp
-        </style>
-    @endif
-    
     <!-- Cart Animation Styles -->
     <style>
         @keyframes cartShake {
@@ -129,23 +122,7 @@
         }
     </style>
 </head>
-<body class="bg-dark-900 text-gray-100 font-sans antialiased {{ isset($isHalloweenActive) && $isHalloweenActive ? 'halloween-active' : '' }}">
-    <!-- 🎃 Halloween Decorations -->
-    @if(isset($isHalloweenActive) && $isHalloweenActive)
-        <div class="halloween-decorations">
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-        </div>
-    @endif
-    
+<body class="bg-dark-900 text-gray-100 font-sans antialiased">
     <!-- Top Contact Bar -->
     <div class="bg-black border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,7 +201,7 @@
                         <div class="flex items-center">
                             <img src="{{ asset('msk-computers-logo-color.png') }}" 
                                  alt="MSK Computers Logo" 
-                                 class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain {{ isset($isHalloweenActive) && $isHalloweenActive ? 'halloween-logo-glow' : '' }}">
+                                 class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain">
                         </div>
                         <div class="hidden sm:block">
                             <h1 class="text-sm md:text-xl font-bold text-primary-400">MSK COMPUTERS</h1>
@@ -732,7 +709,7 @@
                         <div class="flex items-center">
                             <img src="{{ asset('msk-computers-logo-color.png') }}" 
                                  alt="MSK Computers Logo" 
-                                 class="w-24 h-24 object-contain {{ isset($isHalloweenActive) && $isHalloweenActive ? 'halloween-logo-glow' : '' }}">
+                                 class="w-24 h-24 object-contain">
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-primary-400">MSK COMPUTERS</h3>

@@ -437,11 +437,11 @@
                                        class="sr-only checkout-radio">
                                 <div class="p-6 border-2 border-green-500 bg-green-500/10 rounded-lg hover:bg-green-500/20 transition-all text-center option-card">
                                     <svg class="w-8 h-8 text-green-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                    </svg>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
                                     <h4 class="text-xl font-bold text-white mb-2">Buy Now</h4>
                                     <p class="text-gray-300 text-sm">Complete your order</p>
-                                </div>
+                            </div>
                             </label>
                         </div>
                         
@@ -516,7 +516,7 @@
                                     <img src="{{ asset('images/kokopay-logo.png') }}" alt="Koko Pay" class="h-6 w-auto">
                                 </div>
                             </label>
-
+                            
                             <!-- Bank Transfer Details (shown only when Bank Transfer is selected) -->
                             <div class="bg-green-900/20 border border-green-700/50 rounded-lg p-4 bank-transfer-notice" style="display: none;">
                                 <div class="flex items-start space-x-3">
@@ -558,17 +558,17 @@
                                                 <li>• Keep your payment receipt for tracking purposes</li>
                                             </ul>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                
                             <!-- WebXPay Notice (shown only when WebXPay is selected) -->
                             <div class="bg-primary-900/20 border border-primary-700/50 rounded-lg p-4 webxpay-notice" style="display: none;">
                                 <div class="flex items-start space-x-3">
                                     <svg class="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                    </svg>
-                                    <div>
+                                                        </svg>
+                                                        <div>
                                         <h4 class="text-primary-400 font-medium text-sm mb-2">Secure Card Payment with WebXPay</h4>
                                         <p class="text-primary-300 text-sm mb-3">
                                             You'll be redirected to our secure payment gateway to complete your card payment. 
@@ -576,18 +576,18 @@
                                         </p>
                                         <div class="text-xs text-primary-200">
                                             ✓ SSL Encrypted • ✓ PCI Compliant • ✓ Instant Processing
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                                        
                             <!-- Koko Pay KOKO Notice (shown only when Koko Pay is selected) -->
                             <div class="bg-purple-900/20 border border-purple-700/50 rounded-lg p-4 kokopay-notice" style="display: none;">
                                 <div class="flex items-start space-x-3">
                                     <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                                    </svg>
-                                    <div>
+                                                </svg>
+                                                <div>
                                         <h4 class="text-purple-400 font-medium text-sm mb-2">Buy Now, Pay Later with Koko Pay</h4>
                                         <p class="text-purple-300 text-sm mb-3">
                                             Split your payment into 3 easy installments. Pay only 1/3 today, remaining in 30 & 60 days.

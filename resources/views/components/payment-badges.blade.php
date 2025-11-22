@@ -6,7 +6,7 @@
              alt="KokoPay" 
              class="w-5 h-5 mr-2 object-contain">
         <span class="text-xs font-bold text-purple-200 tracking-wide">KOKO Pay</span>
-    </div>
+        </div>
     
     {{-- Installments Badge - Glass Professional Style --}}
     <div class="flex items-center bg-gradient-to-r from-emerald-500/15 to-teal-500/15 backdrop-blur-sm border border-emerald-400/40 rounded-xl px-3 py-2 hover:from-emerald-500/20 hover:to-teal-500/20 hover:border-emerald-400/60 transition-all duration-300 shadow-lg hover:shadow-emerald-500/20">

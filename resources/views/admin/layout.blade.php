@@ -22,31 +22,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     @stack('styles')
-    
-    <!-- Halloween Theme -->
-    @if(isset($isHalloweenActive) && $isHalloweenActive)
-        <style>
-            @php echo file_get_contents(resource_path('css/halloween.css')); @endphp
-        </style>
-    @endif
 </head>
-<body class="bg-[#0a0a0a] text-white font-sans antialiased {{ isset($isHalloweenActive) && $isHalloweenActive ? 'halloween-active' : '' }}">
-    <!-- 🎃 Halloween Decorations -->
-    @if(isset($isHalloweenActive) && $isHalloweenActive)
-        <div class="halloween-decorations">
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-pumpkin">🎃</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-            <span class="halloween-bat">🦇</span>
-        </div>
-    @endif
-    
+<body class="bg-[#0a0a0a] text-white font-sans antialiased">
     <!-- Admin Header -->
     <nav class="bg-black border-b border-gray-800 sticky top-0 z-50">
         <!-- Developer Info Mini Header -->
