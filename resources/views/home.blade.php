@@ -16,40 +16,40 @@
         <div class="absolute w-96 h-96 rounded-full bg-gradient-to-r from-[#3b82f6]/20 to-[#1d4ed8]/20 blur-3xl -bottom-48 -right-48 animate-pulse" style="animation-delay: 1s;"></div>
     </div>
     
-    <div class="hero-slider relative z-10 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-lg" id="heroSlider">
+    <div class="hero-slider relative z-10 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-none md:rounded-lg w-full mx-0" id="heroSlider">
         <!-- Image Slide 1 -->
         <div class="hero-slide active overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 1.png') }}" 
                  alt="MSK Computers Slider 1" 
-                 class="w-full h-full object-cover object-center">
+                 class="w-full h-full object-contain sm:object-cover object-center">
         </div>
 
         <!-- Image Slide 2 -->
         <div class="hero-slide overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 2.png') }}" 
                  alt="MSK Computers Slider 2" 
-                 class="w-full h-full object-cover object-center">
+                 class="w-full h-full object-contain sm:object-cover object-center">
         </div>
 
         <!-- Image Slide 3 -->
         <div class="hero-slide overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 3.png') }}" 
                  alt="MSK Computers Slider 3" 
-                 class="w-full h-full object-cover object-center">
+                 class="w-full h-full object-contain sm:object-cover object-center">
         </div>
 
         <!-- Image Slide 4 -->
         <div class="hero-slide overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 4.png') }}" 
                  alt="MSK Computers Slider 4" 
-                 class="w-full h-full object-cover object-center">
+                 class="w-full h-full object-contain sm:object-cover object-center">
         </div>
 
         <!-- Image Slide 5 -->
         <div class="hero-slide overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 5.png') }}" 
                  alt="MSK Computers Slider 5" 
-                 class="w-full h-full object-cover object-center">
+                 class="w-full h-full object-contain sm:object-cover object-center">
         </div>
 
         <!-- Slider Navigation -->
@@ -810,6 +810,45 @@
     @media (max-width: 640px) {
         .hero-slide {
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Ensure images fit screen on mobile without cropping */
+        .hero-slide img {
+            object-fit: contain !important;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        /* Remove rounded corners on mobile for full-width display */
+        .hero-slider {
+            border-radius: 0 !important;
+            margin-left: calc(-1 * env(safe-area-inset-left, 0px)) !important;
+            margin-right: calc(-1 * env(safe-area-inset-right, 0px)) !important;
+            width: 100vw !important;
+            max-width: 100vw !important;
+            position: relative;
+        }
+        
+        /* Ensure hero section is full width on mobile */
+        .hero-section {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            overflow-x: hidden;
+        }
+        
+        /* Adjust navigation arrows for mobile */
+        #prevSlide {
+            left: 8px !important;
+            padding: 8px !important;
+        }
+        
+        #nextSlide {
+            right: 8px !important;
+            padding: 8px !important;
         }
     }
 

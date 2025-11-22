@@ -34,6 +34,9 @@ class CategoryController extends Controller
             'status:id,status_name'
         ]);
 
+        // Apply product status filter (separate from attributes)
+        $this->applyStatusFilters($productsQuery, $request);
+
         // Apply attribute filters
         $this->applyAttributeFilters($productsQuery, $request);
 
@@ -96,6 +99,9 @@ class CategoryController extends Controller
         // Get available attributes for this category
         $availableAttributes = $this->getCategoryAttributes($category->id);
         
+        // Get available product statuses for this category
+        $availableStatuses = $this->getCategoryStatuses($category->id);
+        
         // Get price range for this category
         $priceRange = $this->getPriceRange($category->id);
 
@@ -110,6 +116,27 @@ class CategoryController extends Controller
                     'stock_quantity',
                     'slug'
                 ]);
+                
+                // Ensure status is loaded and included in response
+                // Make status relationship visible for JSON serialization
+                if ($product->relationLoaded('status')) {
+                    if ($product->status) {
+                        $product->status_data = [
+                            'id' => $product->status->id,
+                            'status_name' => $product->status->status_name
+                        ];
+                    }
+                } else {
+                    // If status wasn't loaded, try to load it
+                    $product->load('status:id,status_name');
+                    if ($product->status) {
+                        $product->status_data = [
+                            'id' => $product->status->id,
+                            'status_name' => $product->status->status_name
+                        ];
+                    }
+                }
+                
                 return $product;
             });
             
@@ -129,7 +156,52 @@ class CategoryController extends Controller
             ]);
         }
 
-        return view('categories.show', compact('category', 'products', 'availableAttributes', 'priceRange'));
+        return view('categories.show', compact('category', 'products', 'availableAttributes', 'availableStatuses', 'priceRange'));
+    }
+
+    /**
+     * Apply product status filters (Pre Order, Coming Soon, etc.)
+     */
+    private function applyStatusFilters($query, $request)
+    {
+        $statusNames = [];
+        
+        // Check if status filter is requested directly (can be array from checkboxes)
+        if ($request->filled('status')) {
+            $statusInput = $request->input('status');
+            if (is_array($statusInput)) {
+                $statusNames = array_merge($statusNames, $statusInput);
+            } else {
+                $statusNames[] = $statusInput;
+            }
+        }
+        
+        // Check if status filters are passed in attributes array (common mistake)
+        // Look for status names in the attributes array
+        if ($request->has('attributes') && is_array($request->input('attributes'))) {
+            foreach ($request->input('attributes') as $parentName => $selectedIds) {
+                if (is_array($selectedIds)) {
+                    foreach ($selectedIds as $selectedId) {
+                        // Check if the selected value is a status name (string) not an attribute ID (numeric)
+                        if (is_string($selectedId) && in_array($selectedId, ['Pre Order', 'Coming Soon'])) {
+                            $statusNames[] = $selectedId;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Apply status filter if any status names were found
+        if (!empty($statusNames)) {
+            $statusNames = array_unique($statusNames); // Remove duplicates
+            $statusIds = \App\Models\SmaProductStatus::whereIn('status_name', $statusNames)
+                ->pluck('id')
+                ->toArray();
+            
+            if (!empty($statusIds)) {
+                $query->whereIn('product_status', $statusIds);
+            }
+        }
     }
 
     /**
@@ -142,7 +214,20 @@ class CategoryController extends Controller
             
             foreach ($request->input('attributes') as $parentName => $selectedIds) {
                 if (is_array($selectedIds)) {
-                    $attributeIds = array_merge($attributeIds, $selectedIds);
+                    // Filter out status names - only include numeric attribute IDs
+                    // Status names are strings like "Pre Order" or "Coming Soon"
+                    // Attribute IDs should be numeric
+                    $numericIds = array_filter($selectedIds, function($id) {
+                        // Only include if it's numeric (attribute ID) and not a status name
+                        return is_numeric($id) || (is_string($id) && !in_array($id, ['Pre Order', 'Coming Soon']));
+                    });
+                    
+                    // Convert to integers for attribute IDs
+                    foreach ($numericIds as $id) {
+                        if (is_numeric($id)) {
+                            $attributeIds[] = (int) $id;
+                        }
+                    }
                 }
             }
             
@@ -215,6 +300,57 @@ class CategoryController extends Controller
         return collect($result)->sortByDesc(function($attributes) {
             return $attributes->sum('count');
         })->take(6)->toArray(); // Limit to top 6 attribute categories
+    }
+
+    /**
+     * Get available product statuses for products in a category
+     */
+    private function getCategoryStatuses($categoryId)
+    {
+        // Get statuses that exist for products in this category
+        $statusIds = SmaProduct::where(function($query) use ($categoryId) {
+            $query->where('category_id', $categoryId)
+                  ->orWhere('subcategory_id', $categoryId);
+        })
+        ->where('hide', 0)
+        ->whereNotNull('product_status')
+        ->distinct()
+        ->pluck('product_status')
+        ->filter()
+        ->toArray();
+
+        if (empty($statusIds)) {
+            return [];
+        }
+
+        // Get status details with product counts
+        $statuses = \App\Models\SmaProductStatus::whereIn('id', $statusIds)
+            ->get()
+            ->map(function($status) use ($categoryId) {
+                // Count products with this status in this category
+                $productCount = SmaProduct::where(function($query) use ($categoryId) {
+                    $query->where('category_id', $categoryId)
+                          ->orWhere('subcategory_id', $categoryId);
+                })
+                ->where('hide', 0)
+                ->where('product_status', $status->id)
+                ->count();
+
+                return [
+                    'id' => $status->id,
+                    'name' => $status->status_name,
+                    'count' => $productCount
+                ];
+            })
+            ->filter(function($status) {
+                // Only include "Pre Order" and "Coming Soon" statuses
+                return in_array($status['name'], ['Pre Order', 'Coming Soon']) && $status['count'] > 0;
+            })
+            ->sortBy('name')
+            ->values()
+            ->toArray();
+
+        return $statuses;
     }
 
     /**

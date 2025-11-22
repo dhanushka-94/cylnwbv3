@@ -551,12 +551,19 @@ use Illuminate\Support\Facades\Storage;
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400">🏦 Transfer Slip</span>
                                 <div class="flex items-center space-x-2">
-                                    <span class="bg-green-900/30 px-3 py-1 rounded-lg text-green-300 text-sm font-medium border border-green-500/30">
-                                        ✅ Uploaded
-                                    </span>
+                                    @if(Storage::disk('public')->exists($order->transfer_slip_path))
+                                        <span class="bg-green-900/30 px-3 py-1 rounded-lg text-green-300 text-sm font-medium border border-green-500/30">
+                                            ✅ Uploaded
+                                        </span>
+                                    @else
+                                        <span class="bg-red-900/30 px-3 py-1 rounded-lg text-red-300 text-sm font-medium border border-red-500/30">
+                                            ⚠️ File Not Found
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             
+                            @if(Storage::disk('public')->exists($order->transfer_slip_path))
                             <!-- Transfer Slip Preview -->
                             <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
                                 <div class="flex items-start space-x-4">
@@ -565,15 +572,17 @@ use Illuminate\Support\Facades\Storage;
                                             $fileExtension = pathinfo($order->transfer_slip_path, PATHINFO_EXTENSION);
                                             $isImage = in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png']);
                                             $isPdf = strtolower($fileExtension) === 'pdf';
+                                            $transferSlipUrl = Storage::disk('public')->url($order->transfer_slip_path);
                                         @endphp
                                         
                                         @if($isImage)
                                             <!-- Image Preview -->
                                             <div class="w-32 h-32 bg-gray-900 rounded-lg overflow-hidden border border-gray-600">
-                                                <img src="{{ asset('storage/' . $order->transfer_slip_path) }}" 
+                                                <img src="{{ $transferSlipUrl }}" 
                                                      alt="Transfer Slip" 
                                                      class="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                                                     onclick="openImageModal('{{ asset('storage/' . $order->transfer_slip_path) }}', 'Transfer Slip - {{ $order->order_number }}')">
+                                                     onclick="openImageModal('{{ $transferSlipUrl }}', 'Transfer Slip - {{ $order->order_number }}')"
+                                                     onerror="this.onerror=null; this.src='{{ asset('images/placeholder-image.png') }}';">
                                             </div>
                                         @elseif($isPdf)
                                             <!-- PDF Icon -->
@@ -621,7 +630,12 @@ use Illuminate\Support\Facades\Storage;
                                             
                                             <!-- Action Buttons -->
                                             <div class="flex items-center space-x-2 pt-2">
-                                                <a href="{{ asset('storage/' . $order->transfer_slip_path) }}" 
+                                                @php
+                                                    $transferSlipUrl = Storage::disk('public')->url($order->transfer_slip_path);
+                                                    $cleanCustomerName = preg_replace('/[^A-Za-z0-9\-_]/', '_', $order->customer_name);
+                                                    $cleanCustomerPhone = preg_replace('/[^0-9]/', '', $order->customer_phone);
+                                                @endphp
+                                                <a href="{{ $transferSlipUrl }}" 
                                                    target="_blank"
                                                    class="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors">
                                                     <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -631,11 +645,7 @@ use Illuminate\Support\Facades\Storage;
                                                     View Full Size
                                                 </a>
                                                 
-                                                @php
-                                                    $cleanCustomerName = preg_replace('/[^A-Za-z0-9\-_]/', '_', $order->customer_name);
-                                                    $cleanCustomerPhone = preg_replace('/[^0-9]/', '', $order->customer_phone);
-                                                @endphp
-                                                <a href="{{ asset('storage/' . $order->transfer_slip_path) }}" 
+                                                <a href="{{ $transferSlipUrl }}" 
                                                    download="transfer_slip_{{ $order->order_number }}_{{ $cleanCustomerName }}_{{ $cleanCustomerPhone }}.{{ $fileExtension }}"
                                                    class="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-xs font-medium rounded-lg hover:bg-green-700 transition-colors">
                                                     <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -648,6 +658,20 @@ use Illuminate\Support\Facades\Storage;
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <!-- File Not Found Warning -->
+                            <div class="bg-red-900/20 rounded-lg p-4 border border-red-500/30">
+                                <div class="flex items-center space-x-2">
+                                    <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    </svg>
+                                    <div>
+                                        <div class="text-sm font-medium text-red-300">File Not Found</div>
+                                        <div class="text-xs text-red-400 mt-1">The transfer slip file could not be located at: {{ $order->transfer_slip_path }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         @else
                         <div class="flex items-center justify-between">

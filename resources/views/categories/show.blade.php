@@ -203,6 +203,38 @@
                             </div>
                         </div>
 
+                        <!-- Product Status Filters -->
+                        @if(isset($availableStatuses) && !empty($availableStatuses))
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-3">Product Status</label>
+                            <div class="space-y-2">
+                                @foreach($availableStatuses as $status)
+                                <label class="flex items-center cursor-pointer hover:bg-[#2c2c2e] rounded p-2 transition-colors">
+                                    <input type="checkbox" name="status[]" value="{{ $status['name'] }}" 
+                                           {{ in_array($status['name'], (array)request('status', [])) ? 'checked' : '' }}
+                                           class="w-4 h-4 text-[#f59e0b] bg-[#2c2c2e] border-gray-600 rounded focus:ring-[#f59e0b] focus:ring-2">
+                                    <span class="ml-3 text-sm text-gray-300 flex-1">
+                                        @if($status['name'] === 'Pre Order')
+                                            <span class="inline-flex items-center">
+                                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                                                Pre Order
+                                            </span>
+                                        @elseif($status['name'] === 'Coming Soon')
+                                            <span class="inline-flex items-center">
+                                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                                                Coming Soon
+                                            </span>
+                                        @else
+                                            {{ $status['name'] }}
+                                        @endif
+                                    </span>
+                                    <span class="text-xs text-gray-500 bg-[#2c2c2e] px-2 py-0.5 rounded">{{ $status['count'] }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
                         <!-- Product Attributes -->
                         @if(isset($availableAttributes) && !empty($availableAttributes))
                         @foreach($availableAttributes as $parentName => $attributes)
@@ -775,7 +807,14 @@
             
             products.forEach(product => {
                 let stockBadge = '';
-                if (product.stock_quantity > 0) {
+                // Check for Pre Order or Coming Soon status first
+                // Use status_data from controller or fallback to status relationship
+                const statusName = (product.status_data && product.status_data.status_name) || 
+                                   (product.status && product.status.status_name);
+                
+                if (statusName && ['Coming Soon', 'Pre Order'].includes(statusName)) {
+                    stockBadge = `<div class="absolute top-3 left-3 bg-[#3b82f6] text-white text-xs font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm">${statusName.toUpperCase()}</div>`;
+                } else if (product.stock_quantity > 0) {
                     stockBadge = '<div class="absolute top-3 left-3 bg-[#34d399] text-white text-xs font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm">IN STOCK</div>';
                 } else {
                     stockBadge = '<div class="absolute top-3 left-3 bg-[#ef4444] text-white text-xs font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm">OUT OF STOCK</div>';
@@ -818,10 +857,21 @@
                                 <div class="flex flex-col">${priceHTML}</div>
                             </div>
                             <div class="mt-auto">
-                                ${product.stock_quantity > 0 
-                                    ? `<button onclick="event.preventDefault(); event.stopPropagation(); addToCart(${product.id})" class="w-full bg-gradient-to-r from-primary-500/15 to-amber-500/15 backdrop-blur-sm border border-primary-400/40 hover:from-primary-500/25 hover:to-amber-500/25 hover:border-primary-400/60 text-primary-200 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5 tracking-wide">Add to Cart</button>`
-                                    : `<button disabled class="w-full bg-[#2c2c2e] text-gray-500 px-4 py-2.5 rounded-lg text-sm font-medium cursor-not-allowed border border-gray-700">Out of Stock</button>`
-                                }
+                                ${(() => {
+                                    // Check if product has Pre Order or Coming Soon status
+                                    const hasSpecialStatus = product.status_data && 
+                                        ['Coming Soon', 'Pre Order'].includes(product.status_data.status_name);
+                                    
+                                    if (hasSpecialStatus) {
+                                        const statusName = product.status_data.status_name.replace(/'/g, "\\'");
+                                        const productName = product.name.replace(/'/g, "\\'");
+                                        return `<button onclick="event.preventDefault(); event.stopPropagation(); showSpecialOrderContact('${statusName}', '${productName}')" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-blue-500/20 hover:-translate-y-0.5 tracking-wide">Contact Us</button>`;
+                                    } else if (product.stock_quantity > 0) {
+                                        return `<button onclick="event.preventDefault(); event.stopPropagation(); addToCart(${product.id})" class="w-full bg-gradient-to-r from-primary-500/15 to-amber-500/15 backdrop-blur-sm border border-primary-400/40 hover:from-primary-500/25 hover:to-amber-500/25 hover:border-primary-400/60 text-primary-200 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5 tracking-wide">Add to Cart</button>`;
+                                    } else {
+                                        return `<button disabled class="w-full bg-[#2c2c2e] text-gray-500 px-4 py-2.5 rounded-lg text-sm font-medium cursor-not-allowed border border-gray-700">Out of Stock</button>`;
+                                    }
+                                })()}
                             </div>
                         </div>
                     </a>
