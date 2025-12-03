@@ -118,12 +118,23 @@
                                     loading="lazy"
                                 >
                                 
-                                <!-- Sale Badge -->
-                                <div class="absolute top-3 left-3">
-                                    <div class="bg-gradient-to-r from-[#ef4444] to-[#dc2626] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg">
-                                        SALE
-                                    </div>
-                                </div>
+                                <!-- Sale / Christmas Badge -->
+                                @if($product->is_on_sale)
+                                    @if(isset($isChristmasActive) && $isChristmasActive)
+                                        <!-- Replace red SALE label with Christmas badge in the same position -->
+                                        <div class="absolute top-3 left-3">
+                                            <div class="christmas-sale-badge christmas-sale-badge--top-left">
+                                                <img src="{{ asset('images/christmas-sale-badge.png') }}" alt="Christmas Sale">
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="absolute top-3 left-3">
+                                            <div class="bg-gradient-to-r from-[#ef4444] to-[#dc2626] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg">
+                                                SALE
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
 
                                 <!-- Stock Status -->
                                 <div class="absolute top-3 right-3">

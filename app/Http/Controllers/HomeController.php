@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SmaProduct;
 use App\Models\SmaCategory;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -48,6 +49,9 @@ class HomeController extends Controller
         // Get cached latest products
         $latestProducts = \App\Services\PerformanceCacheService::getLatestProducts(4);
 
-        return view('home', compact('promotionProducts', 'categories', 'latestProducts'));
+        // Get active sliders ordered by display order
+        $sliders = Slider::active()->ordered()->get();
+
+        return view('home', compact('promotionProducts', 'categories', 'latestProducts', 'sliders'));
     }
 }

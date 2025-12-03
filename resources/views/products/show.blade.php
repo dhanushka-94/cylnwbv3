@@ -14,13 +14,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
             <!-- Product Images -->
-            <div class="p-3 sm:p-6 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-gray-800">
+            <div class="p-3 sm:p-6 bg-gradient-to-br from-gray-900 to-black rounded-xl border border-gray-800 relative">
                 <!-- Main Image -->
-                <div class="mb-4 sm:mb-6 p-2 sm:p-4 bg-black/30 rounded-xl border border-gray-700/50">
+                <div class="mb-4 sm:mb-6 p-2 sm:p-4 bg-black/30 rounded-xl border border-gray-700/50 relative">
                     <img id="mainImage" 
                          src="{{ $product->images[0] ?? 'https://via.placeholder.com/600x400?text=No+Image' }}" 
                          alt="{{ $product->name }}" 
                          class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-contain rounded-lg shadow-2xl p-2 sm:p-4 bg-white/5 backdrop-blur-sm">
+                    
+                    <!-- Christmas Sale Badge Overlay -->
+                    @if(isset($isChristmasActive) && $isChristmasActive && $product->is_on_sale)
+                        <div class="christmas-sale-badge">
+                            <img src="{{ asset('images/christmas-sale-badge.png') }}" alt="Christmas Sale">
+                        </div>
+                    @endif
                 </div>
                 
                 <!-- Thumbnail Images -->

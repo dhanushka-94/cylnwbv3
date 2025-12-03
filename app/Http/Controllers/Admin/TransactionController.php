@@ -181,27 +181,46 @@ class TransactionController extends Controller
 
     private function getTransactionStats($request = null)
     {
-        $query = Transaction::query();
+        // Base query builder function to apply date filters
+        $baseQuery = function() use ($request) {
+            $query = Transaction::query();
+            
+            // Apply date filters if provided
+            if ($request && $request->filled('date_from')) {
+                $query->whereDate('created_at', '>=', $request->date_from);
+            }
+            if ($request && $request->filled('date_to')) {
+                $query->whereDate('created_at', '<=', $request->date_to);
+            }
+            
+            return $query;
+        };
+
+        // Create separate query instances for each statistic to avoid query modification issues
+        $totalTransactions = (clone $baseQuery())->count();
+        $completedTransactions = (clone $baseQuery())->completed()->count();
+        $failedTransactions = (clone $baseQuery())->failed()->count();
+        $pendingTransactions = (clone $baseQuery())->byStatus('pending')->count();
+        $totalAmount = (clone $baseQuery())->completed()->sum('amount') ?? 0;
+        $totalFees = (clone $baseQuery())->completed()->sum('transaction_fee') ?? 0;
+        $webxpayCount = (clone $baseQuery())->byPaymentMethod('webxpay')->count();
+        $kokopayCount = (clone $baseQuery())->byPaymentMethod('kokopay')->count();
+        $bankTransferCount = (clone $baseQuery())->byPaymentMethod('bank_transfer')->count();
         
-        // Apply date filters if provided
-        if ($request && $request->filled('date_from')) {
-            $query->whereDate('created_at', '>=', $request->date_from);
-        }
-        if ($request && $request->filled('date_to')) {
-            $query->whereDate('created_at', '<=', $request->date_to);
-        }
+        // Calculate success rate
+        $successRate = $totalTransactions > 0 ? round(($completedTransactions / $totalTransactions) * 100, 2) : 0;
 
         return [
-            'total_transactions' => $query->count(),
-            'completed_transactions' => $query->completed()->count(),
-            'failed_transactions' => $query->failed()->count(),
-            'pending_transactions' => $query->byStatus('pending')->count(),
-            'total_amount' => $query->completed()->sum('amount'),
-            'total_fees' => $query->completed()->sum('transaction_fee'),
-            'webxpay_count' => $query->byPaymentMethod('webxpay')->count(),
-            'kokopay_count' => $query->byPaymentMethod('kokopay')->count(),
-            'bank_transfer_count' => $query->byPaymentMethod('bank_transfer')->count(),
-            'success_rate' => $query->count() > 0 ? round(($query->completed()->count() / $query->count()) * 100, 2) : 0,
+            'total_transactions' => $totalTransactions,
+            'completed_transactions' => $completedTransactions,
+            'failed_transactions' => $failedTransactions,
+            'pending_transactions' => $pendingTransactions,
+            'total_amount' => $totalAmount,
+            'total_fees' => $totalFees,
+            'webxpay_count' => $webxpayCount,
+            'kokopay_count' => $kokopayCount,
+            'bank_transfer_count' => $bankTransferCount,
+            'success_rate' => $successRate,
         ];
     }
 }

@@ -18,6 +18,7 @@ class CacheController extends Controller
         $cacheInfo = [
             'default_driver' => config('cache.default'),
             'cache_keys_count' => $this->getCacheKeysCount(),
+            'asset_version' => config('assets.version', time()),
         ];
 
         return view('admin.cache.index', compact('cacheInfo'));
@@ -197,6 +198,61 @@ class CacheController extends Controller
 
             return redirect()->route('admin.cache.index')
                 ->with('error', 'Error warming up caches: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Increment asset version to force browser cache refresh
+     */
+    public function incrementAssetVersion(Request $request)
+    {
+        try {
+            // Read current .env file
+            $envPath = base_path('.env');
+            
+            if (!file_exists($envPath)) {
+                throw new \Exception('.env file not found');
+            }
+            
+            $envContent = file_get_contents($envPath);
+            $newVersion = time(); // Use current timestamp as new version
+            
+            // Check if ASSET_VERSION exists in .env
+            if (preg_match('/^ASSET_VERSION=(.*)$/m', $envContent)) {
+                // Update existing ASSET_VERSION
+                $envContent = preg_replace('/^ASSET_VERSION=.*$/m', "ASSET_VERSION={$newVersion}", $envContent);
+            } else {
+                // Add ASSET_VERSION if it doesn't exist
+                $envContent .= "\nASSET_VERSION={$newVersion}\n";
+            }
+            
+            // Write back to .env
+            file_put_contents($envPath, $envContent);
+            
+            // Clear config cache to reload new version
+            Artisan::call('config:clear');
+            
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Asset version incremented successfully! All visitors will see fresh assets on their next page load.',
+                    'new_version' => $newVersion
+                ]);
+            }
+
+            return redirect()->route('admin.cache.index')
+                ->with('success', 'Asset version incremented successfully! All visitors will see fresh assets on their next page load.');
+                
+        } catch (\Exception $e) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error incrementing asset version: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return redirect()->route('admin.cache.index')
+                ->with('error', 'Error incrementing asset version: ' . $e->getMessage());
         }
     }
 

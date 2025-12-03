@@ -147,7 +147,7 @@
                             
                             <!-- Tools Dropdown -->
                             <div class="relative group">
-                                <button class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.activity-logs.*') || request()->routeIs('admin.sitemap.*') || request()->routeIs('admin.cache.*') ? 'bg-[#f59e0b] text-black shadow-lg' : 'text-gray-300 hover:text-white hover:bg-gray-700/70' }}">
+                                <button class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.activity-logs.*') || request()->routeIs('admin.sitemap.*') || request()->routeIs('admin.cache.*') || request()->routeIs('admin.sliders.*') ? 'bg-[#f59e0b] text-black shadow-lg' : 'text-gray-300 hover:text-white hover:bg-gray-700/70' }}">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -182,6 +182,13 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                                             </svg>
                                             Cache Management
+                                        </a>
+                                        <a href="{{ route('admin.sliders.index') }}" 
+                                           class="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700/70 transition-colors">
+                                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                            Slider Management
                                         </a>
                                     </div>
                                 </div>
@@ -365,7 +372,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="min-h-screen">
+    <main class="min-h-screen pb-20">
         <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-8">
             
             <!-- Success Messages -->
@@ -394,30 +401,32 @@
 
             <!-- Page Content -->
             @yield('content')
-            
-            <!-- Developer Copyright Footer -->
-            <footer class="mt-12 pt-8 border-t border-gray-700/50">
-                <div class="text-center">
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-gray-400">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <span>Developed by</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <span class="font-semibold text-primary-400">Olexto Digital Solutions (Pvt) Ltd</span>
-                            <span class="text-gray-500">•</span>
-                            <span class="text-xs text-gray-500">{{ date('Y') }}</span>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-xs text-gray-500">
-                        Professional Web Development & Digital Solutions
-                    </div>
-                </div>
-            </footer>
         </div>
     </main>
+    
+    <!-- Developer Copyright Footer - Sticky to Bottom -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-gray-700/50 z-40">
+        <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-3">
+            <div class="text-center">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Developed by</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="font-semibold text-primary-400">Olexto Digital Solutions (Pvt) Ltd</span>
+                        <span class="text-gray-500">•</span>
+                        <span class="text-xs text-gray-500">{{ date('Y') }}</span>
+                    </div>
+                </div>
+                <div class="mt-1 text-xs text-gray-500">
+                    Professional Web Development & Digital Solutions
+                </div>
+            </div>
+        </div>
+    </footer>
 
     @stack('scripts')
 

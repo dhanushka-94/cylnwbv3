@@ -1,0 +1,276 @@
+/* 🎄 MSK COMPUTERS - Christmas Theme 🎄 */
+
+/* Christmas Color Overrides */
+.christmas-active {
+    /* Christmas Red & Green Theme */
+    --color-primary-50: #fef2f2;
+    --color-primary-100: #fee2e2;
+    --color-primary-200: #fecaca;
+    --color-primary-300: #fca5a5;
+    --color-primary-400: #f87171;
+    --color-primary-500: #ef4444; /* Christmas Red */
+    --color-primary-600: #dc2626;
+    --color-primary-700: #b91c1c;
+    --color-primary-800: #991b1b;
+    --color-primary-900: #7f1d1d;
+}
+
+/* Christmas Background Effects */
+.christmas-active body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f0f 50%, #0a0a0a 100%);
+    position: relative;
+}
+
+.christmas-active body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Christmas Decorations */
+.christmas-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.christmas-snowflake {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    animation: snowfall linear infinite;
+    user-select: none;
+}
+
+.christmas-snowflake:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.christmas-snowflake:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 1s; }
+.christmas-snowflake:nth-child(3) { left: 30%; animation-duration: 14s; animation-delay: 2s; }
+.christmas-snowflake:nth-child(4) { left: 40%; animation-duration: 11s; animation-delay: 0.5s; }
+.christmas-snowflake:nth-child(5) { left: 50%; animation-duration: 13s; animation-delay: 1.5s; }
+.christmas-snowflake:nth-child(6) { left: 60%; animation-duration: 15s; animation-delay: 2.5s; }
+.christmas-snowflake:nth-child(7) { left: 70%; animation-duration: 12s; animation-delay: 0.8s; }
+.christmas-snowflake:nth-child(8) { left: 80%; animation-duration: 14s; animation-delay: 1.8s; }
+.christmas-snowflake:nth-child(9) { left: 90%; animation-duration: 11s; animation-delay: 0.3s; }
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Christmas Ornaments */
+.christmas-ornament {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: float 3s ease-in-out infinite;
+    user-select: none;
+}
+
+.christmas-ornament:nth-child(odd) {
+    animation-delay: 0s;
+}
+
+.christmas-ornament:nth-child(even) {
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+/* Christmas Glow Effects */
+.christmas-logo-glow {
+    filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.6)) 
+            drop-shadow(0 0 20px rgba(34, 197, 94, 0.4));
+    animation: christmas-pulse 2s ease-in-out infinite;
+}
+
+@keyframes christmas-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.6)) 
+                drop-shadow(0 0 20px rgba(34, 197, 94, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(220, 38, 38, 0.8)) 
+                drop-shadow(0 0 30px rgba(34, 197, 94, 0.6));
+    }
+}
+
+/* Christmas Button Styles */
+.christmas-active .btn-primary {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(34, 197, 94, 0.2) 100%);
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    color: #fecaca;
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+.christmas-active .btn-primary:hover {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(34, 197, 94, 0.3) 100%);
+    border-color: rgba(220, 38, 38, 0.7);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+}
+
+/* Christmas Card Styles */
+.christmas-active .card {
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(30, 20, 20, 0.95) 100%);
+}
+
+.christmas-active .card-hover:hover {
+    border-color: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+}
+
+/* Christmas Scrollbar */
+.christmas-active ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #dc2626 0%, #22c55e 100%);
+}
+
+.christmas-active ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ef4444 0%, #16a34a 100%);
+}
+
+/* Christmas Text Accents */
+.christmas-active .text-primary-500,
+.christmas-active .text-\[#f59e0b\] {
+    color: #ef4444 !important;
+}
+
+.christmas-active .bg-primary-500,
+.christmas-active .bg-\[#f59e0b\] {
+    background-color: #ef4444 !important;
+}
+
+.christmas-active .border-primary-500,
+.christmas-active .border-\[#f59e0b\] {
+    border-color: #ef4444 !important;
+}
+
+/* Christmas Gradient Backgrounds */
+.christmas-active .bg-gradient-to-r.from-primary-500 {
+    background: linear-gradient(to right, #ef4444, #22c55e) !important;
+}
+
+.christmas-active .bg-gradient-to-r.to-amber-500 {
+    background: linear-gradient(to right, #ef4444, #22c55e) !important;
+}
+
+/* Christmas Navigation */
+.christmas-active nav {
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(30, 20, 20, 0.98) 100%);
+    border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Christmas Hero Section */
+.christmas-active .hero-section {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 15, 15, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%);
+}
+
+/* Christmas Badge Styles */
+.christmas-active .bg-\[#34d399\] {
+    background-color: #22c55e !important;
+}
+
+.christmas-active .bg-\[#ef4444\] {
+    background-color: #dc2626 !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .christmas-snowflake {
+        font-size: 1rem;
+    }
+    
+    .christmas-ornament {
+        font-size: 1rem;
+    }
+}
+
+/* Christmas Sale Badge Overlay */
+.christmas-sale-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    animation: christmas-badge-bounce 2s ease-in-out infinite;
+}
+
+/* Variant for replacing the text SALE label in the top-left corner */
+.christmas-sale-badge--top-left {
+    left: 0;
+    right: auto;
+}
+
+.christmas-sale-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes christmas-badge-bounce {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.05) rotate(-2deg);
+    }
+    75% {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+/* Responsive badge sizing */
+@media (max-width: 768px) {
+    .christmas-sale-badge {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 640px) {
+    .christmas-sale-badge {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Disable decorations on mobile for performance */
+@media (max-width: 640px) {
+    .christmas-decorations {
+        display: none;
+    }
+}
+

@@ -39,7 +39,7 @@
     <!-- Cache Information Card -->
     <div class="bg-gray-800 rounded-lg border border-gray-700 p-6">
         <h2 class="text-xl font-semibold text-white mb-4">Cache Information</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
                 <p class="text-sm text-gray-400 mb-1">Cache Driver</p>
                 <p class="text-white font-medium">{{ ucfirst($cacheInfo['default_driver']) }}</p>
@@ -47,6 +47,10 @@
             <div>
                 <p class="text-sm text-gray-400 mb-1">Cache Keys</p>
                 <p class="text-white font-medium">{{ $cacheInfo['cache_keys_count'] }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-400 mb-1">Asset Version</p>
+                <p class="text-white font-medium">{{ $cacheInfo['asset_version'] }}</p>
             </div>
         </div>
     </div>
@@ -158,6 +162,28 @@
                     Warm Up Cache
                 </button>
             </form>
+        </div>
+
+        <!-- Increment Asset Version -->
+        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-[#f59e0b]/50 transition-colors">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center">
+                    <div class="bg-[#f59e0b]/20 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Force Browser Cache Refresh</h3>
+            <p class="text-sm text-gray-400 mb-4">Increments asset version to force all visitors to download fresh CSS, JS, and images on their next page load. Use this when you've updated frontend files.</p>
+            <form action="{{ route('admin.cache.increment-version') }}" method="POST" onsubmit="return confirm('This will force all visitors to download fresh assets. Continue?');">
+                @csrf
+                <button type="submit" class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                    Increment Asset Version
+                </button>
+            </form>
+            <p class="text-xs text-gray-500 mt-2">Current Version: <span class="text-[#f59e0b] font-semibold">{{ $cacheInfo['asset_version'] }}</span></p>
         </div>
 
     </div>

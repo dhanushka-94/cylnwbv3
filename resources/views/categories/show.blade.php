@@ -318,9 +318,16 @@
                             @endif
 
                             @if($product->is_on_sale)
-                                <div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
-                                    SALE
-                                </div>
+                                @if(isset($isChristmasActive) && $isChristmasActive)
+                                    <!-- Replace SALE text label with Christmas badge (top-right on category cards) -->
+                                    <div class="christmas-sale-badge">
+                                        <img src="{{ asset('images/christmas-sale-badge.png') }}" alt="Christmas Sale">
+                                    </div>
+                                @else
+                                    <div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+                                        SALE
+                                    </div>
+                                @endif
                             @endif
                         </div>
                         
@@ -820,7 +827,18 @@
                     stockBadge = '<div class="absolute top-3 left-3 bg-[#ef4444] text-white text-xs font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm">OUT OF STOCK</div>';
                 }
 
-                let saleBadge = product.is_on_sale ? '<div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">SALE</div>' : '';
+                // Sale / Christmas badge
+                const isChristmasActive = {{ isset($isChristmasActive) && $isChristmasActive ? 'true' : 'false' }};
+                let saleBadge = '';
+
+                if (product.is_on_sale) {
+                    if (isChristmasActive) {
+                        // Replace SALE text label with Christmas badge in AJAX cards
+                        saleBadge = '<div class="christmas-sale-badge"><img src="{{ asset("images/christmas-sale-badge.png") }}" alt="Christmas Sale"></div>';
+                    } else {
+                        saleBadge = '<div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">SALE</div>';
+                    }
+                }
                 
                 let priceHTML = '';
                 if (product.is_on_sale) {
@@ -870,7 +888,7 @@
                                         return `<button onclick="event.preventDefault(); event.stopPropagation(); addToCart(${product.id})" class="w-full bg-gradient-to-r from-primary-500/15 to-amber-500/15 backdrop-blur-sm border border-primary-400/40 hover:from-primary-500/25 hover:to-amber-500/25 hover:border-primary-400/60 text-primary-200 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5 tracking-wide">Add to Cart</button>`;
                                     } else {
                                         return `<button disabled class="w-full bg-[#2c2c2e] text-gray-500 px-4 py-2.5 rounded-lg text-sm font-medium cursor-not-allowed border border-gray-700">Out of Stock</button>`;
-                                    }
+                                }
                                 })()}
                             </div>
                         </div>

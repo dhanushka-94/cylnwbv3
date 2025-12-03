@@ -15,7 +15,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="@yield('og_title', 'MSK COMPUTERS')">
     <meta property="og:description" content="@yield('og_description', 'MSK Computers - Your trusted partner for computer hardware and technology solutions.')">
-    <meta property="og:image" content="@yield('og_image', asset('images/msk-logo.png'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/msk-logo.png') . '?v=' . config('assets.version', time()))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:site_name" content="MSK Computers">
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('og_title', 'MSK COMPUTERS')">
     <meta name="twitter:description" content="@yield('og_description', 'MSK Computers - Your trusted partner for computer hardware and technology solutions.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/msk-logo.png'))">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/msk-logo.png') . '?v=' . config('assets.version', time()))">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -48,6 +48,41 @@
     
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Asset Version for Cache Busting -->
+    <meta name="asset-version" content="{{ config('assets.version', time()) }}">
+    <script>
+        // Force browser to reload assets when version changes
+        (function() {
+            const version = document.querySelector('meta[name="asset-version"]')?.content || '{{ time() }}';
+            const storedVersion = localStorage.getItem('asset_version');
+            
+            // If version changed, clear all caches and reload
+            if (storedVersion && storedVersion !== version) {
+                // Clear service worker cache if exists
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        registrations.forEach(registration => registration.unregister());
+                    });
+                }
+                // Clear localStorage cache markers
+                localStorage.removeItem('asset_version');
+                // Force reload if version changed significantly
+                if (Math.abs(parseInt(version) - parseInt(storedVersion)) > 60) {
+                    window.location.reload(true);
+                }
+            }
+            
+            // Store current version
+            localStorage.setItem('asset_version', version);
+        })();
+    </script>
+    
+    <!-- Christmas Theme CSS -->
+    @if(isset($isChristmasActive) && $isChristmasActive)
+        <style>
+            @php echo file_get_contents(resource_path('css/christmas.css')); @endphp
+        </style>
+    @endif
     
     @stack('styles')
     
@@ -122,7 +157,21 @@
         }
     </style>
 </head>
-<body class="bg-dark-900 text-gray-100 font-sans antialiased">
+<body class="bg-dark-900 text-gray-100 font-sans antialiased {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-active' : '' }}">
+    <!-- 🎄 Christmas Decorations -->
+    @if(isset($isChristmasActive) && $isChristmasActive)
+        <div class="christmas-decorations">
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+            <span class="christmas-snowflake">❄</span>
+        </div>
+    @endif
     <!-- Top Contact Bar -->
     <div class="bg-black border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +250,7 @@
                         <div class="flex items-center">
                             <img src="{{ asset('msk-computers-logo-color.png') }}" 
                                  alt="MSK Computers Logo" 
-                                 class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain">
+                                 class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-logo-glow' : '' }}">
                         </div>
                         <div class="hidden sm:block">
                             <h1 class="text-sm md:text-xl font-bold text-primary-400">MSK COMPUTERS</h1>
@@ -707,9 +756,9 @@
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="flex items-center">
-                            <img src="{{ asset('msk-computers-logo-color.png') }}" 
-                                 alt="MSK Computers Logo" 
-                                 class="w-24 h-24 object-contain">
+                            <img src="{{ asset('msk-computers-logo-color.png') }}"
+                                 alt="MSK Computers Logo"
+                                 class="w-24 h-24 object-contain {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-logo-glow' : '' }}">
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-primary-400">MSK COMPUTERS</h3>

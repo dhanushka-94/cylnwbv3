@@ -544,17 +544,18 @@ use Illuminate\Support\Facades\Storage;
                             </div>
                         </div>
                         @endif
-                    @elseif($order->payment_method === 'bank_transfer')
-                        <!-- Bank Transfer Slip Display -->
-                        @if($order->transfer_slip_path)
+                    @endif
+                    
+                    <!-- Transfer Slip / Attachments Display (for all payment methods) -->
+                    @if($order->transfer_slip_path)
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
-                                <span class="text-gray-400">🏦 Transfer Slip</span>
+                                <span class="text-gray-400 font-medium">📎 Order Attachment / Transfer Slip</span>
                                 <div class="flex items-center space-x-2">
                                     @if(Storage::disk('public')->exists($order->transfer_slip_path))
-                                        <span class="bg-green-900/30 px-3 py-1 rounded-lg text-green-300 text-sm font-medium border border-green-500/30">
-                                            ✅ Uploaded
-                                        </span>
+                                    <span class="bg-green-900/30 px-3 py-1 rounded-lg text-green-300 text-sm font-medium border border-green-500/30">
+                                        ✅ Uploaded
+                                    </span>
                                     @else
                                         <span class="bg-red-900/30 px-3 py-1 rounded-lg text-red-300 text-sm font-medium border border-red-500/30">
                                             ⚠️ File Not Found
@@ -570,9 +571,10 @@ use Illuminate\Support\Facades\Storage;
                                     <div class="flex-shrink-0">
                                         @php
                                             $fileExtension = pathinfo($order->transfer_slip_path, PATHINFO_EXTENSION);
-                                            $isImage = in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png']);
+                                            $isImage = in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
                                             $isPdf = strtolower($fileExtension) === 'pdf';
-                                            $transferSlipUrl = Storage::disk('public')->url($order->transfer_slip_path);
+                                            // Use asset() for more reliable URL generation
+                                            $transferSlipUrl = asset('storage/' . $order->transfer_slip_path);
                                         @endphp
                                         
                                         @if($isImage)
@@ -631,7 +633,8 @@ use Illuminate\Support\Facades\Storage;
                                             <!-- Action Buttons -->
                                             <div class="flex items-center space-x-2 pt-2">
                                                 @php
-                                                    $transferSlipUrl = Storage::disk('public')->url($order->transfer_slip_path);
+                                                    // Use asset() for more reliable URL generation
+                                                    $transferSlipUrl = asset('storage/' . $order->transfer_slip_path);
                                                     $cleanCustomerName = preg_replace('/[^A-Za-z0-9\-_]/', '_', $order->customer_name);
                                                     $cleanCustomerPhone = preg_replace('/[^0-9]/', '', $order->customer_phone);
                                                 @endphp
@@ -673,14 +676,14 @@ use Illuminate\Support\Facades\Storage;
                             </div>
                             @endif
                         </div>
-                        @else
+                    @elseif($order->payment_method === 'bank_transfer')
+                        <!-- No Transfer Slip Uploaded for Bank Transfer -->
                         <div class="flex items-center justify-between">
                             <span class="text-gray-400">🏦 Transfer Slip</span>
                             <span class="bg-yellow-900/30 px-3 py-1 rounded-lg text-yellow-300 text-sm font-medium border border-yellow-500/30">
                                 ⏳ Not Uploaded
                             </span>
                         </div>
-                        @endif
                     @endif
                     
                     <div class="flex items-center justify-between">

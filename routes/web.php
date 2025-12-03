@@ -74,6 +74,10 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
         Route::post('/cache/clear-views', [App\Http\Controllers\Admin\CacheController::class, 'clearViews'])->name('cache.clear-views');
         Route::post('/cache/clear-products', [App\Http\Controllers\Admin\CacheController::class, 'clearProductCaches'])->name('cache.clear-products');
         Route::post('/cache/warm-up', [App\Http\Controllers\Admin\CacheController::class, 'warmUp'])->name('cache.warm-up');
+        Route::post('/cache/increment-version', [App\Http\Controllers\Admin\CacheController::class, 'incrementAssetVersion'])->name('cache.increment-version');
+
+        // Slider Management
+        Route::resource('sliders', App\Http\Controllers\Admin\SliderController::class);
 });
 
 // Home Route

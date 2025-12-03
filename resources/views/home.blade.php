@@ -16,54 +16,46 @@
         <div class="absolute w-96 h-96 rounded-full bg-gradient-to-r from-[#3b82f6]/20 to-[#1d4ed8]/20 blur-3xl -bottom-48 -right-48 animate-pulse" style="animation-delay: 1s;"></div>
     </div>
     
+    @if($sliders->count() > 0)
     <div class="hero-slider relative z-10 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-none md:rounded-lg w-full mx-0" id="heroSlider">
-        <!-- Image Slide 1 -->
-        <div class="hero-slide active overflow-hidden">
-            <img src="{{ asset('images/sliders/Slider 1.png') }}" 
-                 alt="MSK Computers Slider 1" 
-                 class="w-full h-full object-contain sm:object-cover object-center">
+        @foreach($sliders as $index => $slider)
+        <div class="hero-slide overflow-hidden {{ $index === 0 ? 'active' : '' }}">
+            @if($slider->link_url)
+            <a href="{{ $slider->link_url }}" class="block w-full h-full">
+            @endif
+                @if($slider->image_path && Storage::disk('public')->exists($slider->image_path))
+                    <img src="{{ asset('storage/' . $slider->image_path) }}" 
+                         alt="{{ $slider->title ?? 'MSK Computers Slider' }}" 
+                         class="w-full h-full object-contain sm:object-cover object-center"
+                         loading="lazy"
+                         onerror="console.error('Slider image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-full h-full flex items-center justify-center bg-gray-900" style="display:none;">
+                        <p class="text-gray-500">Image not available</p>
+                    </div>
+                @else
+                    <div class="w-full h-full flex items-center justify-center bg-gray-900">
+                        <p class="text-gray-500">Image not available</p>
+                    </div>
+                @endif
+            @if($slider->link_url)
+            </a>
+            @endif
         </div>
-
-        <!-- Image Slide 2 -->
-        <div class="hero-slide overflow-hidden">
-            <img src="{{ asset('images/sliders/Slider 2.png') }}" 
-                 alt="MSK Computers Slider 2" 
-                 class="w-full h-full object-contain sm:object-cover object-center">
-        </div>
-
-        <!-- Image Slide 3 -->
-        <div class="hero-slide overflow-hidden">
-            <img src="{{ asset('images/sliders/Slider 3.png') }}" 
-                 alt="MSK Computers Slider 3" 
-                 class="w-full h-full object-contain sm:object-cover object-center">
-        </div>
-
-        <!-- Image Slide 4 -->
-        <div class="hero-slide overflow-hidden">
-            <img src="{{ asset('images/sliders/Slider 4.png') }}" 
-                 alt="MSK Computers Slider 4" 
-                 class="w-full h-full object-contain sm:object-cover object-center">
-        </div>
-
-        <!-- Image Slide 5 -->
-        <div class="hero-slide overflow-hidden">
-            <img src="{{ asset('images/sliders/Slider 5.png') }}" 
-                 alt="MSK Computers Slider 5" 
-                 class="w-full h-full object-contain sm:object-cover object-center">
-        </div>
+        @endforeach
 
         <!-- Slider Navigation -->
+        @if($sliders->count() > 1)
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
             <div class="flex space-x-2">
-                <button class="slider-dot active w-3 h-3 rounded-full bg-white/80 hover:bg-white transition-all duration-300" data-slide="0"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" data-slide="1"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" data-slide="2"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" data-slide="3"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all duration-300" data-slide="4"></button>
+                @foreach($sliders as $index => $slider)
+                <button class="slider-dot {{ $index === 0 ? 'active' : '' }} w-3 h-3 rounded-full {{ $index === 0 ? 'bg-white/80' : 'bg-white/40' }} hover:bg-white transition-all duration-300" data-slide="{{ $index }}"></button>
+                @endforeach
             </div>
         </div>
+        @endif
 
         <!-- Navigation Arrows -->
+        @if($sliders->count() > 1)
         <button class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 group" id="prevSlide">
             <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -74,7 +66,18 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
         </button>
+        @endif
     </div>
+    @else
+    <!-- Fallback: Show default slider if no sliders in database -->
+    <div class="hero-slider relative z-10 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-none md:rounded-lg w-full mx-0" id="heroSlider">
+        <div class="hero-slide active overflow-hidden">
+            <img src="{{ asset('images/sliders/Slider 1.png') }}" 
+                 alt="MSK Computers Slider" 
+                 class="w-full h-full object-contain sm:object-cover object-center">
+        </div>
+    </div>
+    @endif
 
 </section>
 
@@ -214,13 +217,22 @@
                                 </div>
                             </a>
                             
-                            <!-- Clean Sale Badge -->
+                            <!-- Sale / Christmas Badge -->
                             @if($product->is_on_sale)
-                                <div class="absolute top-4 left-4 z-10">
-                                    <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-md">
-                                        SALE
-                                    </span>
-                                </div>
+                                @if(isset($isChristmasActive) && $isChristmasActive)
+                                    <!-- Replace red SALE label with Christmas badge in the same position -->
+                                    <div class="absolute top-4 left-4 z-10">
+                                        <div class="christmas-sale-badge christmas-sale-badge--top-left">
+                                            <img src="{{ asset('images/christmas-sale-badge.png') }}" alt="Christmas Sale">
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="absolute top-4 left-4 z-10">
+                                        <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-md">
+                                            SALE
+                                        </span>
+                                    </div>
+                                @endif
                             @endif
 
                             <!-- Stock Status -->
@@ -597,17 +609,7 @@
             const currentSlide = this.slides[this.currentSlide];
             const nextSlide = this.slides[slideIndex];
             
-            // Determine slide direction for train effect
-            const isNextSlide = slideIndex > this.currentSlide || (slideIndex === 0 && this.currentSlide === this.totalSlides - 1);
-            
-            // Position the new slide before it enters
-            if (isNextSlide) {
-                nextSlide.style.transform = 'translateX(100%)'; // Slide in from right
-            } else {
-                nextSlide.style.transform = 'translateX(-100%)'; // Slide in from left
-            }
-            
-            // Add prev class to current slide for smooth exit
+            // Remove active class from current slide
             currentSlide.classList.add('prev');
             currentSlide.classList.remove('active');
             
@@ -616,32 +618,27 @@
             this.dots[this.currentSlide].classList.remove('bg-white/80');
             this.dots[this.currentSlide].classList.add('bg-white/40');
             
-            // Small delay to ensure smooth transition
+            // Update current slide index
+            this.currentSlide = slideIndex;
+            
+            // Activate new slide with fade effect
+            nextSlide.classList.remove('prev');
+            nextSlide.classList.add('active');
+            
+            // Update dot
+            this.dots[this.currentSlide].classList.add('active');
+            this.dots[this.currentSlide].classList.remove('bg-white/40');
+            this.dots[this.currentSlide].classList.add('bg-white/80');
+            
+            // Clean up previous slide after transition completes
             setTimeout(() => {
-                // Update current slide index
-                this.currentSlide = slideIndex;
-                
-                // Activate new slide
-                nextSlide.classList.add('active');
-                nextSlide.classList.remove('prev');
-                nextSlide.style.transform = ''; // Reset to use CSS transform
-                
-                // Update dot
-                this.dots[this.currentSlide].classList.add('active');
-                this.dots[this.currentSlide].classList.remove('bg-white/40');
-                this.dots[this.currentSlide].classList.add('bg-white/80');
-                
-                // Clean up previous slide after transition
-                setTimeout(() => {
-                    currentSlide.classList.remove('prev');
-                }, 50);
-                
-            }, 50);
+                currentSlide.classList.remove('prev');
+            }, 800);
             
             // Restart auto-play after transition
             setTimeout(() => {
                 this.startAutoPlay();
-            }, 400);
+            }, 800);
         }
         
         nextSlide() {
@@ -710,13 +707,17 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Preload all slider images for smoother transitions
         const preloadImages = () => {
+            @if($sliders->count() > 0)
             const imageUrls = [
-                "{{ asset('images/sliders/Slider 1.png') }}",
-                "{{ asset('images/sliders/Slider 2.png') }}",
-                "{{ asset('images/sliders/Slider 3.png') }}",
-                "{{ asset('images/sliders/Slider 4.png') }}",
-                "{{ asset('images/sliders/Slider 5.png') }}"
+                @foreach($sliders as $slider)
+                "{{ Storage::disk('public')->url($slider->image_path) }}"{{ !$loop->last ? ',' : '' }}
+                @endforeach
             ];
+            @else
+            const imageUrls = [
+                "{{ asset('images/sliders/Slider 1.png') }}"
+            ];
+            @endif
             
             imageUrls.forEach(url => {
                 const img = new Image();
@@ -776,40 +777,47 @@
 </script>
 
 <style>
-    /* Train-like Sliding Hero Slider Animations */
+    /* Modern Fade/Crossfade Hero Slider Animations */
     .hero-slide {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        transform: translateX(100%);
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
         z-index: 1;
+        transform: scale(1.05);
     }
     
     .hero-slide.active {
-        transform: translateX(0);
+        opacity: 1;
         z-index: 2;
+        transform: scale(1);
     }
     
     .hero-slide.prev {
-        transform: translateX(-100%);
+        opacity: 0;
         z-index: 1;
+        transform: scale(0.95);
     }
 
-    /* Remove all zoom effects - train only moves */
+    /* Smooth image transitions */
     .hero-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.8s ease-in-out;
+    }
+    
+    .hero-slide.active img {
         transform: scale(1);
     }
 
     /* Mobile optimizations */
     @media (max-width: 640px) {
         .hero-slide {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         }
         
         /* Ensure images fit screen on mobile without cropping */
