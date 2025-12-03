@@ -267,9 +267,19 @@
     }
 }
 
-/* Disable decorations on mobile for performance */
+/* Optimize decorations on mobile for performance */
 @media (max-width: 640px) {
-    .christmas-decorations {
+    .christmas-snowflake {
+        font-size: 0.875rem;
+        animation-duration: 8s !important; /* Faster animation for better performance */
+    }
+    
+    .christmas-ornament {
+        font-size: 0.875rem;
+    }
+    
+    /* Reduce number of snowflakes on very small screens */
+    .christmas-decorations .christmas-snowflake:nth-child(n+7) {
         display: none;
     }
 }
