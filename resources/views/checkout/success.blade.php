@@ -7,15 +7,86 @@
 <div class="min-h-screen bg-[#0f0f0f] py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Success Header -->
-        <div class="text-center mb-12">
-            <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
-                <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
+        <!-- Flash Messages for Payment Status -->
+        @if(session('success'))
+            <div class="bg-green-900/30 backdrop-blur-sm border border-green-500/50 text-green-200 px-6 py-4 rounded-xl mb-6">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <p class="text-lg font-medium">{{ session('success') }}</p>
+                </div>
             </div>
-            <h1 class="text-4xl font-bold text-white mb-4">Order Confirmed!</h1>
-            <p class="text-xl text-gray-400">Thank you for your purchase from MSK Computers</p>
+        @endif
+
+        @if(session('info'))
+            <div class="bg-blue-900/30 backdrop-blur-sm border border-blue-500/50 text-blue-200 px-6 py-4 rounded-xl mb-6">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <p class="text-lg font-medium">{{ session('info') }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if(session('warning'))
+            <div class="bg-yellow-900/30 backdrop-blur-sm border border-yellow-500/50 text-yellow-200 px-6 py-4 rounded-xl mb-6">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <p class="text-lg font-medium">{{ session('warning') }}</p>
+                </div>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="bg-red-900/30 backdrop-blur-sm border border-red-500/50 text-red-200 px-6 py-4 rounded-xl mb-6">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-red-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <p class="text-lg font-medium">{{ session('error') }}</p>
+                </div>
+            </div>
+        @endif
+
+        <!-- Success Header (Dynamic based on payment status) -->
+        <div class="text-center mb-12">
+            @if($order->payment_status === 'paid')
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
+                    <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-4">Order Confirmed!</h1>
+                <p class="text-xl text-gray-400">Thank you for your purchase from MSK Computers</p>
+            @elseif($order->payment_status === 'pending')
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-blue-100 mb-6">
+                    <svg class="h-10 w-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-4">Payment Processing</h1>
+                <p class="text-xl text-gray-400">Your payment is being processed. We'll notify you once it's confirmed.</p>
+            @elseif($order->payment_status === 'failed')
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-red-100 mb-6">
+                    <svg class="h-10 w-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-4">Payment Not Completed</h1>
+                <p class="text-xl text-gray-400">Your order was created but payment was not successful. Please try again or contact support.</p>
+            @else
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-yellow-100 mb-6">
+                    <svg class="h-10 w-10 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-4">Order Received</h1>
+                <p class="text-xl text-gray-400">Your order has been received. Please check payment status below.</p>
+            @endif
         </div>
 
         <!-- Order Details Card -->
