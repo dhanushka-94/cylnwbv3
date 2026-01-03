@@ -253,7 +253,21 @@ class PaymentController extends Controller
     }
 
     /**
+     * Test WebXPay return URL accessibility
+     */
+    public function testWebXPayReturnUrl()
+    {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'WebXPay return URL is accessible',
+            'url' => url('/pay/webxpayResponse'),
+            'timestamp' => now()->toDateTimeString()
+        ]);
+    }
+
+    /**
      * Handle WebXPay return
+     * WebXPay sends POST data with base64-encoded: payment, signature, custom_fields
      */
     public function handleWebXPayReturn(Request $request)
     {
@@ -277,48 +291,92 @@ class PaymentController extends Controller
             }
 
             // Enhanced logging for debugging WebXPay return issues
+            // WebXPay sends POST data with base64-encoded parameters: payment, signature, custom_fields
             Log::info('🔄 WebXPay return handler called', [
                 'request_method' => $request->method(),
                 'request_url' => $request->fullUrl(),
                 'request_data' => $request->all(),
+                'query_params' => $request->query->all(),
+                'post_params' => $request->post->all(),
+                'raw_input' => $request->getContent(),
                 'has_payment' => $request->has('payment'),
                 'has_signature' => $request->has('signature'),
+                'has_custom_fields' => $request->has('custom_fields'),
+                'payment_value_preview' => $request->input('payment') ? substr($request->input('payment'), 0, 50) . '...' : 'missing',
+                'signature_value_preview' => $request->input('signature') ? substr($request->input('signature'), 0, 50) . '...' : 'missing',
                 'from_cart_redirect' => !empty($webxpayData),
                 'referer' => $referer,
                 'user_agent' => $request->header('User-Agent'),
                 'ip_address' => $request->ip(),
                 'session_id' => session()->getId(),
+                'content_type' => $request->header('Content-Type'),
                 'timestamp' => now()->toDateTimeString()
             ]);
 
+            // CRITICAL: WebXPay sends POST data with base64-encoded parameters
+            // Check both GET (for testing) and POST (for actual WebXPay response)
+            $paymentParam = $request->input('payment'); // input() checks both GET and POST
+            $signatureParam = $request->input('signature');
+            $customFieldsParam = $request->input('custom_fields');
+
             // Validate required parameters with enhanced error handling
-            if (!$request->has(['payment', 'signature'])) {
+            if (empty($paymentParam) || empty($signatureParam)) {
                 Log::error('❌ WebXPay return missing required parameters', [
                     'available_keys' => array_keys($request->all()),
-                    'missing_payment' => !$request->has('payment'),
-                    'missing_signature' => !$request->has('signature'),
+                    'query_keys' => array_keys($request->query->all()),
+                    'post_keys' => array_keys($request->post->all()),
+                    'missing_payment' => empty($paymentParam),
+                    'missing_signature' => empty($signatureParam),
                     'url' => $request->fullUrl(),
                     'referer' => $request->header('referer'),
-                    'all_request_data' => $request->all()
+                    'all_request_data' => $request->all(),
+                    'raw_input' => $request->getContent()
                 ]);
                 
-                // If this is a test URL without signature, redirect to checkout with helpful message
-                if ($request->has('payment') && $request->get('payment') === 'success') {
-                    Log::warning('⚠️ WebXPay test URL detected - redirecting to checkout');
-                    return redirect()->route('checkout.index')
-                        ->with('error', 'Test URL detected. WebXPay requires both payment and signature parameters for security. Please use a real WebXPay transaction or test the success page directly at: /checkout/success/' . ($request->get('order', 'ORDER_NUMBER')));
+                // If this is a test URL without signature, redirect to home to prevent loop
+                if (!empty($paymentParam) && $paymentParam === 'success') {
+                    Log::warning('⚠️ WebXPay test URL detected - redirecting to home');
+                    return redirect()->route('home')
+                        ->with('error', 'Test URL detected. WebXPay requires both payment and signature parameters for security. Please use a real WebXPay transaction.');
                 }
                 
-                // For missing parameters, redirect to checkout instead of throwing exception
-                Log::error('🚫 WebXPay missing parameters - redirecting to checkout');
-                return redirect()->route('checkout.index')
-                    ->with('error', 'Payment verification failed. Missing required payment data. Please try again or contact support if this issue persists.');
+                // CRITICAL FIX: Instead of redirecting to checkout.index (which causes loop),
+                // redirect to a static success page or show an error page
+                // Check if we can extract order info from session or referer
+                $orderNumber = session('webxpay_order_number') ?? session('payment_success_order');
+                
+                if ($orderNumber) {
+                    Log::info('📋 Found order number in session, redirecting to success page', ['order_number' => $orderNumber]);
+                    return redirect()->route('checkout.success', $orderNumber)
+                        ->with('info', 'Payment processing completed. Please check your order status.');
+                }
+                
+                // Last resort: redirect to home instead of checkout to prevent loop
+                Log::error('🚫 WebXPay missing parameters - redirecting to home to prevent loop');
+                return redirect()->route('home')
+                    ->with('error', 'Payment verification failed. Missing required payment data. Please contact support with your order number if you completed a payment.');
             }
+            
+            // Prepare response data for processing
+            // WebXPay sends: payment (base64), signature (base64), custom_fields (base64)
+            $responseData = [
+                'payment' => $paymentParam,
+                'signature' => $signatureParam,
+                'custom_fields' => $customFieldsParam ?? null
+            ];
+            
+            Log::info('📦 WebXPay response data prepared for processing', [
+                'has_payment' => !empty($responseData['payment']),
+                'has_signature' => !empty($responseData['signature']),
+                'has_custom_fields' => !empty($responseData['custom_fields']),
+                'payment_length' => strlen($responseData['payment'] ?? ''),
+                'signature_length' => strlen($responseData['signature'] ?? ''),
+                'request_method' => $request->method()
+            ]);
 
             $webxpayService = new WebXPayService();
-            $responseData = $request->all();
             
-            // Process the response
+            // Process the response (this will decode base64 and verify signature)
             $processedResponse = $webxpayService->processResponse($responseData);
             
             Log::info('WebXPay processed response', [
@@ -384,7 +442,8 @@ class PaymentController extends Controller
                         'payment_status' => $processedResponse['payment_status'],
                         'comment' => $processedResponse['comment'] ?? 'No comment'
                     ]);
-                    return redirect()->route('checkout.index')
+                    // CRITICAL FIX: Redirect to home instead of checkout.index to prevent redirect loop
+                    return redirect()->route('home')
                         ->with('error', 'Payment was not completed. ' . ($processedResponse['comment'] ?? 'Unknown error'));
             }
 
@@ -398,6 +457,15 @@ class PaymentController extends Controller
                 'stack_trace' => $e->getTraceAsString()
             ]);
 
+            // CRITICAL FIX: Prevent redirect loop by checking if we have order info
+            $orderNumber = $order->order_number ?? session('webxpay_order_number') ?? session('payment_success_order');
+            
+            if ($orderNumber) {
+                Log::info('📋 Redirecting to success page despite error', ['order_number' => $orderNumber]);
+                return redirect()->route('checkout.success', $orderNumber)
+                    ->with('warning', 'Payment processing encountered an issue. Please verify your payment status or contact support.');
+            }
+
             // Check if this is a WebXPay specific error code
             $webxpayService = new WebXPayService();
             $errorMessage = $e->getMessage();
@@ -408,9 +476,9 @@ class PaymentController extends Controller
                 $errorMessage = $webxpayService->handleWebXPayError($errorCode, $errorMessage);
             }
 
-            // ENSURE we never redirect to homepage - always go to checkout
-            Log::warning('🔄 WebXPay error - redirecting to checkout (NOT homepage)');
-            return redirect()->route('checkout.index')
+            // CRITICAL FIX: Redirect to home instead of checkout.index to prevent redirect loop
+            Log::warning('🔄 WebXPay error - redirecting to home to prevent loop');
+            return redirect()->route('home')
                 ->with('error', 'Payment processing failed: ' . $errorMessage . ' Please try again or contact support.');
         }
     }
@@ -422,7 +490,8 @@ class PaymentController extends Controller
     {
         Log::info('WebXPay payment cancelled', $request->all());
         
-        return redirect()->route('checkout.index')
+        // CRITICAL FIX: Redirect to home instead of checkout.index to prevent redirect loop
+        return redirect()->route('home')
             ->with('error', 'Payment was cancelled. You can try again or choose a different payment method.');
     }
 

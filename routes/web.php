@@ -360,6 +360,8 @@ Route::get('/payment/webxpay/{order}', [App\Http\Controllers\PaymentController::
 Route::post('/payment/webxpay/{order}', [App\Http\Controllers\PaymentController::class, 'initiateWebXPayPayment'])->name('payment.webxpay.post');
 
 // WebXPay Legacy/Alternative Routes (for compatibility)
+// Test endpoint to verify return URL is accessible (must be defined BEFORE the general route)
+Route::get('/pay/webxpayResponse/test', [App\Http\Controllers\PaymentController::class, 'testWebXPayReturnUrl'])->name('payment.webxpay.legacy.return.test');
 Route::post('/pay/webxpayResponse', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.legacy.return');
 Route::get('/pay/webxpayResponse', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.legacy.return.get');
 
