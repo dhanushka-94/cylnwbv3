@@ -33,8 +33,8 @@
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $order->status_badge }}">
                                 📋 {{ ucfirst($order->status) }}
                             </span>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $order->payment_status_badge }}">
-                                💳 {{ ucfirst(str_replace('_', ' ', $order->payment_status)) }}
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $order->payment_status === 'paid' ? 'bg-green-500 text-white' : $order->payment_status_badge }}">
+                                💳 {{ $order->payment_status === 'paid' ? 'Paid' : ucfirst(str_replace('_', ' ', $order->payment_status)) }}
                             </span>
                         </div>
                         <!-- Quick Invoice Download in Header -->
@@ -239,8 +239,8 @@
                                     <span class="text-xs {{ $order->status_badge }} px-2 py-1 rounded-full">
                                         📋 {{ ucfirst($order->status) }}
                                     </span>
-                                    <span class="text-xs {{ $order->payment_status_badge }} px-2 py-1 rounded-full">
-                                        💳 {{ ucfirst(str_replace('_', ' ', $order->payment_status)) }}
+                                    <span class="text-xs {{ $order->payment_status === 'paid' ? 'bg-green-500 text-white' : $order->payment_status_badge }} px-2 py-1 rounded-full">
+                                        💳 {{ $order->payment_status === 'paid' ? 'Paid' : ucfirst(str_replace('_', ' ', $order->payment_status)) }}
                                     </span>
                                 </div>
                                 <div class="text-xs text-gray-400">
