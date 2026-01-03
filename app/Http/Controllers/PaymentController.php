@@ -296,8 +296,8 @@ class PaymentController extends Controller
                 'request_method' => $request->method(),
                 'request_url' => $request->fullUrl(),
                 'request_data' => $request->all(),
-                'query_params' => $request->query->all(),
-                'post_params' => $request->post->all(),
+                'query_params' => $request->query() ? $request->query()->all() : [],
+                'post_params' => $request->isMethod('POST') ? $request->all() : [],
                 'raw_input' => $request->getContent(),
                 'has_payment' => $request->has('payment'),
                 'has_signature' => $request->has('signature'),
@@ -323,8 +323,8 @@ class PaymentController extends Controller
             if (empty($paymentParam) || empty($signatureParam)) {
                 Log::error('❌ WebXPay return missing required parameters', [
                     'available_keys' => array_keys($request->all()),
-                    'query_keys' => array_keys($request->query->all()),
-                    'post_keys' => array_keys($request->post->all()),
+                    'query_keys' => $request->query() ? array_keys($request->query()->all()) : [],
+                    'post_keys' => $request->isMethod('POST') ? array_keys($request->all()) : [],
                     'missing_payment' => empty($paymentParam),
                     'missing_signature' => empty($signatureParam),
                     'url' => $request->fullUrl(),
