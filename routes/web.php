@@ -324,6 +324,7 @@ Route::prefix('checkout')->name('checkout.')->group(function () {
     Route::get('/', [CheckoutController::class, 'selectOption'])->name('index');
     Route::get('/quotation', [CheckoutController::class, 'quotation'])->name('quotation');
     Route::get('/payment', [CheckoutController::class, 'payment'])->name('payment');
+    Route::post('/payment', [CheckoutController::class, 'payment'])->name('payment.post');
     Route::post('/process', [CheckoutController::class, 'process'])->name('process');
     Route::get('/success/{order}', [CheckoutController::class, 'success'])->name('success');
 });

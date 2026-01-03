@@ -61,7 +61,7 @@
                                 <input type="text" 
                                        id="first_name" 
                                        name="first_name" 
-                                       value="{{ old('first_name', Auth::user() ? explode(' ', Auth::user()->name)[0] : '') }}" 
+                                       value="{{ old('first_name', $checkoutData['first_name'] ?? (Auth::user() ? explode(' ', Auth::user()->name)[0] : '')) }}" 
                                        required
                                        placeholder="Enter your first name"
                                        class="w-full px-4 py-3 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
@@ -74,7 +74,7 @@
                                 <input type="text" 
                                        id="last_name" 
                                        name="last_name" 
-                                       value="{{ old('last_name', Auth::user() && str_contains(Auth::user()->name, ' ') ? substr(Auth::user()->name, strpos(Auth::user()->name, ' ') + 1) : '') }}" 
+                                       value="{{ old('last_name', $checkoutData['last_name'] ?? (Auth::user() && str_contains(Auth::user()->name, ' ') ? substr(Auth::user()->name, strpos(Auth::user()->name, ' ') + 1) : '')) }}" 
                                        required
                                        placeholder="Enter your last name"
                                        class="w-full px-4 py-3 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
@@ -89,7 +89,7 @@
                                 <input type="tel" 
                                        id="customer_phone" 
                                        name="customer_phone" 
-                                       value="{{ old('customer_phone', Auth::user()->phone ?? '') }}" 
+                                       value="{{ old('customer_phone', $checkoutData['customer_phone'] ?? (Auth::user()->phone ?? '')) }}" 
                                        required
                                        placeholder="Enter your phone number"
                                        class="w-full px-4 py-3 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
@@ -102,7 +102,7 @@
                                 <input type="email" 
                                        id="customer_email" 
                                        name="customer_email" 
-                                       value="{{ old('customer_email', Auth::user()->email ?? '') }}" 
+                                       value="{{ old('customer_email', $checkoutData['customer_email'] ?? (Auth::user()->email ?? '')) }}" 
                                        required
                                        placeholder="Enter your email address"
                                        class="w-full px-4 py-3 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
@@ -128,7 +128,7 @@
                                 <input type="text" 
                                        id="billing_address_line_1" 
                                        name="billing_address_line_1" 
-                                       value="{{ old('billing_address_line_1') }}" 
+                                       value="{{ old('billing_address_line_1', $checkoutData['billing_address_line_1'] ?? '') }}" 
                                        required
                                        placeholder="Enter your street address"
                                        class="w-full px-4 py-3 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
