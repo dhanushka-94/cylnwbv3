@@ -93,14 +93,13 @@ class CheckoutController extends Controller
 
     /**
      * Show payment checkout page
-     * Accepts POST from checkout form to store customer data, then redirects to payment page
      */
-    public function payment(Request $request)
+    public function payment()
     {
         // Check if cart has items
         $cartItems = Cart::where('session_id', session()->getId())
             ->orWhere(function($query) {
-                if (Auth::check()) {
+        if (Auth::check()) {
                     $query->where('user_id', Auth::id());
                 }
             })
@@ -110,38 +109,7 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
         }
 
-        // If POST request, store customer data in session and redirect to payment page
-        if ($request->isMethod('post')) {
-            // Validate required fields
-            $request->validate([
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'customer_email' => 'required|email|max:255',
-                'customer_phone' => 'required|string|max:20',
-                'billing_address_line_1' => 'required|string|max:255',
-                'billing_city' => 'required|string|max:255',
-            ]);
-
-            // Store customer data in session for payment page
-            session([
-                'checkout_data' => $request->only([
-                    'first_name', 'last_name', 'customer_email', 'customer_phone',
-                    'billing_address_line_1', 'billing_address_line_2',
-                    'billing_city', 'billing_state', 'billing_postal_code', 'billing_country',
-                    'different_shipping_address',
-                    'shipping_address_line_1', 'shipping_address_line_2',
-                    'shipping_city', 'shipping_state', 'shipping_postal_code', 'shipping_country',
-                    'notes'
-                ])
-            ]);
-
-            // Redirect to payment page (GET request)
-            return redirect()->route('checkout.payment');
-        }
-
-        // GET request - show payment page with stored data
-        $checkoutData = session('checkout_data', []);
-        return view('checkout.payment', compact('checkoutData'));
+        return view('checkout.payment');
     }
 
     /**

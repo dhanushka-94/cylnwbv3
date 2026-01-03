@@ -128,11 +128,11 @@
                                             </div>
                                         </div>
                                     @else
-                                        <div class="absolute top-3 left-3">
-                                            <div class="bg-gradient-to-r from-[#ef4444] to-[#dc2626] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg">
-                                                SALE
-                                            </div>
-                                        </div>
+                                <div class="absolute top-3 left-3">
+                                    <div class="bg-gradient-to-r from-[#ef4444] to-[#dc2626] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg">
+                                        SALE
+                                    </div>
+                                </div>
                                     @endif
                                 @endif
 

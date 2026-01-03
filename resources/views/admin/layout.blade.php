@@ -403,28 +403,28 @@
             @yield('content')
         </div>
     </main>
-    
+            
     <!-- Developer Copyright Footer - Sticky to Bottom -->
     <footer class="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-gray-700/50 z-40">
         <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-3">
-            <div class="text-center">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-gray-400">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>Developed by</span>
+                <div class="text-center">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Developed by</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="font-semibold text-primary-400">Olexto Digital Solutions (Pvt) Ltd</span>
+                            <span class="text-gray-500">•</span>
+                            <span class="text-xs text-gray-500">{{ date('Y') }}</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-1">
-                        <span class="font-semibold text-primary-400">Olexto Digital Solutions (Pvt) Ltd</span>
-                        <span class="text-gray-500">•</span>
-                        <span class="text-xs text-gray-500">{{ date('Y') }}</span>
-                    </div>
-                </div>
                 <div class="mt-1 text-xs text-gray-500">
-                    Professional Web Development & Digital Solutions
+                        Professional Web Development & Digital Solutions
+                    </div>
                 </div>
-            </div>
         </div>
     </footer>
 

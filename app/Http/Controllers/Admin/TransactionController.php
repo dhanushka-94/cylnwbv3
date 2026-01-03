@@ -183,15 +183,15 @@ class TransactionController extends Controller
     {
         // Base query builder function to apply date filters
         $baseQuery = function() use ($request) {
-            $query = Transaction::query();
-            
-            // Apply date filters if provided
-            if ($request && $request->filled('date_from')) {
-                $query->whereDate('created_at', '>=', $request->date_from);
-            }
-            if ($request && $request->filled('date_to')) {
-                $query->whereDate('created_at', '<=', $request->date_to);
-            }
+        $query = Transaction::query();
+        
+        // Apply date filters if provided
+        if ($request && $request->filled('date_from')) {
+            $query->whereDate('created_at', '>=', $request->date_from);
+        }
+        if ($request && $request->filled('date_to')) {
+            $query->whereDate('created_at', '<=', $request->date_to);
+        }
             
             return $query;
         };

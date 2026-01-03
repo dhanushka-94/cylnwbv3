@@ -206,35 +206,52 @@ class CategoryController extends Controller
 
     /**
      * Apply attribute filters to the product query
+     * Filters are applied per parent group: products must match ALL selected groups
+     * Within each group, products must have at least one of the selected attributes (OR logic)
+     * Between groups, products must match all groups (AND logic)
+     * Example: MANUFACTURE: MSI + VRAM: 8GB = products with (MSI) AND (8GB)
      */
     private function applyAttributeFilters($query, $request)
     {
         if ($request->has('attributes') && is_array($request->input('attributes'))) {
-            $attributeIds = [];
+            $attributeGroups = [];
             
             foreach ($request->input('attributes') as $parentName => $selectedIds) {
-                if (is_array($selectedIds)) {
+                if (is_array($selectedIds) && !empty($selectedIds)) {
                     // Filter out status names - only include numeric attribute IDs
                     // Status names are strings like "Pre Order" or "Coming Soon"
                     // Attribute IDs should be numeric
                     $numericIds = array_filter($selectedIds, function($id) {
                         // Only include if it's numeric (attribute ID) and not a status name
-                        return is_numeric($id) || (is_string($id) && !in_array($id, ['Pre Order', 'Coming Soon']));
+                        return is_numeric($id) && !in_array($id, ['Pre Order', 'Coming Soon']);
                     });
                     
                     // Convert to integers for attribute IDs
+                    $attributeIds = [];
                     foreach ($numericIds as $id) {
                         if (is_numeric($id)) {
                             $attributeIds[] = (int) $id;
-                        }
+                }
+            }
+            
+                    // Only add if we have valid attribute IDs for this parent group
+            if (!empty($attributeIds)) {
+                        $attributeGroups[$parentName] = $attributeIds;
                     }
                 }
             }
             
-            if (!empty($attributeIds)) {
-                $query->whereHas('attributes', function($attrQuery) use ($attributeIds) {
+            // Apply filters: products must match at least one attribute from each selected group
+            // This means if MANUFACTURE: MSI is selected, only show products with MSI
+            if (!empty($attributeGroups)) {
+                $query->where(function($groupQuery) use ($attributeGroups) {
+                    foreach ($attributeGroups as $parentName => $attributeIds) {
+                        // For each parent group, products must have at least one of the selected attributes
+                        $groupQuery->whereHas('attributes', function($attrQuery) use ($attributeIds) {
                     $attrQuery->whereIn('sma_attributes.id', $attributeIds)
                              ->where('sma_product_attributes.status', 1);
+                        });
+                    }
                 });
             }
         }

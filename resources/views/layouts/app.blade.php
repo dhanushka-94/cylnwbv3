@@ -756,8 +756,8 @@
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="flex items-center">
-                            <img src="{{ asset('msk-computers-logo-color.png') }}"
-                                 alt="MSK Computers Logo"
+                            <img src="{{ asset('msk-computers-logo-color.png') }}" 
+                                 alt="MSK Computers Logo" 
                                  class="w-24 h-24 object-contain {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-logo-glow' : '' }}">
                         </div>
                         <div>

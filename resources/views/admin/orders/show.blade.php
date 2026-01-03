@@ -547,7 +547,7 @@ use Illuminate\Support\Facades\Storage;
                     @endif
                     
                     <!-- Transfer Slip / Attachments Display (for all payment methods) -->
-                    @if($order->transfer_slip_path)
+                        @if($order->transfer_slip_path)
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 font-medium">📎 Order Attachment / Transfer Slip</span>

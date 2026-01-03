@@ -324,9 +324,9 @@
                                         <img src="{{ asset('images/christmas-sale-badge.png') }}" alt="Christmas Sale">
                                     </div>
                                 @else
-                                    <div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
-                                        SALE
-                                    </div>
+                                <div class="absolute top-3 right-3 bg-[#f59e0b] text-white text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+                                    SALE
+                                </div>
                                 @endif
                             @endif
                         </div>

@@ -31,11 +31,11 @@
                          onerror="console.error('Slider image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="w-full h-full flex items-center justify-center bg-gray-900" style="display:none;">
                         <p class="text-gray-500">Image not available</p>
-                    </div>
+        </div>
                 @else
                     <div class="w-full h-full flex items-center justify-center bg-gray-900">
                         <p class="text-gray-500">Image not available</p>
-                    </div>
+        </div>
                 @endif
             @if($slider->link_url)
             </a>
@@ -227,11 +227,11 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="absolute top-4 left-4 z-10">
-                                        <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-md">
-                                            SALE
-                                        </span>
-                                    </div>
+                                <div class="absolute top-4 left-4 z-10">
+                                    <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-md">
+                                        SALE
+                                    </span>
+                                </div>
                                 @endif
                             @endif
 
@@ -618,21 +618,21 @@
             this.dots[this.currentSlide].classList.remove('bg-white/80');
             this.dots[this.currentSlide].classList.add('bg-white/40');
             
-            // Update current slide index
-            this.currentSlide = slideIndex;
-            
+                // Update current slide index
+                this.currentSlide = slideIndex;
+                
             // Activate new slide with fade effect
-            nextSlide.classList.remove('prev');
+                nextSlide.classList.remove('prev');
             nextSlide.classList.add('active');
-            
-            // Update dot
-            this.dots[this.currentSlide].classList.add('active');
-            this.dots[this.currentSlide].classList.remove('bg-white/40');
-            this.dots[this.currentSlide].classList.add('bg-white/80');
-            
+                
+                // Update dot
+                this.dots[this.currentSlide].classList.add('active');
+                this.dots[this.currentSlide].classList.remove('bg-white/40');
+                this.dots[this.currentSlide].classList.add('bg-white/80');
+                
             // Clean up previous slide after transition completes
-            setTimeout(() => {
-                currentSlide.classList.remove('prev');
+                setTimeout(() => {
+                    currentSlide.classList.remove('prev');
             }, 800);
             
             // Restart auto-play after transition
