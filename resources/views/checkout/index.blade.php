@@ -45,7 +45,7 @@
             </div>
         @endif
 
-        <form action="{{ route('quotation.generate') }}" method="POST" id="checkout-form" enctype="multipart/form-data" novalidate>
+        <form action="{{ route('checkout.process') }}" method="POST" id="checkout-form" enctype="multipart/form-data" novalidate>
             @csrf
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -811,9 +811,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('💳 Switching to PAYMENT mode');
             if (paymentMethodsSection) paymentMethodsSection.style.display = 'block';
             if (checkoutForm) {
-                // Redirect to payment details page instead of processing directly
-                checkoutForm.action = '{{ route("checkout.payment.post") }}';
-                console.log('📝 Form action set to payment page:', checkoutForm.action);
+                checkoutForm.action = '{{ route("checkout.process") }}';
+                console.log('📝 Form action set to:', checkoutForm.action);
             }
             
             // Update button for payment
