@@ -422,8 +422,12 @@ class PaymentController extends Controller
                 throw new \Exception('Failed to update order status');
             }
 
+            // CRITICAL: Refresh the order from database to get latest payment_status
+            $order->refresh();
+            
             Log::info('WebXPay about to redirect', [
                 'payment_status' => $processedResponse['payment_status'],
+                'order_payment_status' => $order->payment_status,
                 'order_number' => $order->order_number
             ]);
 

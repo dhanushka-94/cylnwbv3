@@ -67,6 +67,9 @@ class OrderController extends Controller
         $order = Order::where('order_number', $orderNumber)
             ->with('orderItems')
             ->firstOrFail();
+        
+        // CRITICAL: Refresh order to ensure we have the latest payment_status from database
+        $order->refresh();
 
         // Check access permissions
         if (!Auth::check()) {

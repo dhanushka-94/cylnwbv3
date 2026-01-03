@@ -33,7 +33,41 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
         }
 
-        return view('checkout.select-option');
+        // Calculate total for checkout page and build cart products array
+        $subtotal = 0;
+        $originalSubtotal = 0; // Subtotal before discounts
+        $cartProducts = [];
+        
+        foreach ($cartItems as $item) {
+            $product = SmaProduct::find($item->product_id);
+            if ($product) {
+                // Calculate original price (before discounts)
+                $originalLineTotal = $item->quantity * $product->price;
+                $originalSubtotal += $originalLineTotal;
+                
+                // Calculate final price (after discounts)
+                $lineTotal = $item->quantity * $product->final_price;
+                $subtotal += $lineTotal;
+                
+                // Build cart products array for the view
+                $cartProducts[] = [
+                    'product' => $product,
+                    'cart_item' => $item,
+                    'line_total' => $lineTotal,
+                ];
+            }
+        }
+        
+        // Calculate total discount
+        $totalDiscount = $originalSubtotal - $subtotal;
+        
+        $shippingCost = $this->calculateShippingCost($subtotal);
+        $taxAmount = $this->calculateTax($subtotal);
+        $total = $subtotal + $shippingCost + $taxAmount;
+
+        // Return the checkout index view with calculated totals
+        // This view is used for the main checkout page with payment method selection
+        return view('checkout.index', compact('total', 'cartItems', 'cartProducts', 'subtotal', 'originalSubtotal', 'totalDiscount', 'shippingCost', 'taxAmount'));
     }
 
     /**
@@ -355,7 +389,11 @@ class CheckoutController extends Controller
      */
     public function success($orderNumber)
     {
+        // Always load fresh order data from database to ensure latest payment_status
         $order = Order::where('order_number', $orderNumber)->firstOrFail();
+        
+        // Refresh order to ensure we have the latest data (especially payment_status)
+        $order->refresh();
         
         // Check if user can view this order
         $canViewOrder = false;
