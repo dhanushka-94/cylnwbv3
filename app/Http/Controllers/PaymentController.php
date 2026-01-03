@@ -395,7 +395,15 @@ class PaymentController extends Controller
                     'available_orders' => Order::latest()->limit(5)->pluck('order_number')->toArray()
                 ]);
                 
-                // Instead of throwing exception, redirect to checkout with error
+                // If payment status is success, still redirect to success page (order might be created elsewhere)
+                // Store order number in session for success page access
+                if (!empty($orderNumber) && $orderNumber !== 'unknown') {
+                    session(['payment_success_order' => $orderNumber]);
+                    return redirect()->route('checkout.success', $orderNumber)
+                        ->with('warning', "Order verification pending. Order number: {$orderNumber}. Please contact support if you don't see your order.");
+                }
+                
+                // Last resort: redirect to checkout with error
                 return redirect()->route('checkout.index')
                     ->with('error', "Order not found: {$orderNumber}. Please check your order details or contact support.");
             }
@@ -440,11 +448,15 @@ class PaymentController extends Controller
                 default:
                     Log::warning('WebXPay non-success status', [
                         'payment_status' => $processedResponse['payment_status'],
-                        'comment' => $processedResponse['comment'] ?? 'No comment'
+                        'comment' => $processedResponse['comment'] ?? 'No comment',
+                        'status_code' => $processedResponse['status_code'] ?? 'unknown'
                     ]);
-                    // CRITICAL FIX: Redirect to home instead of checkout.index to prevent redirect loop
-                    return redirect()->route('home')
-                        ->with('error', 'Payment was not completed. ' . ($processedResponse['comment'] ?? 'Unknown error'));
+                    
+                    // Even for failed payments, redirect to success page so user can see order details
+                    // This provides better UX - user can see what happened and contact support if needed
+                    session(['payment_success_order' => $order->order_number]);
+                    return redirect()->route('checkout.success', $order->order_number)
+                        ->with('warning', 'Payment status: ' . ($processedResponse['comment'] ?? 'Unknown status') . '. Please verify your payment or contact support.');
             }
 
         } catch (\Exception $e) {
@@ -453,15 +465,67 @@ class PaymentController extends Controller
                 'error_line' => $e->getLine(),
                 'error_file' => $e->getFile(),
                 'request_data' => $request->all(),
-                'order_number' => $order->order_number ?? 'unknown',
+                'order_number' => isset($order) ? $order->order_number : 'unknown',
                 'stack_trace' => $e->getTraceAsString()
             ]);
 
-            // CRITICAL FIX: Prevent redirect loop by checking if we have order info
-            $orderNumber = $order->order_number ?? session('webxpay_order_number') ?? session('payment_success_order');
+            // CRITICAL: Try to extract order number from multiple sources
+            $orderNumber = null;
             
+            // First, try to get from order object if it exists
+            if (isset($order) && $order->order_number) {
+                $orderNumber = $order->order_number;
+            }
+            
+            // Second, try to extract from payment parameter if available
+            if (!$orderNumber && $request->has('payment')) {
+                try {
+                    $paymentParam = $request->input('payment');
+                    if ($paymentParam) {
+                        $decoded = base64_decode($paymentParam);
+                        if ($decoded) {
+                            $parts = explode('|', $decoded);
+                            if (isset($parts[0]) && !empty($parts[0])) {
+                                $orderNumber = $parts[0];
+                            }
+                        }
+                    }
+                } catch (\Exception $decodeError) {
+                    Log::warning('Could not decode payment parameter to extract order number', [
+                        'error' => $decodeError->getMessage()
+                    ]);
+                }
+            }
+            
+            // Third, try session variables
+            if (!$orderNumber) {
+                $orderNumber = session('webxpay_order_number') ?? session('payment_success_order');
+            }
+            
+            // If we have an order number, ALWAYS redirect to success page
+            // This ensures users see the thank you page even if there's a processing error
             if ($orderNumber) {
-                Log::info('📋 Redirecting to success page despite error', ['order_number' => $orderNumber]);
+                Log::info('📋 Redirecting to success page despite error', [
+                    'order_number' => $orderNumber,
+                    'error' => $e->getMessage()
+                ]);
+                
+                // Try to find and update the order if it exists
+                try {
+                    $foundOrder = Order::where('order_number', $orderNumber)->first();
+                    if ($foundOrder) {
+                        // Mark payment as potentially completed (user can verify later)
+                        if ($foundOrder->payment_status !== 'paid') {
+                            $foundOrder->update([
+                                'payment_status' => 'pending',
+                                'payment_method' => 'webxpay'
+                            ]);
+                        }
+                    }
+                } catch (\Exception $orderError) {
+                    Log::warning('Could not update order status', ['error' => $orderError->getMessage()]);
+                }
+                
                 return redirect()->route('checkout.success', $orderNumber)
                     ->with('warning', 'Payment processing encountered an issue. Please verify your payment status or contact support.');
             }
@@ -476,8 +540,8 @@ class PaymentController extends Controller
                 $errorMessage = $webxpayService->handleWebXPayError($errorCode, $errorMessage);
             }
 
-            // CRITICAL FIX: Redirect to home instead of checkout.index to prevent redirect loop
-            Log::warning('🔄 WebXPay error - redirecting to home to prevent loop');
+            // Last resort: redirect to home if we can't find order number
+            Log::warning('🔄 WebXPay error - no order number found, redirecting to home');
             return redirect()->route('home')
                 ->with('error', 'Payment processing failed: ' . $errorMessage . ' Please try again or contact support.');
         }
