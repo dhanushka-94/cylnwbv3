@@ -446,17 +446,37 @@ class PaymentController extends Controller
                         ->with('info', 'Payment is being processed. You will receive confirmation once completed.');
                         
                 default:
+                    $statusCode = $processedResponse['status_code'] ?? 'unknown';
+                    $comment = $processedResponse['comment'] ?? 'Unknown status';
+                    $paymentStatus = $processedResponse['payment_status'] ?? 'unknown';
+                    
                     Log::warning('WebXPay non-success status', [
-                        'payment_status' => $processedResponse['payment_status'],
-                        'comment' => $processedResponse['comment'] ?? 'No comment',
-                        'status_code' => $processedResponse['status_code'] ?? 'unknown'
+                        'payment_status' => $paymentStatus,
+                        'status_code' => $statusCode,
+                        'comment' => $comment,
+                        'order_number' => $order->order_number
                     ]);
+                    
+                    // Create user-friendly error message
+                    $errorMessage = 'Payment could not be completed';
+                    
+                    // Check if comment is just the status code (like "46") or an actual message
+                    if (!empty($comment) && $comment !== $statusCode && strlen($comment) > 2) {
+                        // Comment is a descriptive message, use it
+                        $errorMessage = $comment;
+                    } elseif (is_numeric($statusCode) && $statusCode !== 'unknown') {
+                        // Status code is numeric but not in our mapping - provide generic message
+                        $errorMessage = 'Payment was not completed. Please contact support with your order number for assistance.';
+                    } else {
+                        // Fallback message
+                        $errorMessage = 'Payment could not be completed. Please verify your payment or contact support.';
+                    }
                     
                     // Even for failed payments, redirect to success page so user can see order details
                     // This provides better UX - user can see what happened and contact support if needed
                     session(['payment_success_order' => $order->order_number]);
                     return redirect()->route('checkout.success', $order->order_number)
-                        ->with('warning', 'Payment status: ' . ($processedResponse['comment'] ?? 'Unknown status') . '. Please verify your payment or contact support.');
+                        ->with('warning', $errorMessage . ' Order Number: ' . $order->order_number);
             }
 
         } catch (\Exception $e) {
