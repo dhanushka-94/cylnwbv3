@@ -389,11 +389,7 @@ class CheckoutController extends Controller
      */
     public function success($orderNumber)
     {
-        // Always load fresh order data from database to ensure latest payment_status
         $order = Order::where('order_number', $orderNumber)->firstOrFail();
-        
-        // Refresh order to ensure we have the latest data (especially payment_status)
-        $order->refresh();
         
         // Check if user can view this order
         $canViewOrder = false;
