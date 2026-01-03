@@ -409,26 +409,15 @@
 
                     <!-- Simple Checkout Options -->
                     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-6">
-                        <h3 class="text-lg font-semibold text-white mb-4">Choose an Option</h3>
+                        <!-- Hidden Get Quote Option (for form compatibility) -->
+                        <input type="radio" 
+                               name="checkout_type" 
+                               value="quotation"
+                               class="sr-only"
+                               style="display: none;">
                         
-                        <!-- Simple Two Button Choice -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <!-- Get Quote Button -->
-                            <label class="block cursor-pointer checkout-option" data-type="quotation">
-                                <input type="radio" 
-                                       name="checkout_type" 
-                                       value="quotation"
-                                       class="sr-only checkout-radio">
-                                <div class="p-6 border-2 border-blue-500 bg-blue-500/10 rounded-lg hover:bg-blue-500/20 transition-all text-center option-card">
-                                    <svg class="w-8 h-8 text-blue-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                    </svg>
-                                    <h4 class="text-xl font-bold text-white mb-2">Get Quote</h4>
-                                    <p class="text-gray-300 text-sm">Download PDF quotation</p>
-                                </div>
-                            </label>
-
-                            <!-- Buy Now Button -->
+                        <!-- Buy Now Button (Only Option) -->
+                        <div class="mb-6">
                             <label class="block cursor-pointer checkout-option active" data-type="payment">
                                 <input type="radio" 
                                        name="checkout_type" 
