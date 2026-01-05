@@ -52,6 +52,33 @@ class HomeController extends Controller
         // Get active sliders ordered by display order
         $sliders = Slider::active()->ordered()->get();
 
-        return view('home', compact('promotionProducts', 'categories', 'latestProducts', 'sliders'));
+        // Get all happy customer images from the folder
+        $happyCustomerImages = [];
+        $customerImagesPath = public_path('images/happy-customers');
+        
+        if (is_dir($customerImagesPath)) {
+            $files = scandir($customerImagesPath);
+            foreach ($files as $file) {
+                // Only include .jpg and .jpeg files, exclude duplicates (prefer .jpg over .jpeg)
+                if (preg_match('/\.(jpg|jpeg)$/i', $file)) {
+                    // Skip .jpeg files if .jpg version exists
+                    $baseName = pathinfo($file, PATHINFO_FILENAME);
+                    $jpgFile = $baseName . '.jpg';
+                    $jpegFile = $baseName . '.jpeg';
+                    
+                    // Only add if it's a .jpg file, or if it's a .jpeg and no .jpg exists
+                    if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) === 'jpg' || 
+                        (strtolower(pathinfo($file, PATHINFO_EXTENSION)) === 'jpeg' && !in_array($jpgFile, $files))) {
+                        $happyCustomerImages[] = 'images/happy-customers/' . $file;
+                    }
+                }
+            }
+            
+            // Sort images naturally (so hc00 (1).jpg comes before hc00 (10).jpg)
+            natsort($happyCustomerImages);
+            $happyCustomerImages = array_values($happyCustomerImages);
+        }
+
+        return view('home', compact('promotionProducts', 'categories', 'latestProducts', 'sliders', 'happyCustomerImages'));
     }
 }

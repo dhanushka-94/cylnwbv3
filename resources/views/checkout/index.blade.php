@@ -410,9 +410,9 @@
                     <!-- Simple Checkout Options -->
                     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-6">
                         <!-- Hidden Get Quote Option (for form compatibility) -->
-                        <input type="radio" 
-                               name="checkout_type" 
-                               value="quotation"
+                                <input type="radio" 
+                                       name="checkout_type" 
+                                       value="quotation"
                                class="sr-only"
                                style="display: none;">
                         

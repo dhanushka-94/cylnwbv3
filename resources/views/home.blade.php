@@ -378,135 +378,35 @@
 
         <!-- Happy Customer Photos - Continuous One Line Carousel -->
         <div class="relative overflow-hidden">
+            @if(!empty($happyCustomerImages) && count($happyCustomerImages) > 0)
             <!-- Carousel Container -->
             <div class="customer-carousel-container" id="customerCarousel">
                 <!-- Continuous Scrolling Track -->
                 <div class="carousel-track-continuous flex animate-scroll-right" id="carouselTrackContinuous">
                     <!-- First Set of Photos -->
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (1).jpg') }}" 
+                    @foreach($happyCustomerImages as $index => $image)
+                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3 cursor-pointer" onclick="openCustomerLightbox({{ $index }})">
+                        <img src="{{ asset($image) }}" 
                              alt="Happy MSK Customer" 
                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (2).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (3).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (4).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (5).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (6).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (7).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (8).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (9).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (10).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (11).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (12).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                    @endforeach
 
                     <!-- Duplicate Set for Seamless Loop -->
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (1).jpg') }}" 
+                    @foreach($happyCustomerImages as $index => $image)
+                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3 cursor-pointer" onclick="openCustomerLightbox({{ $index }})">
+                        <img src="{{ asset($image) }}" 
                              alt="Happy MSK Customer" 
                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (2).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (3).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (4).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (5).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (6).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (7).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (8).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (9).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (10).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (11).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="customer-photo-card flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 hover:border-[#f59e0b] transition-all duration-300 group mx-3">
-                        <img src="{{ asset('images/happy-customers/hc00 (12).jpg') }}" 
-                             alt="Happy MSK Customer" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            @else
+            <div class="text-center py-12">
+                <p class="text-gray-400">No customer photos available at the moment.</p>
+            </div>
+            @endif
         </div>
 
     </div>
@@ -892,7 +792,7 @@
     .carousel-track-continuous {
         display: flex;
         width: fit-content;
-        animation: scrollRight 60s linear infinite;
+        animation: scrollRight 180s linear infinite;
     }
 
     @keyframes scrollRight {
@@ -1030,6 +930,109 @@
         </button>
     </div>
 </div>
+
+<!-- Customer Images Lightbox Modal -->
+<div id="customerLightbox" class="hidden fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4">
+    <div class="relative max-w-6xl max-h-full w-full">
+        <!-- Close Button -->
+        <button onclick="closeCustomerLightbox()" class="absolute top-4 right-4 z-10 text-white hover:text-[#f59e0b] transition-colors bg-black/50 rounded-full p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <!-- Previous Button -->
+        <button onclick="previousCustomerImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-[#f59e0b] transition-colors bg-black/50 rounded-full p-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        
+        <!-- Next Button -->
+        <button onclick="nextCustomerImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-[#f59e0b] transition-colors bg-black/50 rounded-full p-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+        
+        <!-- Image Container -->
+        <div class="flex items-center justify-center h-full">
+            <img id="lightboxImage" src="" alt="Happy MSK Customer" class="max-w-full max-h-[90vh] object-contain rounded-lg">
+        </div>
+        
+        <!-- Image Counter -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+            <span id="imageCounter">1 / 1</span>
+        </div>
+    </div>
+</div>
+
+<script>
+// Store customer images array for lightbox navigation
+const customerImages = [
+    @if(!empty($happyCustomerImages))
+        @foreach($happyCustomerImages as $img)
+            "{{ asset($img) }}"{{ !$loop->last ? ',' : '' }}
+        @endforeach
+    @endif
+];
+let currentImageIndex = 0;
+
+function openCustomerLightbox(index) {
+    currentImageIndex = index;
+    const lightbox = document.getElementById('customerLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const imageCounter = document.getElementById('imageCounter');
+    
+    if (customerImages.length > 0 && customerImages[index]) {
+        lightboxImage.src = customerImages[index];
+        imageCounter.textContent = `${index + 1} / ${customerImages.length}`;
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeCustomerLightbox() {
+    const lightbox = document.getElementById('customerLightbox');
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+function nextCustomerImage() {
+    if (customerImages.length > 0) {
+        currentImageIndex = (currentImageIndex + 1) % customerImages.length;
+        openCustomerLightbox(currentImageIndex);
+    }
+}
+
+function previousCustomerImage() {
+    if (customerImages.length > 0) {
+        currentImageIndex = (currentImageIndex - 1 + customerImages.length) % customerImages.length;
+        openCustomerLightbox(currentImageIndex);
+    }
+}
+
+// Close lightbox when clicking outside the image
+document.getElementById('customerLightbox').addEventListener('click', function(e) {
+    if (e.target === this || e.target.id === 'customerLightbox') {
+        closeCustomerLightbox();
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('customerLightbox');
+    if (!lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+            closeCustomerLightbox();
+        } else if (e.key === 'ArrowRight') {
+            nextCustomerImage();
+        } else if (e.key === 'ArrowLeft') {
+            previousCustomerImage();
+        }
+    }
+});
+</script>
 
 @endpush
 
