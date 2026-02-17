@@ -8,28 +8,28 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Page Header -->
-        <div class="mb-8">
-            <div class="flex justify-between items-center">
+        <div class="mb-6 sm:mb-8">
+            <div class="flex items-start justify-between gap-4 flex-wrap">
                 <div>
-            <h1 class="text-3xl font-bold text-white mb-2">Checkout</h1>
-            <p class="text-gray-400">Complete your order with secure payment</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Checkout</h1>
+                    <p class="text-gray-400 text-sm sm:text-base">Buy now and complete your order securely in a few steps.</p>
                 </div>
                 
                 @guest
-                <div class="text-right">
-                    <p class="text-gray-400 text-sm mb-2">Returning customer?</p>
-                    <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-black font-medium rounded-lg transition-colors">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-                        </svg>
-                        Login
-                    </a>
-                </div>
+                    <div class="w-full sm:w-auto flex sm:block justify-between items-center">
+                        <p class="text-gray-400 text-xs sm:text-sm mb-0 sm:mb-1">Returning customer?</p>
+                        <a href="{{ route('login') }}" class="mt-2 inline-flex items-center px-3 py-2 bg-primary-600 hover:bg-primary-700 text-black text-xs sm:text-sm font-medium rounded-lg transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            Login
+                        </a>
+                    </div>
                 @else
-                <div class="text-right">
-                    <p class="text-gray-400 text-sm">Welcome back,</p>
-                    <p class="text-white font-medium">{{ Auth::user()->name }}</p>
-                </div>
+                    <div class="text-right">
+                        <p class="text-gray-400 text-xs sm:text-sm">Logged in as</p>
+                        <p class="text-white font-medium text-sm sm:text-base truncate max-w-[180px]">{{ Auth::user()->name }}</p>
+                    </div>
                 @endguest
             </div>
         </div>
@@ -408,7 +408,7 @@
                     </div>
 
                     <!-- Simple Checkout Options -->
-                    <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-6">
+                    <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-4 sm:p-6">
                         <!-- Hidden Get Quote Option (for form compatibility) -->
                                 <input type="radio" 
                                        name="checkout_type" 
@@ -416,93 +416,116 @@
                                class="sr-only"
                                style="display: none;">
                         
-                        <!-- Buy Now Button (Only Option) -->
-                        <div class="mb-6">
+                        <!-- Buy Now - compact, mobile-first -->
+                        <div class="mb-5">
                             <label class="block cursor-pointer checkout-option active" data-type="payment">
                                 <input type="radio" 
                                        name="checkout_type" 
                                        value="payment"
                                        checked
                                        class="sr-only checkout-radio">
-                                <div class="p-6 border-2 border-green-500 bg-green-500/10 rounded-lg hover:bg-green-500/20 transition-all text-center option-card">
-                                    <svg class="w-8 h-8 text-green-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                </svg>
-                                    <h4 class="text-xl font-bold text-white mb-2">Buy Now</h4>
-                                    <p class="text-gray-300 text-sm">Complete your order</p>
-                            </div>
+                                <div class="p-4 sm:p-5 border border-green-500/70 bg-green-500/10 rounded-lg hover:bg-green-500/15 transition-all text-left sm:text-center option-card">
+                                    <div class="flex items-center sm:justify-center gap-3 sm:gap-4">
+                                        <div class="flex-shrink-0 hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-green-500/10 border border-green-500/40">
+                                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-base sm:text-lg font-semibold text-white leading-tight">
+                                                Buy now &amp; complete your order
+                                            </h4>
+                                            <p class="text-xs sm:text-sm text-gray-300 mt-1">
+                                                Compact, mobile-friendly checkout with your preferred payment method.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </label>
                         </div>
                         
                         <!-- Payment Methods Section (shown when payment is selected) -->
-                        <div id="payment-methods-section" class="space-y-4">
-                            <h4 class="text-lg font-semibold text-white mb-4">Payment Methods</h4>
-                            
-                            <!-- Bank Transfer - Primary Option -->
-                            <label class="flex items-center p-4 border-2 border-green-500 bg-gradient-to-r from-green-900/20 to-green-800/20 rounded-lg hover:border-green-400 transition-colors cursor-pointer relative">
-                                <input type="radio" 
-                                       name="payment_method" 
-                                       value="bank_transfer"
-                                       checked
-                                       class="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-700 bg-[#0f0f0f]">
-                                <div class="ml-3 flex-1">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-sm font-medium text-white">Bank Transfer</div>
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-600 text-white">
-                                            No Fees
-                                        </span>
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-600 text-white">
-                                            Recommended
-                                        </span>
-                                    </div>
-                                    <div class="text-sm text-gray-400">Direct transfer to our bank account • Optional slip upload for faster verification</div>
-                                </div>
-                                <div class="flex items-center space-x-2 text-green-400">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m11 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2M9 7h6m-6 4h6m-6 4h6m-6 4h6"/>
+                        <div id="payment-methods-section" class="space-y-3 sm:space-y-4">
+                            <h4 class="text-sm sm:text-base font-semibold text-white mb-3 sm:mb-4 flex items-center gap-2">
+                                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-500/10 border border-primary-500/40">
+                                    <svg class="w-3.5 h-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 8h9M5 16h6"/>
                                     </svg>
-                                </div>
-                            </label>
+                                </span>
+                                <span>Choose your payment method</span>
+                            </h4>
                             
                             <!-- Credit/Debit Card Payment -->
-                            <label class="flex items-center p-4 border border-gray-700 rounded-lg hover:border-primary-400 transition-colors cursor-pointer">
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-primary-500 bg-gradient-to-r from-primary-900/20 via-primary-900/10 to-transparent rounded-lg hover:border-primary-400 transition-colors cursor-pointer gap-3">
                                 <input type="radio" 
                                        name="payment_method" 
-                                       value="webxpay" 
-                                       class="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-700 bg-[#0f0f0f]">
-                                <div class="ml-3 flex-1">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-sm font-medium text-white">Credit or Debit Card Payment</div>
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-500 text-black">
-                                            Secure & Instant
+                                       value="webxpay"
+                                       class="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
+                                <div class="ml-0 sm:ml-3 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <div class="text-sm font-semibold text-white">Credit / Debit Card (WebXPay)</div>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-primary-500 text-black">
+                                            Recommended
+                                        </span>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-600/80 text-white">
+                                            Secure • Instant
                                         </span>
                                     </div>
-                                    <div class="text-sm text-gray-400">Secure online payment • Credit Cards, Debit Cards, Online Banking, Mobile Wallets</div>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
+                                        Pay with VISA / Mastercard, debit &amp; credit cards and online banking via our secure WebXPay gateway.
+                                    </p>
                                 </div>
-                                <div class="flex items-center space-x-2 text-primary-400">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                    </svg>
+                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-primary-300 text-xs sm:text-sm">
+                                    <img src="{{ asset('images/webxpay-logo.webp') }}" alt="WebXPay" class="h-6 w-auto">
+                                    <span>3% processing fee applies</span>
                                 </div>
                             </label>
                             
                             <!-- Koko Pay - KOKO Option -->
-                            <label class="flex items-center p-4 border border-gray-700 rounded-lg hover:border-purple-400 transition-colors cursor-pointer">
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border border-gray-700 rounded-lg hover:border-purple-400 transition-colors cursor-pointer gap-3">
                                 <input type="radio" 
                                        name="payment_method" 
                                        value="kokopay"
-                                       class="h-4 w-4 text-purple-500 focus:ring-purple-500 border-gray-700 bg-[#0f0f0f]">
-                                <div class="ml-3 flex-1">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-sm font-medium text-white">Koko Pay</div>
+                                       class="h-4 w-4 text-purple-500 focus:ring-purple-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
+                                <div class="ml-0 sm:ml-3 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <div class="text-sm font-semibold text-white">Koko Pay</div>
                                         <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white">
                                             Buy Now, Pay Later
                                         </span>
                                     </div>
-                                    <div class="text-sm text-gray-400">Split into 3 easy payments • Transaction fee applies</div>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
+                                        Split your payment into 3 installments (today, 30 days, 60 days). 10% KOKO transaction fee applies.
+                                    </p>
                                 </div>
-                                <div class="flex items-center space-x-2 text-purple-400">
+                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-purple-300 text-xs sm:text-sm">
                                     <img src="{{ asset('images/kokopay-logo.png') }}" alt="Koko Pay" class="h-6 w-auto">
+                                    <span>3 × easy monthly payments</span>
+                                </div>
+                            </label>
+                            
+                            <!-- Bank Transfer - Manual Payment -->
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border border-gray-700 rounded-lg hover:border-green-500/70 transition-colors cursor-pointer gap-3">
+                                <input type="radio" 
+                                       name="payment_method" 
+                                       value="bank_transfer"
+                                       class="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
+                                <div class="ml-0 sm:ml-3 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <div class="text-sm font-semibold text-white">Bank Transfer</div>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-green-600 text-white">
+                                            No gateway fee
+                                        </span>
+                                    </div>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
+                                        Pay by direct bank transfer. Upload or email your slip for faster verification. Order is processed after payment is confirmed.
+                                    </p>
+                                </div>
+                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-green-300 text-xs sm:text-sm">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m11 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2M9 7h6m-6 4h6m-6 4h6m-6 4h6"/>
+                                    </svg>
+                                    <span>Manual payment option</span>
                                 </div>
                             </label>
                             
