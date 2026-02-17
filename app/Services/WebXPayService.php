@@ -201,6 +201,22 @@ class WebXPayService
                 'signature_valid' => $signatureValid,
                 'payment_status' => $this->mapStatusCode($responseVariables[4])
             ];
+
+            // Heuristic fallback: if status code is unmapped but comment clearly indicates success or failure,
+            // normalize the payment_status so orders and transactions are updated correctly.
+            if ($result['payment_status'] === 'unknown') {
+                $commentLower = strtolower($result['comment'] ?? '');
+
+                if (str_contains($commentLower, 'success') || str_contains($commentLower, 'approved')) {
+                    $result['payment_status'] = 'success';
+                } elseif (
+                    str_contains($commentLower, 'fail') ||
+                    str_contains($commentLower, 'declin') ||
+                    str_contains($commentLower, 'cancel')
+                ) {
+                    $result['payment_status'] = 'failed';
+                }
+            }
             
             Log::info('WebXPay response processed', $result);
             
