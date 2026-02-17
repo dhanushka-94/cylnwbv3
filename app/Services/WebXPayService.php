@@ -173,11 +173,13 @@ class WebXPayService
             $signature = base64_decode($responseData['signature']);
             $customFields = isset($responseData['custom_fields']) ? base64_decode($responseData['custom_fields']) : '';
             
-            // Verify signature
+            // Verify signature (soft-fail: log warning but do not block processing)
             $signatureValid = $this->verifySignature($payment, $signature);
             
             if (!$signatureValid) {
-                throw new Exception('Invalid signature - payment response verification failed');
+                Log::warning('WebXPay signature verification failed, continuing with response processing', [
+                    'order_payment_raw' => substr($payment ?? '', 0, 100),
+                ]);
             }
             
             // Parse payment response

@@ -23,7 +23,8 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
     Route::delete('/orders/{order}', [App\Http\Controllers\Admin\AdminOrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('/orders/{order}/status', [App\Http\Controllers\Admin\AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
     Route::put('/orders/{order}/payment', [App\Http\Controllers\Admin\AdminOrderController::class, 'updatePaymentStatus'])->name('orders.update-payment');
-    Route::post('/orders/bulk-action', [App\Http\Controllers\Admin\AdminOrderController::class, 'bulkAction'])->name('orders.bulk-action');
+    // Bulk order actions route disabled (bulk feature removed from UI)
+    // Route::post('/orders/bulk-action', [App\Http\Controllers\Admin\AdminOrderController::class, 'bulkAction'])->name('orders.bulk-action');
     Route::get('/orders-statistics', [App\Http\Controllers\Admin\AdminOrderController::class, 'statistics'])->name('orders.statistics');
     
     // Quotation Management

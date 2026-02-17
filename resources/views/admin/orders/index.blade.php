@@ -315,53 +315,13 @@
 
     <!-- Orders Table -->
     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 overflow-hidden">
-        
-        <!-- Bulk Actions Form - Wraps the entire table -->
-        <form id="bulk-form" action="{{ route('admin.orders.bulk-action') }}" method="POST">
-            @csrf
-            
-            <!-- Bulk Actions Controls -->
-            <div class="px-6 py-4 border-b border-gray-800 bg-gray-800/20">
-                <div class="flex items-center space-x-4">
-                    <label class="flex items-center">
-                        <input type="checkbox" id="select-all" class="h-4 w-4 text-[#f59e0b] focus:ring-[#f59e0b] border-gray-700 rounded bg-[#0f0f0f]">
-                        <span class="ml-2 text-sm text-gray-300">Select All</span>
-                    </label>
-                    
-                    <select name="action" id="bulk-action-select" class="px-3 py-1 bg-[#0f0f0f] border border-gray-700 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
-                        <option value="">Bulk Actions</option>
-                        <option value="update_status">Update Status</option>
-                        <option value="export">Export Selected</option>
-                        <option value="delete">Delete</option>
-                    </select>
-                    
-                    <select name="bulk_status" id="bulk-status-select" class="px-3 py-1 bg-[#0f0f0f] border border-gray-700 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]" style="display: none;">
-                        <option value="confirmed">Confirmed</option>
-                        <option value="processing">Processing</option>
-                        <option value="shipped">Shipped</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cancelled">Cancelled</option>
-                    </select>
-                    
-                    <button type="submit" id="bulk-submit-btn" class="px-4 py-1 bg-[#f59e0b] text-black rounded hover:bg-[#d97706] transition-colors text-sm font-medium">
-                        Apply
-                    </button>
-                    
-                    <span id="selected-count" class="text-sm text-gray-400 ml-4" style="display: none;">
-                        <span id="count-number">0</span> orders selected
-                    </span>
-                </div>
-            </div>
-
         @if($orders->count() > 0)
             <!-- Orders Table -->
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-gray-800/50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                <input type="checkbox" class="h-4 w-4 text-[#f59e0b] focus:ring-[#f59e0b] border-gray-700 rounded bg-[#0f0f0f]">
-                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">#</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Order</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Customer</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
@@ -375,13 +335,8 @@
                     <tbody class="divide-y divide-gray-800">
                         @foreach($orders as $order)
                             <tr class="hover:bg-gray-800/30 transition-colors {{ !$order->isViewedByAdmin() ? 'bg-blue-900/20 border-l-4 border-blue-500' : '' }}">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center space-x-2">
-                                        <input type="checkbox" name="selected_orders[]" value="{{ $order->id }}" class="order-checkbox h-4 w-4 text-[#f59e0b] focus:ring-[#f59e0b] border-gray-700 rounded bg-[#0f0f0f]">
-                                        @if(!$order->isViewedByAdmin())
-                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" title="Unviewed order"></div>
-                                        @endif
-                                    </div>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                                    {{ $loop->iteration + ($orders->currentPage() - 1) * $orders->perPage() }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center space-x-3">
@@ -518,139 +473,10 @@
                 @endif
             </div>
         @endif
-        
-        </form> <!-- Close bulk form -->
     </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const selectAllCheckbox = document.getElementById('select-all');
-    const orderCheckboxes = document.querySelectorAll('.order-checkbox');
-    const bulkActionSelect = document.getElementById('bulk-action-select');
-    const bulkStatusSelect = document.getElementById('bulk-status-select');
-    const bulkForm = document.getElementById('bulk-form');
-    const selectedCountSpan = document.getElementById('selected-count');
-    const countNumberSpan = document.getElementById('count-number');
-
-    // Update selected count display
-    function updateSelectedCount() {
-        const checkedBoxes = document.querySelectorAll('.order-checkbox:checked');
-        const count = checkedBoxes.length;
-        
-        if (count > 0) {
-            selectedCountSpan.style.display = 'inline';
-            countNumberSpan.textContent = count;
-        } else {
-            selectedCountSpan.style.display = 'none';
-        }
-        
-        // Update select all checkbox state
-        if (count === 0) {
-            selectAllCheckbox.indeterminate = false;
-            selectAllCheckbox.checked = false;
-        } else if (count === orderCheckboxes.length) {
-            selectAllCheckbox.indeterminate = false;
-            selectAllCheckbox.checked = true;
-        } else {
-            selectAllCheckbox.indeterminate = true;
-            selectAllCheckbox.checked = false;
-        }
-    }
-
-    // Select all functionality
-    if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('change', function() {
-            orderCheckboxes.forEach(checkbox => {
-                checkbox.checked = this.checked;
-            });
-            updateSelectedCount();
-        });
-    }
-
-    // Individual checkbox change
-    orderCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateSelectedCount);
-    });
-
-    // Bulk action functionality
-    if (bulkActionSelect) {
-        bulkActionSelect.addEventListener('change', function() {
-            if (this.value === 'update_status') {
-                bulkStatusSelect.style.display = 'inline-block';
-                bulkStatusSelect.required = true;
-            } else {
-                bulkStatusSelect.style.display = 'none';
-                bulkStatusSelect.required = false;
-            }
-        });
-    }
-
-    // Bulk form submission
-    if (bulkForm) {
-        bulkForm.addEventListener('submit', function(e) {
-            const selectedOrders = document.querySelectorAll('.order-checkbox:checked');
-            const action = bulkActionSelect.value;
-
-            // Validate selection
-            if (selectedOrders.length === 0) {
-                e.preventDefault();
-                alert('Please select at least one order to perform bulk actions.');
-                return;
-            }
-
-            // Validate action
-            if (!action) {
-                e.preventDefault();
-                alert('Please select a bulk action.');
-                return;
-            }
-
-            // Action-specific validations and confirmations
-            if (action === 'delete') {
-                const confirmMsg = `Are you sure you want to delete ${selectedOrders.length} selected order(s)?\n\nThis action cannot be undone.`;
-                if (!confirm(confirmMsg)) {
-                    e.preventDefault();
-                    return;
-                }
-            }
-
-            if (action === 'update_status') {
-                const status = bulkStatusSelect.value;
-                if (!status) {
-                    e.preventDefault();
-                    alert('Please select a status to update to.');
-                    return;
-                }
-                
-                const confirmMsg = `Are you sure you want to update ${selectedOrders.length} order(s) to "${status}" status?`;
-                if (!confirm(confirmMsg)) {
-                    e.preventDefault();
-                    return;
-                }
-            }
-
-            if (action === 'export') {
-                const confirmMsg = `Export ${selectedOrders.length} selected order(s)?`;
-                if (!confirm(confirmMsg)) {
-                    e.preventDefault();
-                    return;
-                }
-            }
-
-            // Show loading state
-            const submitBtn = document.getElementById('bulk-submit-btn');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Processing...';
-            }
-        });
-    }
-
-    // Initialize selected count
-    updateSelectedCount();
-});
-
 // Edit order function
 function editOrder(orderId) {
     // Redirect to order details page
