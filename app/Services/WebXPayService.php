@@ -409,7 +409,41 @@ class WebXPayService
     private function mapStatusCode(string $statusCode): string
     {
         $statusMap = config('webxpay.status_codes');
-        return $statusMap[$statusCode] ?? 'unknown';
+
+        // Normalize the raw status code (e.g. "00 - Approved" or "1")
+        $trimmed = trim($statusCode);
+
+        // Extract leading numeric part if present
+        $numericCode = null;
+        if (preg_match('/^(\d+)/', $trimmed, $matches)) {
+            $numericCode = $matches[1]; // e.g. "00" or "1"
+        }
+
+        // Treat "00" (approved) as success – this is what WebXPay returns for card approvals
+        if ($numericCode === '00') {
+            return 'success';
+        }
+
+        // If we have a numeric code and it exists in our config map, use it
+        if ($numericCode !== null && isset($statusMap[$numericCode])) {
+            return $statusMap[$numericCode];
+        }
+
+        // Direct match fallback (in case config keys already match full strings)
+        if (isset($statusMap[$trimmed])) {
+            return $statusMap[$trimmed];
+        }
+
+        // Heuristic fallback based on text (in case future codes change format)
+        $lower = strtolower($trimmed);
+        if (str_contains($lower, 'approved') || str_contains($lower, 'success')) {
+            return 'success';
+        }
+        if (str_contains($lower, 'fail') || str_contains($lower, 'declin') || str_contains($lower, 'cancel')) {
+            return 'failed';
+        }
+
+        return 'unknown';
     }
 
     /**
