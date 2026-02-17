@@ -414,12 +414,31 @@ class PaymentController extends Controller
                 'current_payment_status' => $order->payment_status
             ]);
 
-            // Update order status
+            // Update order status using service (creates/updates transactions as well)
             $updateSuccess = $webxpayService->updateOrderStatus($order, $responseData);
             
+            // Fallback: if service update failed but processed response clearly indicates success,
+            // force-update the order to "paid" so backend matches the thank-you page.
             if (!$updateSuccess) {
-                Log::error('WebXPay failed to update order status');
-                throw new \Exception('Failed to update order status');
+                Log::error('WebXPay failed to update order status via service, attempting fallback update', [
+                    'order_number' => $order->order_number,
+                    'processed_payment_status' => $processedResponse['payment_status'] ?? null,
+                ]);
+
+                $freshOrder = $order->fresh();
+
+                if (($processedResponse['payment_status'] ?? null) === 'success' && $freshOrder && $freshOrder->payment_status !== 'paid') {
+                    $freshOrder->update([
+                        'payment_status' => 'paid',
+                        'payment_method' => 'webxpay',
+                        'payment_reference' => $processedResponse['reference_number'] ?? $freshOrder->payment_reference,
+                    ]);
+
+                    Log::info('WebXPay fallback: order forcibly marked as paid after successful gateway response', [
+                        'order_number' => $freshOrder->order_number,
+                        'current_payment_status' => $freshOrder->payment_status,
+                    ]);
+                }
             }
 
             Log::info('WebXPay about to redirect', [
