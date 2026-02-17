@@ -60,7 +60,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Download invoice as PDF
+     * Download invoice
      */
     public function invoice($orderNumber)
     {
@@ -70,7 +70,7 @@ class OrderController extends Controller
 
         // Check access permissions
         if (!Auth::check()) {
-            if (session('last_order_id') !== $order->id && session('payment_success_order') !== $orderNumber) {
+            if (session('last_order_id') !== $order->id) {
                 abort(403, 'Access denied.');
             }
         } else {
@@ -79,19 +79,7 @@ class OrderController extends Controller
             }
         }
 
-        // Generate PDF using DomPDF
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('orders.invoice-pdf', compact('order'));
-        $pdf->setPaper('A4', 'portrait');
-        
-        // Set PDF options for better rendering
-        $pdf->setOptions([
-            'isHtml5ParserEnabled' => true,
-            'isPhpEnabled' => true,
-            'defaultFont' => 'DejaVu Sans',
-        ]);
-
-        // Return PDF download
-        return $pdf->download('MSK-Invoice-' . $order->order_number . '.pdf');
+        return view('orders.invoice', compact('order'));
     }
 
     /**

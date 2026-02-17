@@ -352,9 +352,13 @@ Route::get('/payment/status/{order}', [App\Http\Controllers\PaymentController::c
 // WebXPay Payment Routes (specific routes first, then parameterized routes)
 Route::get('/payment/webxpay/test', [App\Http\Controllers\PaymentController::class, 'testWebXPay'])->name('payment.webxpay.test');
 Route::get('/payment/webxpay/return', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.return');
-Route::post('/payment/webxpay/return', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.return.post');
+Route::post('/payment/webxpay/return', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])
+    ->name('payment.webxpay.return.post')
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 Route::get('/payment/webxpay/cancel', [App\Http\Controllers\PaymentController::class, 'handleWebXPayCancel'])->name('payment.webxpay.cancel');
-Route::post('/payment/webxpay/notify', [App\Http\Controllers\PaymentController::class, 'handleWebXPayNotify'])->name('payment.webxpay.notify');
+Route::post('/payment/webxpay/notify', [App\Http\Controllers\PaymentController::class, 'handleWebXPayNotify'])
+    ->name('payment.webxpay.notify')
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 Route::get('/payment/webxpay/status/{order}', [App\Http\Controllers\PaymentController::class, 'checkWebXPayPaymentStatus'])->name('payment.webxpay.status');
 Route::get('/payment/webxpay/{order}', [App\Http\Controllers\PaymentController::class, 'initiateWebXPayPayment'])->name('payment.webxpay');
 Route::post('/payment/webxpay/{order}', [App\Http\Controllers\PaymentController::class, 'initiateWebXPayPayment'])->name('payment.webxpay.post');
@@ -362,17 +366,23 @@ Route::post('/payment/webxpay/{order}', [App\Http\Controllers\PaymentController:
 // WebXPay Legacy/Alternative Routes (for compatibility)
 // Test endpoint to verify return URL is accessible (must be defined BEFORE the general route)
 Route::get('/pay/webxpayResponse/test', [App\Http\Controllers\PaymentController::class, 'testWebXPayReturnUrl'])->name('payment.webxpay.legacy.return.test');
-Route::post('/pay/webxpayResponse', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.legacy.return');
+Route::post('/pay/webxpayResponse', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])
+    ->name('payment.webxpay.legacy.return')
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 Route::get('/pay/webxpayResponse', [App\Http\Controllers\PaymentController::class, 'handleWebXPayReturn'])->name('payment.webxpay.legacy.return.get');
 
 
 // Koko Pay Payment Routes (specific routes first, then parameterized routes)
 Route::get('/payment/kokopay/test', [App\Http\Controllers\PaymentController::class, 'testKokoPay'])->name('payment.kokopay.test');
 Route::get('/payment/kokopay/return', [App\Http\Controllers\PaymentController::class, 'handleKokoPayReturn'])->name('payment.kokopay.return');
-Route::post('/payment/kokopay/return', [App\Http\Controllers\PaymentController::class, 'handleKokoPayReturn'])->name('payment.kokopay.return.post');
+Route::post('/payment/kokopay/return', [App\Http\Controllers\PaymentController::class, 'handleKokoPayReturn'])
+    ->name('payment.kokopay.return.post')
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::get('/payment/kokopay/cancel', [App\Http\Controllers\PaymentController::class, 'handleKokoPayCancel'])->name('payment.kokopay.cancel');
-Route::post('/payment/kokopay/notify', [App\Http\Controllers\PaymentController::class, 'handleKokoPayNotify'])->name('payment.kokopay.notify');
+Route::post('/payment/kokopay/notify', [App\Http\Controllers\PaymentController::class, 'handleKokoPayNotify'])
+    ->name('payment.kokopay.notify')
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 Route::get('/payment/kokopay/status/{order}', [App\Http\Controllers\PaymentController::class, 'checkKokoPayPaymentStatus'])->name('payment.kokopay.status');
 Route::get('/payment/kokopay/{order}', [App\Http\Controllers\PaymentController::class, 'initiateKokoPayPayment'])->name('payment.kokopay');
 Route::post('/payment/kokopay/{order}', [App\Http\Controllers\PaymentController::class, 'initiateKokoPayPayment'])->name('payment.kokopay.post');

@@ -1,4 +1,4 @@
-# Payment Receipt & Email Receipt Information
+ # Payment Receipt & Email Receipt Information
 
 ## 📧 Payment Receipt Email Template
 
