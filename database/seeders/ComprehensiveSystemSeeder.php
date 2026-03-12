@@ -48,7 +48,7 @@ class ComprehensiveSystemSeeder extends Seeder
         DB::table('transactions')->delete(); // Clear transactions first
         DB::table('order_items')->delete();
         DB::table('orders')->delete();
-        DB::table('users')->where('email', '!=', 'admin@mskcomputers.lk')->delete();
+        DB::table('users')->where('email', '!=', 'admin@ceylonitsolutions.com')->delete();
         
         // Re-enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -62,7 +62,7 @@ class ComprehensiveSystemSeeder extends Seeder
         
         // Create main admin user
         $admin = User::firstOrCreate(
-            ['email' => 'admin@mskcomputers.lk'],
+            ['email' => 'admin@ceylonitsolutions.com'],
             [
                 'name' => 'MSK Admin',
                 'password' => Hash::make('admin123'),
@@ -78,7 +78,7 @@ class ComprehensiveSystemSeeder extends Seeder
         $adminUsers = [
             [
                 'name' => 'Dhanushka Perera',
-                'email' => 'dhanushka@mskcomputers.lk',
+                'email' => 'dhanushka@ceylonitsolutions.com',
                 'password' => Hash::make('dhanushka123'),
                 'role' => 'admin',
                 'status' => 'active',
@@ -86,7 +86,7 @@ class ComprehensiveSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Kasun Silva',
-                'email' => 'kasun@mskcomputers.lk',
+                'email' => 'kasun@ceylonitsolutions.com',
                 'password' => Hash::make('kasun123'),
                 'role' => 'admin',
                 'status' => 'active',
@@ -94,7 +94,7 @@ class ComprehensiveSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Nuwan Fernando',
-                'email' => 'nuwan@mskcomputers.lk',
+                'email' => 'nuwan@ceylonitsolutions.com',
                 'password' => Hash::make('nuwan123'),
                 'role' => 'admin',
                 'status' => 'active',
@@ -377,10 +377,10 @@ class ComprehensiveSystemSeeder extends Seeder
         $this->command->info('=====================================');
         $this->command->info('');
         $this->command->info('🔐 ADMIN LOGIN CREDENTIALS:');
-        $this->command->info('Email: admin@mskcomputers.lk | Password: admin123');
-        $this->command->info('Email: dhanushka@mskcomputers.lk | Password: dhanushka123');
-        $this->command->info('Email: kasun@mskcomputers.lk | Password: kasun123');
-        $this->command->info('Email: nuwan@mskcomputers.lk | Password: nuwan123');
+        $this->command->info('Email: admin@ceylonitsolutions.com | Password: admin123');
+        $this->command->info('Email: dhanushka@ceylonitsolutions.com | Password: dhanushka123');
+        $this->command->info('Email: kasun@ceylonitsolutions.com | Password: kasun123');
+        $this->command->info('Email: nuwan@ceylonitsolutions.com | Password: nuwan123');
         $this->command->info('');
         $this->command->info('👤 CUSTOMER LOGIN CREDENTIALS:');
         $this->command->info('Any customer email | Password: customer123');

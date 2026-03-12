@@ -191,7 +191,7 @@
                     <p class="mb-4">If you have any questions about these Terms of Service, please contact us:</p>
                     <div class="bg-dark-800 rounded-lg p-4">
                         <p class="font-medium text-white mb-2">MSK Computers</p>
-                        <p>Email: <a href="mailto:info@mskcomputers.lk" class="text-primary-400 hover:text-primary-300">info@mskcomputers.lk</a></p>
+                        <p>Email: <a href="mailto:info@ceylonitsolutions.com" class="text-primary-400 hover:text-primary-300">info@ceylonitsolutions.com</a></p>
                         <p>Phone: <a href="tel:+94112345678" class="text-primary-400 hover:text-primary-300">+94 11 234 5678</a></p>
                         <p>Website: <a href="{{ url('/') }}" class="text-primary-400 hover:text-primary-300">{{ url('/') }}</a></p>
                     </div>

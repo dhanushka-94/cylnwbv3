@@ -63,7 +63,7 @@
             <!-- Pending Orders -->
             <a href="{{ route('admin.orders.index', ['status' => 'pending']) }}" 
                class="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors
-                      {{ request('status') === 'pending' && !request('view_status') ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-gray-700/50 text-gray-300 hover:bg-yellow-500/10 hover:text-yellow-400' }}">
+                      {{ request('status') === 'pending' && !request('view_status') ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30' : 'bg-gray-700/50 text-gray-300 hover:bg-sky-500/10 hover:text-sky-300' }}">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -72,7 +72,7 @@
                     $pendingCount = \App\Models\Order::where('status', 'pending')->count();
                 @endphp
                 @if($pendingCount > 0)
-                    <span class="ml-2 px-2 py-1 bg-yellow-500/70 text-white text-xs rounded-full">{{ $pendingCount }}</span>
+                    <span class="ml-2 px-2 py-1 bg-sky-500/70 text-white text-xs rounded-full">{{ $pendingCount }}</span>
                 @endif
             </a>
             
@@ -135,13 +135,13 @@
                                name="search" 
                                value="{{ request('search') }}"
                                placeholder="Order number, customer, email, mobile..."
-                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                     </div>
 
                     <!-- Status Filter -->
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-300 mb-2">Status</label>
-                        <select id="status" name="status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                        <select id="status" name="status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                             <option value="">All Status</option>
                             <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
                             <option value="confirmed" {{ request('status') === 'confirmed' ? 'selected' : '' }}>Confirmed</option>
@@ -155,7 +155,7 @@
                     <!-- Payment Status -->
                     <div>
                         <label for="payment_status" class="block text-sm font-medium text-gray-300 mb-2">Payment Status</label>
-                        <select id="payment_status" name="payment_status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                        <select id="payment_status" name="payment_status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                             <option value="">All Status</option>
                             <option value="pending" {{ request('payment_status') === 'pending' ? 'selected' : '' }}>Pending</option>
                             <option value="paid" {{ request('payment_status') === 'paid' ? 'selected' : '' }}>Paid</option>
@@ -167,7 +167,7 @@
                     <!-- Payment Method -->
                     <div>
                         <label for="payment_method" class="block text-sm font-medium text-gray-300 mb-2">Payment Method</label>
-                        <select id="payment_method" name="payment_method" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                        <select id="payment_method" name="payment_method" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                             <option value="">All Methods</option>
                             <option value="webxpay" {{ request('payment_method') === 'webxpay' ? 'selected' : '' }}>💳 WebXPay</option>
                             <option value="kokopay" {{ request('payment_method') === 'kokopay' ? 'selected' : '' }}>⏰ Koko Pay (BNPL)</option>
@@ -186,7 +186,7 @@
                                name="date_from" 
                                value="{{ request('date_from') }}"
                                max="{{ now()->format('Y-m-d') }}"
-                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                     </div>
 
                     <!-- Date To -->
@@ -197,13 +197,13 @@
                                name="date_to" 
                                value="{{ request('date_to') }}"
                                max="{{ now()->format('Y-m-d') }}"
-                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                               class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                     </div>
 
                     <!-- View Status -->
                     <div>
                         <label for="view_status" class="block text-sm font-medium text-gray-300 mb-2">View Status</label>
-                        <select id="view_status" name="view_status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                        <select id="view_status" name="view_status" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                             <option value="">All Orders</option>
                             <option value="unviewed" {{ request('view_status') === 'unviewed' ? 'selected' : '' }}>🔵 Unviewed Only</option>
                             <option value="viewed" {{ request('view_status') === 'viewed' ? 'selected' : '' }}>👁️ Viewed Only</option>
@@ -213,7 +213,7 @@
                     <!-- Quick Date Presets -->
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-2">Quick Filters</label>
-                        <select id="date_preset" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#f59e0b]">
+                        <select id="date_preset" class="w-full px-3 py-2 bg-[#0f0f0f] border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb]">
                             <option value="">Select Period</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -228,7 +228,7 @@
 
                     <!-- Filter Buttons -->
                     <div class="flex items-end space-x-2">
-                        <button type="submit" class="px-4 py-2 bg-[#f59e0b] text-black rounded-lg hover:bg-[#d97706] transition-colors text-sm font-medium flex items-center">
+                        <button type="submit" class="px-4 py-2 bg-[#2563eb] text-white rounded-lg hover:bg-[#1d4ed8] transition-colors text-sm font-medium flex items-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z"/>
                             </svg>

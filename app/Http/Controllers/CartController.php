@@ -38,7 +38,7 @@ class CartController extends Controller
                            isset($queryParams['signature']) || 
                            str_contains($referer, 'webxpay.com') ||
                            str_contains($referer, 'stagingxpay.info') ||
-                           (str_contains($referer, 'xpay') && !str_contains($referer, 'mskcomputers.lk'))
+                           (str_contains($referer, 'xpay') && !str_contains($referer, 'ceylonitsolutions.com'))
                            );
         
         if ($isWebXPayRedirect) {
@@ -51,7 +51,7 @@ class CartController extends Controller
                     'has_signature_param' => isset($queryParams['signature']),
                     'webxpay_in_referer' => str_contains($referer, 'webxpay.com'),
                     'stagingxpay_in_referer' => str_contains($referer, 'stagingxpay.info'),
-                    'external_xpay_in_referer' => (str_contains($referer, 'xpay') && !str_contains($referer, 'mskcomputers.lk'))
+                    'external_xpay_in_referer' => (str_contains($referer, 'xpay') && !str_contains($referer, 'ceylonitsolutions.com'))
                 ],
                 'loop_prevention' => [
                     'is_from_our_handler' => $isFromOurWebXPayHandler,

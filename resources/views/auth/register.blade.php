@@ -18,7 +18,7 @@
             <div class="text-center">
                 <div class="h-24 w-24 md:h-32 md:w-32 mx-auto mb-4 md:mb-6 relative">
                     <div class="absolute inset-0 bg-[#f59e0b]/20 rounded-full blur-xl"></div>
-                    <img src="{{ asset('msk-computers-logo-color.png') }}" alt="MSK Computers Logo" class="w-full h-full object-contain relative z-10">
+                    <img src="{{ asset('cts-sys-logo-clr.png') }}" alt="Ceylon IT Solutions Logo" class="w-full h-full object-contain relative z-10">
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Create Account</h2>
                 <p class="text-sm md:text-base text-gray-400 mb-4 md:mb-6">Join MSK Computers for exclusive deals and faster checkout</p>

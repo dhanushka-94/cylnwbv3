@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Checkout Payment - MSK Computers')
+@section('title', 'Checkout Payment - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1c] to-[#0f0f0f] py-12">
@@ -444,13 +444,13 @@
                             <!-- Shipping -->
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-400">Shipping:</span>
-                                <span class="text-amber-400 text-xs">Pay on delivery</span>
+                                <span class="text-sky-300 text-xs">Pay on delivery</span>
                             </div>
                             
                             <!-- Transaction Fee (dynamic based on payment method) -->
                             <div class="flex justify-between text-sm" id="transaction-fee-row" style="display: none;">
-                                <span class="text-yellow-400" id="transaction-fee-label">Transaction Fee:</span>
-                                <span class="text-yellow-400" id="transaction-fee-amount">+LKR 0.00</span>
+                                <span class="text-sky-300" id="transaction-fee-label">Transaction Fee:</span>
+                                <span class="text-sky-300" id="transaction-fee-amount">+LKR 0.00</span>
                             </div>
                             
                             <!-- Order Total -->

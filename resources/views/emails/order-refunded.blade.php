@@ -69,7 +69,7 @@ If you don't see the refund in your account after the expected timeframe:
 ### Contact Information
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939
-- **Email:** refunds@mskcomputers.lk
+- **Email:** refunds@ceylonitsolutions.com
 
 ## We Value Your Feedback
 

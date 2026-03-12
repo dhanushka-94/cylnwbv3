@@ -39,7 +39,7 @@ Your order **{{ $order->order_number }}** status has been updated.
 Track Your Order
 @endcomponent
 
-Thank you for shopping with MSK Computers!
+Thank you for shopping with Ceylon IT Solutions!
 
 Best regards,  
 {{ config('app.name') }} Team
@@ -48,6 +48,6 @@ Best regards,
 If you have any questions about your order, please contact us:
 - Phone: 0112 95 9005
 - WhatsApp: +94 777 506 939
-- Email: info@mskcomputers.lk
+- Email: info@ceylonitsolutions.com
 @endcomponent
 @endcomponent

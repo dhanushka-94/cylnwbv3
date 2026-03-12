@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'MSK COMPUTERS - Your Trusted Computer Store in Sri Lanka')
-@section('description', 'MSK Computers - Your trusted partner for computer hardware, gaming PCs, laptops, and technology solutions in Sri Lanka. Quality products, competitive prices, and expert service.')
-@section('keywords', 'MSK Computers, computer store Sri Lanka, gaming PC, laptops, computer hardware, graphics cards, processors, motherboards, technology solutions')
-@section('og_title', 'MSK COMPUTERS - Your Trusted Computer Store in Sri Lanka')
-@section('og_description', 'Discover premium computer hardware, gaming PCs, and technology solutions at MSK Computers. Quality products with warranty and expert service in Sri Lanka.')
+@section('title', 'Ceylon IT Solutions - Your Trusted Computer Store in Sri Lanka')
+@section('description', 'Ceylon IT Solutions - Your trusted partner for computer hardware, gaming PCs, laptops, and technology solutions in Sri Lanka. Quality products, competitive prices, and expert service.')
+@section('keywords', 'Ceylon IT Solutions, computer store Sri Lanka, gaming PC, laptops, computer hardware, graphics cards, processors, motherboards, technology solutions')
+@section('og_title', 'Ceylon IT Solutions - Your Trusted Computer Store in Sri Lanka')
+@section('og_description', 'Discover premium computer hardware, gaming PCs, and technology solutions at Ceylon IT Solutions. Quality products with warranty and expert service in Sri Lanka.')
 @section('og_type', 'website')
 
 @section('content')
@@ -85,8 +85,12 @@
 <section class="py-8 md:py-16 bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6 md:mb-12">
-            <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-2 md:mb-4">Why Choose MSK COMPUTERS?</h2>
-            <p class="text-sm sm:text-base md:text-xl text-gray-300 max-w-3xl mx-auto">Professional expertise, quality products, and exceptional service for all your computing needs.</p>
+            <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-2 md:mb-4">
+                What Makes Ceylon IT Solutions Different
+            </h2>
+            <p class="text-sm sm:text-base md:text-xl text-gray-300 max-w-3xl mx-auto">
+                Trusted IT partner delivering modern solutions, reliable service, and long‑term value for your business and home.
+            </p>
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
@@ -351,8 +355,8 @@
     </div>
 </section>
 
-<!-- Happy Customer Photos Section -->
-<section class="py-16 bg-gradient-to-b from-[#0f0f0f] to-black relative overflow-hidden">
+{{-- Happy Customer Photos / Customer Experiences section hidden for now --}}
+{{-- <section class="py-16 bg-gradient-to-b from-[#0f0f0f] to-black relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute w-64 h-64 rounded-full bg-[#f59e0b] blur-3xl -top-32 -left-32"></div>
@@ -410,7 +414,7 @@
         </div>
 
     </div>
-</section>
+</section> --}}
 
 
 @endsection
@@ -651,7 +655,7 @@
         document.getElementById('specialOrderWhatsApp').href = `https://wa.me/94777506939?text=${encodeURIComponent(whatsappMessage)}`;
         
         // Update Email link
-        document.getElementById('specialOrderEmail').href = `mailto:info@mskcomputers.lk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        document.getElementById('specialOrderEmail').href = `mailto:info@ceylonitsolutions.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
         
         // Show modal
         document.getElementById('specialOrderContactModal').classList.remove('hidden');
@@ -914,7 +918,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-white font-semibold">info@mskcomputers.lk</p>
+                        <p class="text-white font-semibold">info@ceylonitsolutions.com</p>
                         <p class="text-gray-400 text-xs">Expert support</p>
                     </div>
                 </div>

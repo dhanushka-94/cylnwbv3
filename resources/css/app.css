@@ -6,17 +6,17 @@
 @source '../**/*.js';
 
 @theme {
-    /* MSK COMPUTERS Brand Colors - Dark & Yellow Theme */
-    --color-primary-50: #fffbeb;
-    --color-primary-100: #fef3c7;
-    --color-primary-200: #fde68a;
-    --color-primary-300: #fcd34d;
-    --color-primary-400: #fbbf24;
-    --color-primary-500: #f59e0b;
-    --color-primary-600: #d97706;
-    --color-primary-700: #b45309;
-    --color-primary-800: #92400e;
-    --color-primary-900: #78350f;
+    /* Ceylon IT Solutions Brand Colors - Dark & Blue Theme */
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
     
     --color-dark-50: #f7f7f7;
     --color-dark-100: #e3e3e3;
@@ -30,6 +30,18 @@
     --color-dark-900: #0f0f0f;
     --color-dark-950: #050505;
     
+    /* Map legacy yellow palette to blue so all `text-yellow-*` utilities render as blue */
+    --color-yellow-50: var(--color-primary-50);
+    --color-yellow-100: var(--color-primary-100);
+    --color-yellow-200: var(--color-primary-200);
+    --color-yellow-300: var(--color-primary-300);
+    --color-yellow-400: var(--color-primary-400);
+    --color-yellow-500: var(--color-primary-500);
+    --color-yellow-600: var(--color-primary-600);
+    --color-yellow-700: var(--color-primary-700);
+    --color-yellow-800: var(--color-primary-800);
+    --color-yellow-900: var(--color-primary-900);
+    
     /* Custom animations */
     --animate-fade-in: fadeIn 0.5s ease-in-out;
     --animate-slide-up: slideUp 0.6s ease-out;
@@ -41,8 +53,8 @@
     --font-tech: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
     
     /* Custom shadows */
-    --shadow-glow-yellow: 0 0 20px rgba(251, 191, 36, 0.3);
-    --shadow-glow-yellow-lg: 0 0 40px rgba(251, 191, 36, 0.4);
+    --shadow-glow-yellow: 0 0 20px rgba(96, 165, 250, 0.35);
+    --shadow-glow-yellow-lg: 0 0 40px rgba(96, 165, 250, 0.45);
     --shadow-dark-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
     
     /* Custom spacing */
@@ -51,7 +63,7 @@
     --spacing-128: 32rem;
 }
 
-/* MSK COMPUTERS Custom Styles */
+/* Ceylon IT Solutions Custom Styles */
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -320,6 +332,29 @@
     .hero-section {
         z-index: 10 !important;
         position: relative !important;
+    }
+
+    /* Global overrides to shift legacy yellow hex utilities to blue brand colors */
+    .text-\[\#f59e0b\],
+    .hover\:text-\[\#f59e0b\]:hover {
+        color: theme('colors.primary.400') !important;
+    }
+
+    .bg-\[\#f59e0b\],
+    .hover\:bg-\[\#f59e0b\]:hover {
+        background-color: theme('colors.primary.500') !important;
+    }
+
+    .border-\[\#f59e0b\] {
+        border-color: theme('colors.primary.500') !important;
+    }
+
+    .from-\[\#f59e0b\] {
+        background-image: linear-gradient(to right, theme('colors.primary.500'), var(--tw-gradient-to, theme('colors.primary.400'))) !important;
+    }
+
+    .to-\[\#fbbf24\] {
+        background-image: linear-gradient(to right, var(--tw-gradient-from, theme('colors.primary.500')), theme('colors.primary.400')) !important;
     }
 }
 

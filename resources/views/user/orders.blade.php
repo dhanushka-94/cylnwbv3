@@ -262,7 +262,7 @@
                     </div>
                     <div>
                         <div class="font-medium text-white">Email Us</div>
-                        <a href="#" id="emailLink" class="text-blue-400 hover:text-blue-300 text-sm">info@mskcomputers.lk</a>
+                        <a href="#" id="emailLink" class="text-blue-400 hover:text-blue-300 text-sm">info@ceylonitsolutions.com</a>
                         <div class="text-xs text-gray-400">Expert support</div>
                     </div>
                 </div>
@@ -311,7 +311,7 @@ function showCancelContactInfo(orderNumber) {
     // Update email link
     const emailSubject = `Order Cancellation Request - ${orderNumber}`;
     const emailBody = `Hi, I would like to cancel my order ${orderNumber}. Please process this request and confirm.`;
-    const emailUrl = `mailto:info@mskcomputers.lk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const emailUrl = `mailto:info@ceylonitsolutions.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     document.getElementById('emailLink').href = emailUrl;
     
     // Show modal

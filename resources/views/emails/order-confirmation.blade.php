@@ -90,7 +90,7 @@ If you have any questions about your order:
 
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939 (24/7 Support)
-- **Email:** info@mskcomputers.lk
+- **Email:** info@ceylonitsolutions.com
 
 **Store Location:**  
 No.12, Maradana Road, Colombo 08

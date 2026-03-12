@@ -9,7 +9,7 @@
     <div class="flex justify-between items-center">
         <div>
             <h1 class="text-3xl font-bold text-white mb-2">Dashboard</h1>
-            <p class="text-gray-400">Welcome to the MSK Computers admin panel</p>
+            <p class="text-gray-400">Welcome to the Ceylon IT Solutions admin panel</p>
         </div>
         <div class="text-right text-sm text-gray-400">
             <p>{{ \Carbon\Carbon::now()->setTimezone('Asia/Colombo')->format('l, F j, Y') }}</p>
@@ -36,7 +36,7 @@
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div class="text-center">
                     <div class="text-lg font-semibold text-white">{{ $stats['today_pending'] }}</div>
-                    <div class="text-xs text-yellow-400">Pending</div>
+                    <div class="text-xs text-sky-300">Pending</div>
                 </div>
                 <div class="text-center">
                     <div class="text-lg font-semibold text-white">{{ $stats['today_orders'] - $stats['today_pending'] }}</div>
@@ -78,7 +78,7 @@
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div class="text-center">
                     <div class="text-lg font-semibold text-white">{{ $stats['yesterday_pending'] }}</div>
-                    <div class="text-xs text-yellow-400">Pending</div>
+                    <div class="text-xs text-sky-300">Pending</div>
                 </div>
                 <div class="text-center">
                     <div class="text-lg font-semibold text-white">{{ $stats['yesterday_orders'] - $stats['yesterday_pending'] }}</div>
@@ -130,10 +130,10 @@
                 <div>
                     <p class="text-sm font-medium text-gray-400">Pending Orders</p>
                     <p class="text-3xl font-bold text-white">{{ number_format($stats['pending_orders']) }}</p>
-                    <p class="text-sm text-yellow-400">Requires attention</p>
+                    <p class="text-sm text-sky-300">Requires attention</p>
                 </div>
-                <div class="p-3 bg-yellow-500/20 rounded-lg">
-                    <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-3 bg-sky-500/20 rounded-lg">
+                    <svg class="w-8 h-8 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>

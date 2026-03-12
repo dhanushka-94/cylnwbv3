@@ -85,7 +85,7 @@ class WebXPayService
             // Use separate name fields from order (with fallback to splitting customer_name)
             $firstName = $order->first_name ?? explode(' ', trim($order->customer_name), 2)[0] ?? '';
             $lastName = $order->last_name ?? (explode(' ', trim($order->customer_name), 2)[1] ?? ($firstName ? $firstName : ''));
-            $email = $order->customer_email ?: 'customer@mskcomputers.lk';
+            $email = $order->customer_email ?: 'customer@ceylonitsolutions.com';
             $addressLine1 = $order->billing_address_line_1 ?: $order->shipping_address_line_1;
             $city = $order->billing_city ?: $order->shipping_city;
             

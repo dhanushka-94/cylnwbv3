@@ -67,7 +67,7 @@ Questions about your order processing?
 
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939
-- **Email:** info@mskcomputers.lk
+- **Email:** info@ceylonitsolutions.com
 
 We'll notify you as soon as your order ships!
 

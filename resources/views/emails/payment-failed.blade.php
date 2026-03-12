@@ -85,7 +85,7 @@ Our team is ready to help you complete your payment:
 ### Immediate Support
 - **WhatsApp:** +94 777 506 939 (24/7)
 - **Phone:** 0112 95 9005
-- **Email:** payments@mskcomputers.lk
+- **Email:** payments@ceylonitsolutions.com
 
 ### Common Solutions
 

@@ -119,7 +119,7 @@ class SmaCategory extends Model
     public function getImageUrlAttribute()
     {
         if ($this->image) {
-            return 'https://mskcomputers.lk/assets/uploads/' . $this->image;
+            return 'https://ceylonitsolutions.com/assets/uploads/' . $this->image;
         }
         
         return asset('images/placeholder-category.jpg');

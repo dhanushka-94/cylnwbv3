@@ -6,25 +6,25 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- SEO Meta Tags -->
-    <title>@yield('title', 'MSK COMPUTERS - Professional Computer Solutions')</title>
-    <meta name="description" content="@yield('description', 'MSK Computers - Your trusted partner for computer hardware, gaming PCs, laptops, and technology solutions in Sri Lanka. Quality products at competitive prices.')">
-    <meta name="keywords" content="@yield('keywords', 'computers, gaming PC, laptops, hardware, MSK Computers, Sri Lanka, technology, graphics cards, processors, motherboards')">
-    <meta name="author" content="MSK Computers">
+    <title>@yield('title', 'Ceylon IT Solutions - Professional Computer Solutions')</title>
+    <meta name="description" content="@yield('description', 'Ceylon IT Solutions - Your trusted partner for computer hardware, gaming PCs, laptops, and technology solutions in Sri Lanka. Quality products at competitive prices.')">
+    <meta name="keywords" content="@yield('keywords', 'computers, gaming PC, laptops, hardware, Ceylon IT Solutions, Sri Lanka, technology, graphics cards, processors, motherboards')">
+    <meta name="author" content="Ceylon IT Solutions">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="@yield('og_title', 'MSK COMPUTERS')">
-    <meta property="og:description" content="@yield('og_description', 'MSK Computers - Your trusted partner for computer hardware and technology solutions.')">
-    <meta property="og:image" content="@yield('og_image', asset('images/msk-logo.png') . '?v=' . config('assets.version', time()))">
+    <meta property="og:title" content="@yield('og_title', 'Ceylon IT Solutions')">
+    <meta property="og:description" content="@yield('og_description', 'Ceylon IT Solutions - Your trusted partner for computer hardware and technology solutions.')">
+    <meta property="og:image" content="@yield('og_image', asset('cts-sys-logo-clr.png') . '?v=' . config('assets.version', time()))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:site_name" content="MSK Computers">
+    <meta property="og:site_name" content="Ceylon IT Solutions">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'MSK COMPUTERS')">
-    <meta name="twitter:description" content="@yield('og_description', 'MSK Computers - Your trusted partner for computer hardware and technology solutions.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/msk-logo.png') . '?v=' . config('assets.version', time()))">
+    <meta name="twitter:title" content="@yield('og_title', 'Ceylon IT Solutions')">
+    <meta name="twitter:description" content="@yield('og_description', 'Ceylon IT Solutions - Your trusted partner for computer hardware and technology solutions.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('cts-sys-logo-clr.png') . '?v=' . config('assets.version', time()))">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -173,7 +173,7 @@
         </div>
     @endif
     <!-- Top Contact Bar -->
-    <div class="bg-black border-b border-gray-800">
+    <div class="bg-gradient-to-r from-black via-slate-950 to-black border-b border-gray-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row justify-between items-center py-2 text-sm">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 text-gray-300 text-center sm:text-left">
@@ -188,9 +188,9 @@
                         <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
-                        <span class="text-xs sm:text-sm">info@mskcomputers.lk</span>
-                    </div>
-                </div>
+                        <span class="text-xs sm:text-sm">info@ceylonitsolutions.com</span>
+    </div>
+    </div>
                 <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-primary-400 text-xs">
                     <!-- Delivery Info -->
                     <div class="flex items-center space-x-2">
@@ -240,7 +240,7 @@
     </div>
 
          <!-- Unified Header with Navigation -->
-     <header class="bg-black border-b border-gray-800 sticky top-0 z-[9999] shadow-lg navigation-header">
+     <header class="bg-black/85 backdrop-blur-md border-b border-blue-900/40 sticky top-0 z-[9999] shadow-[0_10px_30px_rgba(15,23,42,0.9)] navigation-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Top Row: Logo, Search, Account -->
             <div class="flex items-center justify-between h-16 md:h-24 border-b border-gray-800/50">
@@ -248,13 +248,17 @@
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-2 md:space-x-3">
                         <div class="flex items-center">
-                            <img src="{{ asset('msk-computers-logo-color.png') }}" 
-                                 alt="MSK Computers Logo" 
+                            <img src="{{ asset('cts-sys-logo-clr.png') }}" 
+                                 alt="Ceylon IT Solutions Logo" 
                                  class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-logo-glow' : '' }}">
                         </div>
                         <div class="hidden sm:block">
-                            <h1 class="text-sm md:text-xl font-bold text-primary-400">MSK COMPUTERS</h1>
-                            <p class="text-xs text-gray-400 hidden md:block">Empowering Tech Solutions, Every Day.</p>
+                            <h1 class="text-sm md:text-xl font-bold tracking-wide text-primary-400">
+                                Ceylon IT Solutions
+                            </h1>
+                            <p class="text-xs text-gray-400 hidden md:block">
+                                Smart hardware, modern IT services, island‑wide support.
+                            </p>
                         </div>
                     </a>
                 </div>
@@ -670,31 +674,31 @@
                                 <img class="w-6 h-6 rounded-full mr-3" src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}">
                                 <span class="font-medium">{{ Auth::user()->name }}</span>
                             </div>
-                            <a href="{{ route('user.dashboard') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('user.dashboard') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                                 </svg>
                                 Dashboard
                             </a>
-                            <a href="{{ route('user.orders') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('user.orders') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                                 </svg>
                                 My Orders
                             </a>
-                            <a href="{{ route('profile.show') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('profile.show') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
                                 Profile Settings
                             </a>
-                            <a href="{{ route('orders.track') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('orders.track') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                                 </svg>
                                 Track Order
                             </a>
-                            <a href="{{ route('user.settings') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('user.settings') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -714,13 +718,13 @@
                     @else
                         <!-- Guest User Menu -->
                         <div class="space-y-2">
-                            <a href="{{ route('login') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('login') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
                                 </svg>
                                 Login
                             </a>
-                            <a href="{{ route('register') }}" class="flex items-center py-2 text-gray-300 hover:text-[#f59e0b] transition-colors">
+                            <a href="{{ route('register') }}" class="flex items-center py-2 text-gray-300 hover:text-[#3b82f6] transition-colors">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                                 </svg>
@@ -756,12 +760,12 @@
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="flex items-center">
-                            <img src="{{ asset('msk-computers-logo-color.png') }}" 
-                                 alt="MSK Computers Logo" 
+                            <img src="{{ asset('cts-sys-logo-clr.png') }}" 
+                                 alt="Ceylon IT Solutions Logo" 
                                  class="w-24 h-24 object-contain {{ isset($isChristmasActive) && $isChristmasActive ? 'christmas-logo-glow' : '' }}">
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-primary-400">MSK COMPUTERS</h3>
+                            <h3 class="text-xl font-bold text-primary-400">Ceylon IT Solutions</h3>
                             <p class="text-sm font-medium text-gray-300">Best in Sri Lanka</p>
                         </div>
                     </div>
@@ -805,8 +809,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                             <div class="text-gray-400 text-sm">
-                                <div>No.296/3D, Delpe junction,</div>
-                                <div>Ragama, Sri Lanka</div>
+                                <div>NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA</div>
+                                <div>Sri Lanka</div>
                             </div>
                         </div>
                         
@@ -824,7 +828,7 @@
                             <svg class="w-4 h-4 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v10a2 2 0 002 2z"/>
                             </svg>
-                            <span class="text-gray-400 text-sm">info@mskcomputers.lk</span>
+                            <span class="text-gray-400 text-sm">info@ceylonitsolutions.com</span>
                         </div>
                         
                         <div class="flex items-start space-x-2">
@@ -842,8 +846,8 @@
                 </div>
             </div>
 
-            <!-- Payment Methods Section -->
-            <div class="border-t border-gray-800 mt-8 pt-8">
+            <!-- Payment Methods Section (hidden for now) -->
+            <div class="border-t border-gray-800 mt-8 pt-8 hidden">
                 <div class="text-center">
                     <h4 class="text-lg font-semibold text-white mb-6">We Accept</h4>
                     <div class="flex flex-wrap justify-center items-center gap-6">
@@ -909,7 +913,7 @@
                 <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
                     <!-- Copyright and Social Media -->
                     <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6">
-                        <p class="text-gray-400 text-sm">© {{ date('Y') }} MSK COMPUTERS. All rights reserved.</p>
+                        <p class="text-gray-400 text-sm">© {{ date('Y') }} Ceylon IT Solutions. All rights reserved.</p>
                         
                         <!-- Social Media Icons -->
                         <div class="flex items-center space-x-3">

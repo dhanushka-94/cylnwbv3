@@ -12,7 +12,7 @@
             <div class="flex items-start justify-between gap-4 flex-wrap">
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Checkout</h1>
-                    <p class="text-gray-400 text-sm sm:text-base">Buy now and complete your order securely in a few steps.</p>
+                    <p class="text-gray-400 text-sm sm:text-base">Get a quotation for your order or contact us for payment options.</p>
                 </div>
                 
                 @guest
@@ -409,20 +409,40 @@
 
                     <!-- Simple Checkout Options -->
                     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-4 sm:p-6">
-                        <!-- Hidden Get Quote Option (for form compatibility) -->
+                        <!-- Get Quote - Only option (payment options hidden for now) -->
+                        <div class="mb-5">
+                            <label class="block cursor-pointer checkout-option active" data-type="quotation">
                                 <input type="radio" 
                                        name="checkout_type" 
                                        value="quotation"
-                               class="sr-only"
-                               style="display: none;">
+                                       checked
+                                       class="sr-only checkout-radio">
+                                <div class="p-4 sm:p-5 border border-blue-500/70 bg-blue-500/10 rounded-lg hover:bg-blue-500/15 transition-all text-left sm:text-center option-card">
+                                    <div class="flex items-center sm:justify-center gap-3 sm:gap-4">
+                                        <div class="flex-shrink-0 hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-blue-500/10 border border-blue-500/40">
+                                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-base sm:text-lg font-semibold text-white leading-tight">
+                                                Get Quote
+                                            </h4>
+                                            <p class="text-xs sm:text-sm text-gray-300 mt-1">
+                                                Download a professional PDF quotation. No payment required.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                         
-                        <!-- Buy Now - compact, mobile-first -->
-                        <div class="mb-5">
-                            <label class="block cursor-pointer checkout-option active" data-type="payment">
+                        <!-- Buy Now - hidden (payment options disabled for now) -->
+                        <div class="mb-5 hidden">
+                            <label class="block cursor-pointer checkout-option" data-type="payment">
                                 <input type="radio" 
                                        name="checkout_type" 
                                        value="payment"
-                                       checked
                                        class="sr-only checkout-radio">
                                 <div class="p-4 sm:p-5 border border-green-500/70 bg-green-500/10 rounded-lg hover:bg-green-500/15 transition-all text-left sm:text-center option-card">
                                     <div class="flex items-center sm:justify-center gap-3 sm:gap-4">
@@ -444,8 +464,8 @@
                             </label>
                         </div>
                         
-                        <!-- Payment Methods Section (shown when payment is selected) -->
-                        <div id="payment-methods-section" class="space-y-3 sm:space-y-4">
+                        <!-- Payment Methods Section (hidden - payment options disabled for now) -->
+                        <div id="payment-methods-section" class="space-y-3 sm:space-y-4 hidden" style="display: none !important;">
                             <h4 class="text-sm sm:text-base font-semibold text-white mb-3 sm:mb-4 flex items-center gap-2">
                                 <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-500/10 border border-primary-500/40">
                                     <svg class="w-3.5 h-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -565,7 +585,7 @@
                                             </p>
                                             <ul class="text-green-200 space-y-1 text-xs ml-4">
                                                 <li>• Please include your <strong>Order Number</strong> in the transfer reference</li>
-                                                <li>• Send the payment slip/screenshot to <strong>payments@mskcomputers.lk</strong></li>
+                                                <li>• Send the payment slip/screenshot to <strong>payments@ceylonitsolutions.com</strong></li>
                                                 <li>• Your order will be processed within 1-2 business days after payment confirmation</li>
                                                 <li>• Keep your payment receipt for tracking purposes</li>
                                             </ul>

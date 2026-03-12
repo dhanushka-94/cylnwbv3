@@ -9,7 +9,7 @@
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="flex items-center justify-center space-x-4 mb-6">
-                <img src="{{ asset('msk-computers-logo-color.png') }}" alt="MSK Computers" class="w-16 h-16">
+                <img src="{{ asset('cts-sys-logo-clr.png') }}" alt="Ceylon IT Solutions" class="w-16 h-16">
                 <div class="text-4xl text-gray-400">→</div>
                 <div class="bg-white p-3 rounded-lg shadow-lg">
                     <img src="{{ asset('images/webxpay-logo.webp') }}" alt="WebXPay" class="h-10">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Order Confirmed - MSK COMPUTERS')
-@section('description', 'Your order has been successfully placed at MSK Computers. Track your order and get updates on delivery.')
+@section('title', 'Order Confirmed - Ceylon IT Solutions')
+@section('description', 'Your order has been successfully placed at Ceylon IT Solutions. Track your order and get updates on delivery.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-12">
@@ -15,20 +15,20 @@
                 </svg>
             </div>
             <h1 class="text-4xl font-bold text-white mb-4">Order Confirmed!</h1>
-            <p class="text-xl text-gray-400">Thank you for your purchase from MSK Computers</p>
+            <p class="text-xl text-gray-400">Thank you for your purchase from Ceylon IT Solutions</p>
         </div>
 
         <!-- Order Details Card -->
         <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 overflow-hidden mb-8">
             <!-- Order Header -->
-            <div class="px-6 py-4 border-b border-gray-800 bg-gradient-to-r from-[#f59e0b]/10 to-[#fbbf24]/10">
+            <div class="px-6 py-4 border-b border-gray-800 bg-gradient-to-r from-[#1d4ed8]/15 to-[#3b82f6]/15">
                 <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-2xl font-bold text-white">{{ $order->order_number }}</h2>
                         <p class="text-sm text-gray-400">Placed on {{ $order->created_at->format('F d, Y \a\t g:i A') }}</p>
                     </div>
                     <div class="text-right">
-                        <div class="text-3xl font-bold text-[#f59e0b]">{{ $order->formatted_total }}</div>
+                        <div class="text-3xl font-bold text-[#3b82f6]">{{ $order->formatted_total }}</div>
                         <div class="flex items-center space-x-2 mt-1">
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $order->status_badge }}">
                                 📋 {{ ucfirst($order->status) }}
@@ -41,7 +41,7 @@
                         <div class="mt-2">
                             <a href="{{ route('orders.invoice', $order->order_number) }}" 
                                target="_blank"
-                               class="inline-flex items-center px-3 py-1 text-xs font-medium text-[#f59e0b] border border-[#f59e0b]/30 rounded-lg hover:bg-[#f59e0b]/10 transition-colors">
+                               class="inline-flex items-center px-3 py-1 text-xs font-medium text-[#3b82f6] border border-[#3b82f6]/40 rounded-lg hover:bg-[#1d4ed8]/10 transition-colors">
                                 <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                 </svg>
@@ -176,8 +176,8 @@
                                 </div>
                                 @if($paymentFee > 0)
                                     <div class="flex justify-between">
-                                        <span class="text-yellow-400">⚡ Payment Processing Fee (3%)</span>
-                                        <span class="text-yellow-400">+LKR {{ number_format($paymentFee, 2) }}</span>
+                                        <span class="text-sky-300">⚡ Payment Processing Fee (3%)</span>
+                                        <span class="text-sky-300">+LKR {{ number_format($paymentFee, 2) }}</span>
                                     </div>
                                 @endif
                                 @if($order->payment_reference)
@@ -190,7 +190,7 @@
                         </div>
 
                         <!-- Total Summary -->
-                        <div class="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-lg p-4">
+                        <div class="bg-gradient-to-r from-[#1d4ed8]/25 via-[#2563eb]/25 to-[#38bdf8]/25 rounded-lg p-4">
                             <div class="space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-lg font-medium text-white">Order Total</span>
@@ -198,8 +198,8 @@
                                 </div>
                                 @if($paymentFee > 0)
                                     <div class="flex justify-between items-center text-sm border-t border-gray-600 pt-2">
-                                        <span class="text-yellow-300 font-medium">💰 Total Paid</span>
-                                        <span class="text-xl font-bold text-[#f59e0b]">LKR {{ number_format($finalTotal, 2) }}</span>
+                                        <span class="text-sky-300 font-medium">💰 Total Paid</span>
+                                        <span class="text-xl font-bold text-[#3b82f6]">LKR {{ number_format($finalTotal, 2) }}</span>
                                     </div>
                                 @endif
                                 @if($totalDiscountSavings > 0)
@@ -336,18 +336,18 @@
                         </p>
                     </div>
                     @else
-                    <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-4">
-                        <h5 class="text-yellow-300 font-medium mb-2 flex items-center">
+                    <div class="bg-sky-900/20 border border-sky-700/50 rounded-lg p-4">
+                        <h5 class="text-sky-300 font-medium mb-2 flex items-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
                             </svg>
                             Upload Transfer Slip (Optional)
                         </h5>
-                        <p class="text-sm text-yellow-200 mb-3">
+                        <p class="text-sm text-sky-200 mb-3">
                             You can upload your transfer slip to help us verify your payment faster.
                         </p>
-                        <a href="mailto:info@mskcomputers.lk?subject=Transfer Slip - Order {{ $order->order_number }}&body=Please find attached my bank transfer slip for order {{ $order->order_number }}." 
-                           class="inline-flex items-center px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-lg transition-colors">
+                        <a href="mailto:info@ceylonitsolutions.com?subject=Transfer Slip - Order {{ $order->order_number }}&body=Please find attached my bank transfer slip for order {{ $order->order_number }}." 
+                           class="inline-flex items-center px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium rounded-lg transition-colors">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
@@ -365,14 +365,14 @@
             <h3 class="text-lg font-medium text-white mb-4">What's Next?</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-3">
-                    <div class="flex items-start space-x-3">
-                        <div class="flex-shrink-0 w-6 h-6 bg-[#f59e0b] rounded-full flex items-center justify-center">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 w-6 h-6 bg-[#2563eb] rounded-full flex items-center justify-center">
                             <span class="text-black text-xs font-bold">1</span>
                         </div>
                         <p class="text-gray-300">We'll prepare your order for shipping</p>
                     </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="flex-shrink-0 w-6 h-6 bg-[#f59e0b] rounded-full flex items-center justify-center">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 w-6 h-6 bg-[#2563eb] rounded-full flex items-center justify-center">
                             <span class="text-black text-xs font-bold">2</span>
                         </div>
                         <p class="text-gray-300">You'll receive a tracking number via email</p>
@@ -380,7 +380,7 @@
                 </div>
                 <div class="space-y-3">
                     <div class="flex items-start space-x-3">
-                        <div class="flex-shrink-0 w-6 h-6 bg-[#f59e0b] rounded-full flex items-center justify-center">
+                        <div class="flex-shrink-0 w-6 h-6 bg-[#2563eb] rounded-full flex items-center justify-center">
                             <span class="text-black text-xs font-bold">3</span>
                         </div>
                         <p class="text-gray-300">
@@ -392,7 +392,7 @@
                         </p>
                     </div>
                     <div class="flex items-start space-x-3">
-                        <div class="flex-shrink-0 w-6 h-6 bg-[#f59e0b] rounded-full flex items-center justify-center">
+                        <div class="flex-shrink-0 w-6 h-6 bg-[#2563eb] rounded-full flex items-center justify-center">
                             <span class="text-black text-xs font-bold">4</span>
                         </div>
                         <p class="text-gray-300">Our team will contact you if we need any clarification</p>
@@ -406,7 +406,7 @@
             <!-- Download Invoice Button - Most Prominent -->
             <a href="{{ route('orders.invoice', $order->order_number) }}" 
                target="_blank"
-               class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-lg text-black bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] hover:from-[#d97706] hover:to-[#f59e0b] transition-all duration-300 transform hover:scale-105 shadow-lg">
+               class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-lg text-white bg-gradient-to-r from-[#1d4ed8] to-[#3b82f6] hover:from-[#1e40af] hover:to-[#2563eb] transition-all duration-300 transform hover:scale-105 shadow-lg">
                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
@@ -445,14 +445,14 @@
             <h3 class="text-lg font-medium text-white mb-2">Need Help?</h3>
             <p class="text-gray-400 mb-4">If you have any questions about your order, feel free to contact us</p>
             <div class="flex items-center justify-center space-x-6 text-sm">
-                <a href="tel:0112959005" class="text-[#f59e0b] hover:text-[#d97706] transition-colors">
+                <a href="tel:0112959005" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
                     📞 0112 95 9005
                 </a>
-                <a href="https://wa.me/94777506939" class="text-[#f59e0b] hover:text-[#d97706] transition-colors">
+                <a href="https://wa.me/94777506939" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
                     📱 WhatsApp: +94 777 506 939
                 </a>
-                <a href="mailto:info@mskcomputers.lk" class="text-[#f59e0b] hover:text-[#d97706] transition-colors">
-                    ✉️ info@mskcomputers.lk
+                <a href="mailto:info@ceylonitsolutions.com" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
+                    ✉️ info@ceylonitsolutions.com
                 </a>
             </div>
         </div>

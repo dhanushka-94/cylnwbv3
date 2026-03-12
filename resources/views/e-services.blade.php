@@ -25,7 +25,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://e-services.mskcomputers.lk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-[#f59e0b] text-black font-bold rounded-lg hover:bg-[#d97706] transition-colors transform hover:scale-105">
+                <a href="https://e-services.ceylonitsolutions.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-[#f59e0b] text-black font-bold rounded-lg hover:bg-[#d97706] transition-colors transform hover:scale-105">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
                 
-                <a href="https://e-services.mskcomputers.lk/" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-500 text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-blue-600 transition-colors">
+                <a href="https://e-services.ceylonitsolutions.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-500 text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-blue-600 transition-colors">
                     Learn More
                 </a>
             </div>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
                 
-                <a href="https://e-services.mskcomputers.lk/" target="_blank" rel="noopener noreferrer" class="block w-full bg-[#f59e0b] text-black font-bold py-3 px-6 rounded-lg text-center hover:bg-[#d97706] transition-colors">
+                <a href="https://e-services.ceylonitsolutions.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-[#f59e0b] text-black font-bold py-3 px-6 rounded-lg text-center hover:bg-[#d97706] transition-colors">
                     Learn More
                 </a>
             </div>
@@ -277,7 +277,7 @@
                     </div>
                 </div>
                 
-                <a href="https://e-services.mskcomputers.lk/" target="_blank" rel="noopener noreferrer" class="block w-full bg-purple-500 text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-purple-600 transition-colors">
+                <a href="https://e-services.ceylonitsolutions.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-purple-500 text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-purple-600 transition-colors">
                     Learn More
                 </a>
             </div>
@@ -480,7 +480,7 @@
         <p class="text-lg text-gray-400 mb-8">Join hundreds of satisfied customers who trust MSK Computers for their hosting and digital service needs.</p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a href="https://e-services.mskcomputers.lk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-[#f59e0b] text-black font-bold rounded-lg hover:bg-[#d97706] transition-colors transform hover:scale-105">
+            <a href="https://e-services.ceylonitsolutions.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-[#f59e0b] text-black font-bold rounded-lg hover:bg-[#d97706] transition-colors transform hover:scale-105">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>

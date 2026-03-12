@@ -50,7 +50,7 @@ Register Products
 ### Technical Support
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939
-- **Email:** support@mskcomputers.lk
+- **Email:** support@ceylonitsolutions.com
 
 ### Returns & Exchanges
 - **Return Window:** 30 days from delivery
@@ -89,7 +89,7 @@ Stay updated with our latest products and offers:
 - **Facebook:** MSK Computers
 - **Instagram:** @mskcomputers  
 - **YouTube:** MSK Computers Sri Lanka
-- **Website:** www.mskcomputers.lk
+- **Website:** www.ceylonitsolutions.com
 
 Thank you for choosing MSK Computers! We hope you love your new products.
 

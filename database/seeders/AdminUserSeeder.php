@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         // Create admin user if doesn't exist
-        $adminEmail = 'admin@mskcomputers.lk';
+        $adminEmail = 'admin@ceylonitsolutions.com';
         
         $admin = User::where('email', $adminEmail)->first();
         

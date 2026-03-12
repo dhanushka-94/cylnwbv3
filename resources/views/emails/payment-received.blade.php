@@ -104,7 +104,7 @@ Questions about your payment or order?
 
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939
-- **Email:** orders@mskcomputers.lk
+- **Email:** orders@ceylonitsolutions.com
 
 ### Account Access
 View your order status anytime:

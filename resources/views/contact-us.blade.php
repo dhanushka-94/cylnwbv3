@@ -167,7 +167,7 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold text-white mb-2">MSK COMPUTERS</h3>
-                                <p class="text-gray-300">No.296/3D, Delpe Junction, Ragama</p>
+                                <p class="text-gray-300">NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA</p>
                                 <p class="text-gray-400">Sri Lanka</p>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-white font-semibold mb-1">info@mskcomputers.lk</p>
+                                <p class="text-white font-semibold mb-1">info@ceylonitsolutions.com</p>
                                 <p class="text-gray-400 text-sm">Expert support</p>
                             </div>
                         </div>

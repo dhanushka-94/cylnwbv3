@@ -1,5 +1,5 @@
-{{-- Payment Method Badges Component --}}
-<div class="payment-badges flex flex-wrap gap-2 mt-3 mb-3">
+{{-- Payment Method Badges Component (hidden for now) --}}
+<div class="payment-badges flex flex-wrap gap-2 mt-3 mb-3 hidden">
     {{-- KokoPay Badge - Glass Professional Style --}}
     <div class="flex items-center bg-gradient-to-r from-purple-500/15 to-pink-500/15 backdrop-blur-sm border border-purple-400/40 rounded-xl px-3 py-2 hover:from-purple-500/20 hover:to-pink-500/20 hover:border-purple-400/60 transition-all duration-300 shadow-lg hover:shadow-purple-500/20">
         <img src="{{ asset('images/kokopay-logo.png') }}" 

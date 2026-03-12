@@ -80,11 +80,11 @@
         </div>
 
         <!-- Clear Application Cache -->
-        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-[#f59e0b]/50 transition-colors">
+        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-[#2563eb]/50 transition-colors">
             <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center">
-                    <div class="bg-yellow-500/20 p-3 rounded-lg">
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-sky-500/20 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
                     </div>
@@ -94,7 +94,7 @@
             <p class="text-sm text-gray-400 mb-4">Clears only the application cache (database/file cache). Faster than clearing all caches.</p>
             <form action="{{ route('admin.cache.clear-application') }}" method="POST">
                 @csrf
-                <button type="submit" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
                     Clear Application Cache
                 </button>
             </form>
@@ -165,11 +165,11 @@
         </div>
 
         <!-- Increment Asset Version -->
-        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-[#f59e0b]/50 transition-colors">
+        <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-[#2563eb]/50 transition-colors">
             <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center">
-                    <div class="bg-[#f59e0b]/20 p-3 rounded-lg">
-                        <svg class="w-6 h-6 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-[#2563eb]/20 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
                     </div>
@@ -179,7 +179,7 @@
             <p class="text-sm text-gray-400 mb-4">Increments asset version to force all visitors to download fresh CSS, JS, and images on their next page load. Use this when you've updated frontend files.</p>
             <form action="{{ route('admin.cache.increment-version') }}" method="POST" onsubmit="return confirm('This will force all visitors to download fresh assets. Continue?');">
                 @csrf
-                <button type="submit" class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                <button type="submit" class="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-medium py-2 px-4 rounded-lg transition-colors">
                     Increment Asset Version
                 </button>
             </form>
@@ -190,7 +190,7 @@
 
     <!-- Important Notes -->
     <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
-        <h3 class="text-lg font-semibold text-yellow-400 mb-3 flex items-center">
+            <h3 class="text-lg font-semibold text-sky-300 mb-3 flex items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
             </svg>
@@ -198,19 +198,19 @@
         </h3>
         <ul class="space-y-2 text-sm text-gray-300">
             <li class="flex items-start">
-                <span class="text-yellow-400 mr-2">•</span>
+                <span class="text-sky-300 mr-2">•</span>
                 <span><strong>Clear All Cache</strong> is recommended when you've made significant updates and want customers to see changes immediately.</span>
             </li>
             <li class="flex items-start">
-                <span class="text-yellow-400 mr-2">•</span>
+                <span class="text-sky-300 mr-2">•</span>
                 <span><strong>Clear Product & Category Cache</strong> should be used after updating products, prices, or categories.</span>
             </li>
             <li class="flex items-start">
-                <span class="text-yellow-400 mr-2">•</span>
+                <span class="text-sky-300 mr-2">•</span>
                 <span>After clearing cache, the first page load may be slightly slower as caches are rebuilt.</span>
             </li>
             <li class="flex items-start">
-                <span class="text-yellow-400 mr-2">•</span>
+                <span class="text-sky-300 mr-2">•</span>
                 <span>HTTP cache headers (browser cache) are set to 30 minutes for regular pages. Customers may need to do a hard refresh (Ctrl+F5) to see changes immediately.</span>
             </li>
         </ul>

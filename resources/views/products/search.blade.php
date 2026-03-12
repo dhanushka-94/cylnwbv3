@@ -399,7 +399,7 @@ function showNotification(message, type = 'success') {
         document.getElementById('specialOrderWhatsApp').href = `https://wa.me/94777506939?text=${encodeURIComponent(whatsappMessage)}`;
         
         // Update Email link
-        document.getElementById('specialOrderEmail').href = `mailto:info@mskcomputers.lk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        document.getElementById('specialOrderEmail').href = `mailto:info@ceylonitsolutions.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
         
         // Show modal
         const modal = document.getElementById('specialOrderContactModal');
@@ -522,7 +522,7 @@ function showNotification(message, type = 'success') {
                         </svg>
                     </div>
                     <div>
-                        <p class="text-white font-semibold">info@mskcomputers.lk</p>
+                        <p class="text-white font-semibold">info@ceylonitsolutions.com</p>
                         <p class="text-gray-400 text-xs">Expert support</p>
                     </div>
                 </div>

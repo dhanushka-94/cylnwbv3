@@ -71,7 +71,7 @@ class CleanDatabaseSeeder extends Seeder
         // Create main admin user
         $admin = User::create([
             'name' => 'MSK Admin',
-            'email' => 'admin@mskcomputers.lk',
+            'email' => 'admin@ceylonitsolutions.com',
             'password' => Hash::make('admin123'),
             'email_verified_at' => now(),
             'role' => 'admin',
@@ -98,7 +98,7 @@ class CleanDatabaseSeeder extends Seeder
         $this->command->info('=====================================');
         $this->command->info('');
         $this->command->info('🔐 ADMIN LOGIN CREDENTIALS:');
-        $this->command->info('Email: admin@mskcomputers.lk');
+        $this->command->info('Email: admin@ceylonitsolutions.com');
         $this->command->info('Password: admin123');
         $this->command->info('');
         $this->command->info('🌟 Database is now clean and ready for production!');

@@ -71,7 +71,7 @@ Our team can help you find similar or better alternatives:
 
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939 (Chat with our experts)
-- **Email:** info@mskcomputers.lk
+- **Email:** info@ceylonitsolutions.com
 
 ### Visit Our Store
 Get hands-on experience with our products:
@@ -104,7 +104,7 @@ If you have any questions about this cancellation or need assistance:
 
 - **General Inquiries:** 0112 95 9005
 - **Refund Status:** +94 777 506 939
-- **Email Support:** info@mskcomputers.lk
+- **Email Support:** info@ceylonitsolutions.com
 
 We're sorry this order didn't work out, but we hope to serve you again soon!
 

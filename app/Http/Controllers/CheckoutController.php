@@ -93,23 +93,12 @@ class CheckoutController extends Controller
 
     /**
      * Show payment checkout page
+     * Note: Payment options are currently hidden - redirects to main checkout (quotation only)
      */
     public function payment()
     {
-        // Check if cart has items
-        $cartItems = Cart::where('session_id', session()->getId())
-            ->orWhere(function($query) {
-        if (Auth::check()) {
-                    $query->where('user_id', Auth::id());
-                }
-            })
-            ->get();
-
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
-        }
-
-        return view('checkout.payment');
+        // Payment options hidden for now - redirect to main checkout
+        return redirect()->route('checkout.index')->with('info', 'Please use Get Quote to proceed. Payment options are temporarily unavailable.');
     }
 
     /**

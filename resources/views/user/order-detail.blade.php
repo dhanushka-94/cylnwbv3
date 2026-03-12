@@ -383,8 +383,8 @@
                     </div>
                     <div>
                         <div class="font-medium text-white">Email Us</div>
-                        <a href="mailto:info@mskcomputers.lk?subject=Order Cancellation Request - {{ $order->order_number }}&body=Hi, I would like to cancel my order {{ $order->order_number }}. Please process this request and confirm." 
-                           class="text-blue-400 hover:text-blue-300 text-sm">info@mskcomputers.lk</a>
+                        <a href="mailto:info@ceylonitsolutions.com?subject=Order Cancellation Request - {{ $order->order_number }}&body=Hi, I would like to cancel my order {{ $order->order_number }}. Please process this request and confirm." 
+                           class="text-blue-400 hover:text-blue-300 text-sm">info@ceylonitsolutions.com</a>
                         <div class="text-xs text-gray-400">Expert support</div>
                     </div>
                 </div>

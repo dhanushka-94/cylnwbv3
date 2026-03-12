@@ -48,7 +48,7 @@ If you need to modify or cancel your order, please contact us **within 2 hours**
 
 - **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939 (Immediate Response)
-- **Email:** info@mskcomputers.lk
+- **Email:** info@ceylonitsolutions.com
 
 Thank you for choosing MSK Computers!
 

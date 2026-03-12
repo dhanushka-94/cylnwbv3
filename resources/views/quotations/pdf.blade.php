@@ -286,9 +286,9 @@
                     <div class="company-name">MSK COMPUTERS</div>
                     <div class="company-tagline">Empowering Tech Solutions, Every Day.</div>
                     <div class="company-details">
-                        <div>No.296/3D, Delpe Junction, Ragama, Sri Lanka</div>
+                        <div>NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA, Sri Lanka</div>
                         <div>0112 95 9005 / 0777 50 69 39</div>
-                        <div>info@mskcomputers.lk</div>
+                        <div>info@ceylonitsolutions.com</div>
                     </div>
                 </div>
                 <div class="quotation-info">

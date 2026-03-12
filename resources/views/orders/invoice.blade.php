@@ -9,7 +9,7 @@
             <div class="bg-gradient-to-r from-[#f59e0b] to-[#d97706] p-8">
                 <div class="flex justify-between items-start">
                     <div>
-                        <img src="{{ asset('msk-computers-logo-color.png') }}" alt="MSK Computers" class="h-12 mb-4">
+                        <img src="{{ asset('cts-sys-logo-clr.png') }}" alt="Ceylon IT Solutions" class="h-12 mb-4">
                         <h1 class="text-3xl font-bold text-white">INVOICE</h1>
                         <p class="text-orange-100">Invoice #{{ $order->order_number }}</p>
                     </div>
@@ -201,8 +201,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-gray-800">No.296/3D, Delpe Junction</p>
-                                        <p class="text-gray-800">Ragama, Sri Lanka</p>
+                                        <p class="text-gray-800">NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA</p>
+                                        <p class="text-gray-800">Sri Lanka</p>
                                     </div>
                                 </div>
                                 
@@ -220,14 +220,14 @@
                                     <svg class="w-4 h-4 text-[#f59e0b] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
-                                    <p class="text-gray-800">info@mskcomputers.lk</p>
+                                    <p class="text-gray-800">info@ceylonitsolutions.com</p>
                                 </div>
                                 
                                 <div class="flex items-start space-x-2">
                                     <svg class="w-4 h-4 text-[#f59e0b] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"/>
                                     </svg>
-                                    <p class="text-gray-800">www.mskcomputers.lk</p>
+                                    <p class="text-gray-800">www.ceylonitsolutions.com</p>
                                 </div>
                             </div>
                         </div>

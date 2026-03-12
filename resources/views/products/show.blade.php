@@ -153,8 +153,8 @@
                     @endif
                 </div>
 
-                <!-- Enhanced Payment Options Section -->
-                @if($product->final_price > 0)
+                <!-- Enhanced Payment Options Section (hidden for now) -->
+                @if(false && $product->final_price > 0)
                     @php
                         $finalPrice = $product->final_price;
                         $kokoPayTotal = $finalPrice * 1.10; // Add 10% transaction charge
@@ -720,7 +720,7 @@
         document.getElementById('specialOrderWhatsApp').href = `https://wa.me/94777506939?text=${encodeURIComponent(whatsappMessage)}`;
         
         // Update Email link
-        document.getElementById('specialOrderEmail').href = `mailto:info@mskcomputers.lk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        document.getElementById('specialOrderEmail').href = `mailto:info@ceylonitsolutions.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
         
         // Show modal
         const modal = document.getElementById('specialOrderContactModal');
@@ -822,7 +822,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-white font-semibold">info@mskcomputers.lk</p>
+                        <p class="text-white font-semibold">info@ceylonitsolutions.com</p>
                         <p class="text-gray-400 text-xs">Expert support</p>
                     </div>
                 </div>
