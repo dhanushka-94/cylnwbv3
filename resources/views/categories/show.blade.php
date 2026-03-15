@@ -22,8 +22,14 @@
             </ol>
         </nav>
         
-        <!-- Laptop Expert Banner (Show only for laptop-related categories) -->
-        @if(str_contains(strtolower($category->name), 'laptop'))
+        <!-- Laptop Expert Banner (hidden for used and brand new laptop categories) -->
+        @php
+            $normalizedCategoryName = strtolower(trim($category->name));
+        @endphp
+        @if(
+            str_contains($normalizedCategoryName, 'laptop') &&
+            !in_array($normalizedCategoryName, ['used laptop', 'brand new laptop'])
+        )
         <div class="mb-3 md:mb-4 bg-gradient-to-r from-blue-600/15 via-blue-500/8 to-blue-600/15 border border-blue-500/25 rounded-lg p-3">
             <div class="flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3 flex-1 min-w-0">
