@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Complete Card Payment - MSK Computers')
+@section('title', 'Complete Card Payment - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#0f0f0f] py-8">

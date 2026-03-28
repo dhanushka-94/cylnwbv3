@@ -96,30 +96,25 @@ Route::get('/api/search/suggestions', [SearchController::class, 'suggestions'])-
 // Promotions Route
 Route::get('/promotions', [ProductController::class, 'promotions'])->name('promotions.index');
 
-// Services page
+// Services page (temporarily showing Available Soon UI)
 Route::get('/services', function () {
-    return view('services');
+    return view('e-services');
 })->name('services.index');
 
-// Bank Details page
+// Bank Details page (temporarily showing Available Soon UI)
 Route::get('/bank-details', function () {
-    return view('bank-details');
+    return view('e-services');
 })->name('bank-details.index');
 
-// About Us page
+// About Us page (temporarily showing Available Soon UI)
 Route::get('/about-us', function () {
-    return view('about-us');
+    return view('e-services');
 })->name('about-us.index');
 
 // Contact Us page
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us.index');
-
-// E-Services page
-Route::get('/e-services', function () {
-    return view('e-services');
-})->name('e-services.index');
 
 // SEO Routes
 Route::get('/sitemap.xml', function() {

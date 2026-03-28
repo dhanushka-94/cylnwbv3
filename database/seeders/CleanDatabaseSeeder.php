@@ -36,6 +36,7 @@ class CleanDatabaseSeeder extends Seeder
             'transactions', 
             'order_items',
             'orders',
+            'quotations',
             'carts',
             'user_addresses',
             'password_reset_tokens',

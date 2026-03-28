@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Service Center - Professional Computer Repair | MSK COMPUTERS')
-@section('description', 'Professional computer repair and maintenance services with expert technicians, genuine parts, and comprehensive warranty coverage at MSK Computers Service Center.')
-@section('keywords', 'computer repair, laptop repair, service center, MSK Computers, Ragama, Sri Lanka, hardware repair, software installation, virus removal')
+@section('title', 'Service Center - Professional Computer Repair | Ceylon IT Solutions')
+@section('description', 'Professional computer repair and maintenance services with expert technicians, genuine parts, and comprehensive warranty coverage at Ceylon IT Solutions.')
+@section('keywords', 'computer repair, laptop repair, service center, Ceylon IT Solutions, Sri Lanka, UAE, hardware repair, software installation, virus removal')
 
 @section('content')
 <!-- Hero Section -->

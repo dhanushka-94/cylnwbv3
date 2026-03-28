@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Register - MSK COMPUTERS')
-@section('description', 'Create your MSK Computers account to track orders, save addresses, and enjoy personalized shopping experience.')
+@section('title', 'Register - CITS')
+@section('description', 'Create your CITS account to track orders, save addresses, and enjoy a personalized shopping experience.')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-black via-[#0f0f0f] to-[#1a1a1c] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -21,7 +21,7 @@
                     <img src="{{ asset('cts-sys-logo-clr.png') }}" alt="Ceylon IT Solutions Logo" class="w-full h-full object-contain relative z-10">
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Create Account</h2>
-                <p class="text-sm md:text-base text-gray-400 mb-4 md:mb-6">Join MSK Computers for exclusive deals and faster checkout</p>
+                <p class="text-sm md:text-base text-gray-400 mb-4 md:mb-6">Join CITS for exclusive deals and faster checkout</p>
             </div>
 
             <!-- Error Messages -->

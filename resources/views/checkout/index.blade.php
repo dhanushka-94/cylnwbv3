@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Checkout - MSK COMPUTERS')
-@section('description', 'Complete your purchase at MSK Computers with secure checkout and multiple payment options.')
+@section('title', 'Checkout - Ceylon IT Solutions')
+@section('description', 'Complete your purchase at Ceylon IT Solutions with secure checkout and multiple payment options.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-8">

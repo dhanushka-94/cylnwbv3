@@ -16,14 +16,20 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login')->with('error', 'Please login to access admin area.');
         }
 
-        // Check if user is admin
-        if (!Auth::user()->is_admin) {
-            abort(403, 'Access denied. Admin privileges required.');
+        $user = Auth::user();
+
+        if (! $user->canAccessAdminPanel()) {
+            abort(403, 'Access denied. Admin or staff privileges required.');
+        }
+
+        $routeName = $request->route()?->getName();
+
+        if (! $user->canAccessAdminRoute($routeName)) {
+            abort(403, 'Access denied. This area is restricted to administrators.');
         }
 
         return $next($request);

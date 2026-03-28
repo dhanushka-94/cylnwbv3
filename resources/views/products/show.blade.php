@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - MSK COMPUTERS')
-@section('description', $product->details ? Str::limit(strip_tags($product->details), 160) : $product->name . ' - Premium computer hardware at MSK Computers. ' . ($product->category ? $product->category->name : '') . ' with warranty and quality assurance.')
-@section('keywords', $product->name . ', ' . ($product->category ? $product->category->name : '') . ', MSK Computers, computer hardware, Sri Lanka, ' . ($product->code ? $product->code : ''))
-@section('og_title', $product->name . ' - LKR ' . number_format($product->final_price, 2) . ' at MSK COMPUTERS')
-@section('og_description', $product->details ? Str::limit(strip_tags($product->details), 200) : 'Premium ' . $product->name . ' available at MSK Computers with warranty and quality assurance.')
+@section('title', $product->name . ' - Ceylon IT Solutions')
+@section('description', $product->details ? Str::limit(strip_tags($product->details), 160) : $product->name . ' - Premium computer hardware at Ceylon IT Solutions. ' . ($product->category ? $product->category->name : '') . ' with warranty and quality assurance.')
+@section('keywords', $product->name . ', ' . ($product->category ? $product->category->name : '') . ', Ceylon IT Solutions, computer hardware, Sri Lanka, ' . ($product->code ? $product->code : ''))
+@section('og_title', $product->name . ' - LKR ' . number_format($product->final_price, 2) . ' at Ceylon IT Solutions')
+@section('og_description', $product->details ? Str::limit(strip_tags($product->details), 200) : 'Premium ' . $product->name . ' available at Ceylon IT Solutions with warranty and quality assurance.')
 @section('og_image', $product->main_image)
 @section('og_type', 'product')
 

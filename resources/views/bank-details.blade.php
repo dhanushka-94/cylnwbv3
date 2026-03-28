@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Bank Details - Payment Information | MSK COMPUTERS')
-@section('description', 'Complete payment instructions and secure banking options for your computer purchases at MSK Computers. Multiple bank accounts available for easy payments.')
-@section('keywords', 'bank details, payment, MSK Computers, bank transfer, payment methods, Sri Lanka banking, computer purchase payment')
+@section('title', 'Bank Details - Payment Information | Ceylon IT Solutions')
+@section('description', 'Complete payment instructions and secure banking options for your computer purchases at Ceylon IT Solutions. Multiple bank accounts available for easy payments.')
+@section('keywords', 'bank details, payment, Ceylon IT Solutions, bank transfer, payment methods, Sri Lanka banking, computer purchase payment')
 
 @section('content')
 <!-- Hero Section -->

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Profile Settings')
+@section('title', 'Profile Settings - Ceylon IT Solutions')
+@section('description', 'Manage your Ceylon IT Solutions account profile, security, and preferences.')
 
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

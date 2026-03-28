@@ -25,7 +25,7 @@
             @endif
                 @if($slider->image_path && Storage::disk('public')->exists($slider->image_path))
                     <img src="{{ asset('storage/' . $slider->image_path) }}" 
-                         alt="{{ $slider->title ?? 'MSK Computers Slider' }}" 
+                         alt="{{ $slider->title ?? 'Ceylon IT Solutions - homepage slider' }}" 
                          class="w-full h-full object-contain sm:object-cover object-center"
                          loading="lazy"
                          onerror="console.error('Slider image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -73,7 +73,7 @@
     <div class="hero-slider relative z-10 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-none md:rounded-lg w-full mx-0" id="heroSlider">
         <div class="hero-slide active overflow-hidden">
             <img src="{{ asset('images/sliders/Slider 1.png') }}" 
-                 alt="MSK Computers Slider" 
+                 alt="Ceylon IT Solutions - homepage slider" 
                  class="w-full h-full object-contain sm:object-cover object-center">
         </div>
     </div>

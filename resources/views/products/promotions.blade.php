@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Promotions & Deals - MSK Computers')
-@section('description', 'Discover amazing deals and promotions on computer hardware, gaming accessories, and tech products at MSK Computers. Limited time offers!')
-@section('keywords', 'promotions, deals, discounts, sales, computer hardware deals, gaming deals, MSK Computers')
+@section('title', 'Promotions & Deals - Ceylon IT Solutions')
+@section('description', 'Discover amazing deals and promotions on computer hardware, gaming accessories, and tech products at Ceylon IT Solutions. Limited time offers!')
+@section('keywords', 'promotions, deals, discounts, sales, computer hardware deals, gaming deals, Ceylon IT Solutions')
 
 @push('head')
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Promotions & Deals - MSK Computers">
+    <meta property="og:title" content="Promotions & Deals - Ceylon IT Solutions">
     <meta property="og:description" content="Discover amazing deals and promotions on computer hardware, gaming accessories, and tech products.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -14,7 +14,7 @@
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Promotions & Deals - MSK Computers">
+    <meta name="twitter:title" content="Promotions & Deals - Ceylon IT Solutions">
     <meta name="twitter:description" content="Discover amazing deals and promotions on computer hardware, gaming accessories, and tech products.">
     <meta name="twitter:image" content="{{ asset('images/promotions-banner.jpg') }}">
 @endpush

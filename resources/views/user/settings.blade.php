@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Account Settings - MSK COMPUTERS')
+@section('title', 'Account Settings - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-[#0a0a0a] py-8">

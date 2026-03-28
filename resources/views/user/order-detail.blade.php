@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Order Details - ' . $order->order_number . ' - MSK COMPUTERS')
-@section('description', 'View detailed information about your MSK Computers order including items, shipping, and payment details.')
+@section('title', 'Order Details - ' . $order->order_number . ' - Ceylon IT Solutions')
+@section('description', 'View detailed information about your Ceylon IT Solutions order including items, shipping, and payment details.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-8">

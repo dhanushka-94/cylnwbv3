@@ -173,44 +173,55 @@
         </div>
     @endif
     <!-- Top Contact Bar -->
-    <div class="bg-gradient-to-r from-black via-slate-950 to-black border-b border-gray-800/70">
+    <div class="bg-black/95 border-b border-gray-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row justify-between items-center py-2 text-sm">
+            <div class="flex flex-col md:flex-row justify-between items-center py-1.5 md:py-2 text-[11px] sm:text-xs">
+                <!-- Phones + Email -->
                 <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 text-gray-300 text-center sm:text-left">
-                    <div class="flex items-center justify-center sm:justify-start space-x-2 mb-1 sm:mb-0">
-                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                        </svg>
-                        <span class="text-xs sm:text-sm">0112 95 9005 / 0777 50 69 39 / 071 53 21 750</span>
+                    <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1">
+                        <div class="flex items-center space-x-1.5">
+                            <svg class="w-3.5 h-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span>UAE: +971 58 181 1579</span>
+                        </div>
+                        <span class="hidden sm:inline text-gray-600">•</span>
+                        <div class="flex items-center space-x-1.5">
+                            <span>Embilipitiya: +94 47 223 0429 / +94 74 184 7422</span>
+                        </div>
+                        <span class="hidden sm:inline text-gray-600">•</span>
+                        <div class="flex items-center space-x-1.5">
+                            <span>Kandy: +971 52 230 6476</span>
+                        </div>
                     </div>
-                    <span class="hidden sm:inline">|</span>
-                    <div class="flex items-center justify-center sm:justify-start space-x-2">
-                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="hidden sm:flex items-center space-x-2 mt-1 sm:mt-0">
+                        <span class="text-gray-600">|</span>
+                        <svg class="w-3.5 h-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
-                        <span class="text-xs sm:text-sm">info@ceylonitsolutions.com</span>
-    </div>
-    </div>
-                <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-primary-400 text-xs">
-                    <!-- Delivery Info -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span>info@ceylonitsolutions.com</span>
+                    </div>
+                </div>
+
+                <!-- Right side: delivery + social -->
+                <div class="mt-1.5 md:mt-0 flex items-center space-x-4 text-primary-400">
+                    <div class="flex items-center space-x-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        <span class="hidden sm:inline">Island Wide Express Delivery Available</span>
-                        <span class="sm:hidden">Express Delivery</span>
+                        <span class="hidden sm:inline">Island‑wide express delivery</span>
+                        <span class="sm:hidden">Express delivery</span>
                     </div>
 
-                    <!-- Social Media Links in Header -->
-                    <div class="flex items-center space-x-3">
-                        <span class="text-gray-400 text-xs hidden lg:inline">Follow:</span>
+                    <div class="hidden sm:flex items-center space-x-2">
+                        <span class="text-gray-500 text-[10px] uppercase tracking-wide">Follow</span>
                         <div class="flex space-x-2">
-                            <a href="https://www.facebook.com/www.mskcomputers.lk" 
+                            <a href="https://www.facebook.com/profile.php?id=61584162553606" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="text-gray-400 hover:text-[#1877f2] transition-colors"
-                               title="Follow us on Facebook">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                               title="Facebook">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                                 </svg>
                             </a>
@@ -218,17 +229,17 @@
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="text-gray-400 hover:text-[#ff0000] transition-colors"
-                               title="Subscribe to our YouTube channel">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                               title="YouTube">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                                 </svg>
                             </a>
-                            <a href="https://www.tiktok.com/@mskcomputers.lk" 
+                            <a href="https://www.tiktok.com/@ceylon_it_solution?_r=1&_t=ZS-94jzNnfRTFd" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="text-gray-400 hover:text-white transition-colors"
-                               title="Follow us on TikTok">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                               title="TikTok">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
                                 </svg>
                             </a>
@@ -497,7 +508,6 @@
                 <a href="{{ route('bank-details.index') }}" class="text-gray-300 hover:text-primary-400 transition-colors text-sm font-medium whitespace-nowrap {{ request()->routeIs('bank-details.*') ? 'text-primary-400' : '' }}">Bank Details</a>
                 <a href="{{ route('about-us.index') }}" class="text-gray-300 hover:text-primary-400 transition-colors text-sm font-medium whitespace-nowrap {{ request()->routeIs('about-us.*') ? 'text-primary-400' : '' }}">About Us</a>
                 <a href="{{ route('contact-us.index') }}" class="text-gray-300 hover:text-primary-400 transition-colors text-sm font-medium whitespace-nowrap {{ request()->routeIs('contact-us.*') ? 'text-primary-400' : '' }}">Contact Us</a>
-                <a href="{{ route('e-services.index') }}" class="text-gray-300 hover:text-primary-400 transition-colors text-sm font-medium whitespace-nowrap {{ request()->routeIs('e-services.*') ? 'text-primary-400' : '' }}">E-Services</a>
             </div>
         </div>
         
@@ -657,12 +667,6 @@
                         Contact Us
                     </a>
                     
-                    <a href="{{ route('e-services.index') }}" class="flex items-center py-3 text-gray-300 hover:text-primary-400 transition-colors {{ request()->routeIs('e-services.*') ? 'text-primary-400 bg-primary-500/10' : '' }} rounded-lg px-3">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-                        </svg>
-                        E-Services
-                    </a>
                 </div>
                 
                 <!-- Mobile Account & Cart -->
@@ -753,12 +757,12 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-black/95 border-t border-gray-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-10 items-start">
                 <!-- Company Info -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
                         <div class="flex items-center">
                             <img src="{{ asset('cts-sys-logo-clr.png') }}" 
                                  alt="Ceylon IT Solutions Logo" 
@@ -769,10 +773,11 @@
                             <p class="text-sm font-medium text-gray-300">Best in Sri Lanka</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">Your trusted partner for all computer needs in Sri Lanka, providing quality products and exceptional service.</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">Your trusted partner for all computer needs in Sri Lanka, providing quality products and exceptional service.</p>
                 </div>
 
-                <!-- Quick Links -->
+                {{-- Quick Links (hidden) --}}
+                {{--
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2">
@@ -784,8 +789,10 @@
                         <li><a href="{{ route('contact-us.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors text-sm">Contact Us</a></li>
                     </ul>
                 </div>
+                --}}
 
-                <!-- Categories -->
+                {{-- Categories (hidden) --}}
+                {{--
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Categories</h4>
                     <ul class="space-y-2">
@@ -798,33 +805,29 @@
                         @endif
                     </ul>
                 </div>
+                --}}
 
-                <!-- Contact Us -->
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
-                    <div class="space-y-3">
-                        <div class="flex items-start space-x-2">
-                            <svg class="w-4 h-4 text-primary-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            <div class="text-gray-400 text-sm">
-                                <div>NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA</div>
-                                <div>Sri Lanka</div>
-                            </div>
+                <!-- Our Branches -->
+                <div class="md:col-span-3">
+                    <h4 class="text-lg font-semibold text-white mb-4">Our Branches</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs">
+                        <div class="space-y-1">
+                            <div class="text-primary-400 font-medium text-sm mb-0.5">Sharjah – UAE</div>
+                            <div class="text-gray-400 text-xs">Shubra No.18–19, Maleha St, Behind Souk Al Mubarak, Ind. Area 5, Sharjah</div>
+                            <div class="text-gray-300 text-xs mt-0.5">+971 58 181 1579</div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="text-primary-400 font-medium text-sm mb-0.5">Embilipitiya – Sri Lanka</div>
+                            <div class="text-gray-400 text-xs">No. 74, Main Street, Pallegama, Embilipitiya</div>
+                            <div class="text-gray-300 text-xs mt-0.5">+94 47 223 0429 · +94 74 184 7422</div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="text-primary-400 font-medium text-sm mb-0.5">Kandy – Sri Lanka</div>
+                            <div class="text-gray-400 text-xs">No. 9A, Danthure Road, Pilimathalawa, Kandy</div>
+                            <div class="text-gray-300 text-xs mt-0.5">+971 52 230 6476</div>
                         </div>
                         
-                        <div class="flex items-start space-x-2">
-                            <svg class="w-4 h-4 text-primary-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
-                            <div class="text-gray-400 text-sm">
-                                <div>0112 95 9005</div>
-                                <div>0777 50 69 39 / 071 53 21 750</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-2 pt-2 border-t border-gray-800 mt-1">
                             <svg class="w-4 h-4 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v10a2 2 0 002 2z"/>
                             </svg>
@@ -835,10 +838,10 @@
                             <svg class="w-4 h-4 text-primary-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <div class="text-gray-400 text-sm">
-                                <div><strong>Mon-Fri:</strong> 9AM-7PM</div>
-                                <div><strong>Sat-Sun:</strong> 9AM-6PM</div>
-                                <div><strong>Closed Poya Days</strong></div>
+                            <div class="text-gray-400 text-xs">
+                                <div><strong>Sharjah – UAE:</strong> 11.00 AM – 11.00 PM (GMT+4:00 Dubai)</div>
+                                <div><strong>Embilipitiya – LK:</strong> 09.00 AM – 06.00 PM (GMT+5:30 Colombo)</div>
+                                <div><strong>Kandy – LK:</strong> 09.00 AM – 06.00 PM (GMT+5:30 Colombo)</div>
                             </div>
                         </div>
 
@@ -920,7 +923,7 @@
                             <span class="text-gray-500 text-xs hidden sm:inline">Follow us:</span>
                             <div class="flex space-x-2">
                                 <!-- Facebook -->
-                                <a href="https://www.facebook.com/www.mskcomputers.lk" 
+                                <a href="https://www.facebook.com/profile.php?id=61584162553606" 
                                    target="_blank" 
                                    rel="noopener noreferrer"
                                    class="group flex items-center justify-center w-8 h-8 bg-gray-800 hover:bg-[#1877f2] rounded-md transition-all duration-300 hover:scale-110"
@@ -942,7 +945,7 @@
                                 </a>
 
                                 <!-- TikTok -->
-                                <a href="https://www.tiktok.com/@mskcomputers.lk" 
+                                <a href="https://www.tiktok.com/@ceylon_it_solution?_r=1&_t=ZS-94jzNnfRTFd" 
                                    target="_blank" 
                                    rel="noopener noreferrer"
                                    class="group flex items-center justify-center w-8 h-8 bg-gray-800 hover:bg-[#000000] rounded-md transition-all duration-300 hover:scale-110"
@@ -967,7 +970,7 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/94777506939?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20products." 
+    <a href="https://wa.me/971522306476?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20products." 
        target="_blank" 
        rel="noopener noreferrer"
        class="whatsapp-button flex items-center justify-center bg-[#25D366] hover:bg-[#20BA5A] text-white p-4 rounded-full shadow-2xl hover:shadow-[#25D366]/50 transition-all duration-300 group"

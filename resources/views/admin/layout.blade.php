@@ -86,8 +86,9 @@
                         <!-- Divider -->
                         <div class="hidden xl:block w-px h-8 bg-gray-600 self-center"></div>
 
-                        <!-- User Management Group -->
+                        <!-- Users (admin only) + Transactions -->
                         <div class="flex space-x-2">
+                        @if(Auth::user()->is_admin)
                             <div class="relative group">
                                 <button class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.users.*') ? 'bg-[#2563eb] text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-gray-700/70' }}">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,6 +121,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @endif
                             
                             <a href="{{ route('admin.transactions.index') }}" 
                                class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.transactions.*') ? 'bg-[#2563eb] text-white shadow-lg scale-105' : 'text-gray-300 hover:text-white hover:bg-gray-700/70 hover:scale-105' }}">
@@ -145,9 +147,9 @@
                                 <span class="lg:hidden">Stats</span>
                             </a>
                             
-                            <!-- Tools Dropdown -->
+                            <!-- Tools Dropdown (sliders: admin + staff; other tools: admin only) -->
                             <div class="relative group">
-                                <button class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.activity-logs.*') || request()->routeIs('admin.sitemap.*') || request()->routeIs('admin.cache.*') || request()->routeIs('admin.sliders.*') ? 'bg-[#2563eb] text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-gray-700/70' }}">
+                                <button class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 {{ (Auth::user()->is_admin && (request()->routeIs('admin.activity-logs.*') || request()->routeIs('admin.sitemap.*') || request()->routeIs('admin.cache.*'))) || request()->routeIs('admin.sliders.*') ? 'bg-[#2563eb] text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-gray-700/70' }}">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -162,6 +164,7 @@
                                 <!-- Dropdown Menu -->
                                 <div class="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                     <div class="py-2">
+                                        @if(Auth::user()->is_admin)
                                         <a href="{{ route('admin.activity-logs.index') }}" 
                                            class="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700/70 transition-colors">
                                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -183,6 +186,7 @@
                                             </svg>
                                             Cache Management
                                         </a>
+                                        @endif
                                         <a href="{{ route('admin.sliders.index') }}" 
                                            class="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700/70 transition-colors">
                                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +238,7 @@
                             <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}">
                             <div class="hidden md:block">
                                 <div class="text-sm font-medium text-white">{{ Auth::user()->name }}</div>
-                                <div class="text-xs text-gray-400">Administrator</div>
+                                <div class="text-xs text-gray-400">{{ Auth::user()->is_admin ? 'Administrator' : (Auth::user()->is_staff ? 'Staff' : ucfirst((string) Auth::user()->role)) }}</div>
                             </div>
                         </div>
                     </div>
@@ -281,6 +285,7 @@
                     Quotations
                 </a>
                 
+                @if(Auth::user()->is_admin)
                 <a href="{{ route('admin.users.index') }}" 
                    class="flex items-center px-3 py-2 text-base font-medium rounded-md transition-colors {{ request()->routeIs('admin.users.*') ? 'bg-[#2563eb] text-white' : 'text-gray-300 hover:text-white hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,6 +301,7 @@
                     </svg>
                     Customers
                 </a>
+                @endif
                 
                 <a href="{{ route('admin.transactions.index') }}" 
                    class="flex items-center px-3 py-2 text-base font-medium rounded-md transition-colors {{ request()->routeIs('admin.transactions.*') ? 'bg-[#2563eb] text-white' : 'text-gray-300 hover:text-white hover:bg-gray-700' }}">
@@ -313,6 +319,15 @@
                     Analytics
                 </a>
                 
+                <a href="{{ route('admin.sliders.index') }}" 
+                   class="flex items-center px-3 py-2 text-base font-medium rounded-md transition-colors {{ request()->routeIs('admin.sliders.*') ? 'bg-[#2563eb] text-white' : 'text-gray-300 hover:text-white hover:bg-gray-700' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Slider Management
+                </a>
+                
+                @if(Auth::user()->is_admin)
                 <a href="{{ route('admin.activity-logs.index') }}" 
                    class="flex items-center px-3 py-2 text-base font-medium rounded-md transition-colors {{ request()->routeIs('admin.activity-logs.*') ? 'bg-[#2563eb] text-white' : 'text-gray-300 hover:text-white hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -336,6 +351,7 @@
                     </svg>
                     Cache Management
                 </a>
+                @endif
                 
                 <!-- Mobile User Info -->
                 <div class="border-t border-gray-700 pt-4 mt-4">
@@ -343,7 +359,7 @@
                         <img class="w-8 h-8 rounded-full mr-3" src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}">
                         <div>
                             <div class="text-sm font-medium text-white">{{ Auth::user()->name }}</div>
-                            <div class="text-xs text-gray-400">Administrator</div>
+                            <div class="text-xs text-gray-400">{{ Auth::user()->is_admin ? 'Administrator' : (Auth::user()->is_staff ? 'Staff' : ucfirst((string) Auth::user()->role)) }}</div>
                         </div>
                     </div>
                     

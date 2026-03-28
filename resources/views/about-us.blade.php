@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'About Us - MSK COMPUTERS | Serving Sri Lanka Since 2008')
-@section('description', 'Learn about MSK COMPUTERS - Sri Lanka\'s trusted computer retailer since 2008. Quality products, expert service, and commitment to excellence.')
-@section('keywords', 'about MSK Computers, computer company Sri Lanka, warranty, delivery service, after sales service, computer retailer')
+@section('title', 'About Us - Ceylon IT Solutions | Serving Sri Lanka Since 2008')
+@section('description', 'Learn about Ceylon IT Solutions - trusted computer retailer since 2008. Quality products, expert service, and commitment to excellence.')
+@section('keywords', 'about Ceylon IT Solutions, computer company Sri Lanka, warranty, delivery service, after sales service, computer retailer')
 
 @section('content')
 <!-- Hero Section -->
@@ -138,6 +138,34 @@
                 </div>
                 <h3 class="text-lg font-semibold text-white mb-2">Expert Support</h3>
                 <p class="text-gray-400 text-sm">Professional after-sales service and support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Branches Section -->
+<section class="py-16 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Branches</h2>
+            <p class="text-lg text-gray-400">Visit us at any of our locations in Sri Lanka and the UAE</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-[#f59e0b] mb-3">Sharjah – United Arab Emirates</h3>
+                <p class="text-gray-300 text-sm mb-2">Shubra No.18–19, Maleha Street, Behind Souk Al Mubarak Hypermarket, Industrial Area 5, Sharjah, UAE</p>
+                <p class="text-gray-400 text-sm">Mobile / WhatsApp: +971 58 181 1579</p>
+            </div>
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-[#f59e0b] mb-3">Embilipitiya – Sri Lanka</h3>
+                <p class="text-gray-300 text-sm mb-2">No. 74, Main Street, Pallegama, Embilipitiya</p>
+                <p class="text-gray-400 text-sm">Tel: +94 47 223 0429</p>
+                <p class="text-gray-400 text-sm">Mobile / WhatsApp: +94 74 184 7422</p>
+            </div>
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-[#f59e0b] mb-3">Kandy Branch – Sri Lanka</h3>
+                <p class="text-gray-300 text-sm mb-2">No. 9A, Danthure Road, Pilimathalawa, Kandy</p>
+                <p class="text-gray-400 text-sm">Mobile / WhatsApp: +971 52 230 6476</p>
             </div>
         </div>
     </div>
@@ -419,15 +447,17 @@
                 
                 <div class="space-y-4">
                     <div class="bg-gray-800/50 rounded-lg p-4">
-                        <h4 class="text-white font-medium mb-2">Send to:</h4>
-                        <div class="text-gray-300 text-sm space-y-1">
-                            <p><strong>MSK Computers</strong></p>
-                            <p>No.296/3B, Delpe Junction</p>
-                            <p>Ragama, Sri Lanka</p>
-                            <div class="mt-3 space-y-1">
-                                <p>0112 95 9005</p>
-                                <p>0777 50 69 39</p>
-                                <p>071 53 21 750</p>
+                        <h4 class="text-white font-medium mb-2">Send to (Sri Lanka branches for warranty / service):</h4>
+                        <div class="text-gray-300 text-sm space-y-3">
+                            <div>
+                                <p><strong>Embilipitiya Branch</strong></p>
+                                <p>No. 74, Main Street, Pallegama, Embilipitiya</p>
+                                <p>+94 47 223 0429 / +94 74 184 7422</p>
+                            </div>
+                            <div>
+                                <p><strong>Kandy Branch</strong></p>
+                                <p>No. 9A, Danthure Road, Pilimathalawa, Kandy</p>
+                                <p>+971 52 230 6476</p>
                             </div>
                         </div>
                     </div>
@@ -438,113 +468,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Awards & Recognition Section -->
-<section class="py-16 bg-gradient-to-b from-black to-[#0f0f0f]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <div class="inline-flex items-center px-4 py-2 bg-[#f59e0b]/10 border border-[#f59e0b]/20 rounded-lg text-[#f59e0b] text-sm font-medium mb-6">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                Awards & Recognition
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                Our <span class="text-[#f59e0b]">Achievements</span>
-            </h2>
-            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
-                Recognition and certifications that demonstrate our commitment to excellence and quality service
-            </p>
-        </div>
-
-        <!-- Awards Gallery -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Award 1 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (1).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 2 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (2).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 3 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (3).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 4 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (4).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 5 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (5).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 6 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (6).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 7 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (7).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-
-            <!-- Award 8 -->
-            <div class="group bg-[#1a1a1c] rounded-xl border border-gray-800 overflow-hidden hover:border-[#f59e0b]/50 transition-all duration-300">
-                <div class="aspect-square bg-white/5 overflow-hidden">
-                    <img src="{{ asset('images/awards/awards00 (8).JPG') }}" 
-                         alt="MSK Computers Award" 
-                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4">
-                </div>
-            </div>
-        </div>
-
-        <!-- Recognition Statement -->
-        <div class="mt-12 text-center bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
-            <h3 class="text-2xl font-bold text-white mb-4">Committed to Excellence</h3>
-            <p class="text-gray-400 max-w-3xl mx-auto">
-                These awards and recognitions reflect our dedication to providing exceptional service, 
-                quality products, and maintaining the highest standards in the computer industry. 
-                We continue to strive for excellence in everything we do.
-            </p>
         </div>
     </div>
 </section>

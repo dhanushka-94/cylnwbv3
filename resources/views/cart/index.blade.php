@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Shopping Cart - MSK Computers')
+@section('title', 'Shopping Cart - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-black py-8">

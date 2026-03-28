@@ -1,6 +1,6 @@
 @extends('layouts.invoice')
 
-@section('title', 'Invoice #' . $order->order_number . ' - MSK COMPUTERS')
+@section('title', 'Invoice #' . $order->order_number . ' - Ceylon IT Solutions')
 
 @section('content')
 <!-- Invoice Document -->

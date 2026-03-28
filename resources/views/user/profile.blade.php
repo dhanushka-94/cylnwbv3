@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'My Profile - MSK COMPUTERS')
-@section('description', 'Update your MSK Computers account profile, change password, and manage personal information.')
+@section('title', 'My Profile - Ceylon IT Solutions')
+@section('description', 'Update your Ceylon IT Solutions account profile, change password, and manage personal information.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-8">

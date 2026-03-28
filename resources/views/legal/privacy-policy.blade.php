@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Privacy Policy - MSK Computers')
+@section('title', 'Privacy Policy - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-dark-900 py-8">
@@ -17,7 +17,7 @@
                 
                 <h2 class="text-2xl font-semibold text-white mb-4">1. Introduction</h2>
                 <p class="text-gray-300 mb-6">
-                    At MSK Computers, we are committed to protecting your privacy and ensuring the security of your personal information. 
+                    At Ceylon IT Solutions, we are committed to protecting your privacy and ensuring the security of your personal information. 
                     This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website 
                     or use our services.
                 </p>
@@ -223,12 +223,39 @@
 
                 <h2 class="text-2xl font-semibold text-white mb-4">13. Contact Us About Privacy</h2>
                 <div class="text-gray-300 mb-6">
-                    <p class="mb-4">If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-                    <div class="bg-dark-800 rounded-lg p-4">
-                        <p class="font-medium text-white mb-2">MSK Computers - Privacy Team</p>
-                        <p>Email: <a href="mailto:privacy@ceylonitsolutions.com" class="text-primary-400 hover:text-primary-300">privacy@ceylonitsolutions.com</a></p>
-                        <p>Phone: <a href="tel:+94112345678" class="text-primary-400 hover:text-primary-300">+94 11 234 5678</a></p>
-                        <p>Address: MSK Computers, Colombo, Sri Lanka</p>
+                    <p class="mb-4">If you have any questions about this Privacy Policy or our data practices, please contact us at any of our branches:</p>
+                    <div class="bg-dark-800 rounded-lg p-4 space-y-4">
+                        <div>
+                            <p class="font-medium text-white mb-1">Sharjah – UAE</p>
+                            <p class="text-gray-300 text-sm">
+                                Shubra No.18–19, Maleha St, Behind Souk Al Mubarak, Ind. Area 5, Sharjah
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +971 58 181 1579</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-white mb-1">Embilipitiya – Sri Lanka</p>
+                            <p class="text-gray-300 text-sm">
+                                No. 74, Main Street, Pallegama, Embilipitiya
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +94 47 223 0429 · +94 74 184 7422</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-white mb-1">Kandy – Sri Lanka</p>
+                            <p class="text-gray-300 text-sm">
+                                No. 9A, Danthure Road, Pilimathalawa, Kandy
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +971 52 230 6476</p>
+                        </div>
+                        <div class="pt-2 border-t border-gray-700 mt-2">
+                            <p class="text-gray-300 text-sm">
+                                General email: <a href="mailto:info@ceylonitsolutions.com" class="text-primary-400 hover:text-primary-300">info@ceylonitsolutions.com</a>
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">
+                                Sharjah – UAE: 11.00 AM – 11.00 PM (GMT+4:00 Dubai) ·
+                                Embilipitiya – LK: 09.00 AM – 06.00 PM (GMT+5:30 Colombo) ·
+                                Kandy – LK: 09.00 AM – 06.00 PM (GMT+5:30 Colombo)
+                            </p>
+                        </div>
                     </div>
                 </div>
 

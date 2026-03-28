@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'My Dashboard - MSK COMPUTERS')
-@section('description', 'Manage your MSK Computers account, track orders, update profile, and view your purchase history.')
+@section('title', 'My Dashboard - Ceylon IT Solutions')
+@section('description', 'Manage your Ceylon IT Solutions account, track orders, update profile, and view your purchase history.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-8">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results for "' . $searchTerm . '" - MSK Computers')
-@section('description', 'Search results for computer hardware and technology products at MSK Computers.')
+@section('title', 'Search Results for "' . $searchTerm . '" - Ceylon IT Solutions')
+@section('description', 'Search results for computer hardware and technology products at Ceylon IT Solutions.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f]">

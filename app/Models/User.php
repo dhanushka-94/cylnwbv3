@@ -85,6 +85,41 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function getIsStaffAttribute(): bool
+    {
+        return $this->role === 'staff';
+    }
+
+    /**
+     * Who may open /admin (active admin or staff).
+     */
+    public function canAccessAdminPanel(): bool
+    {
+        return $this->is_active && in_array($this->role, ['admin', 'staff'], true);
+    }
+
+    /**
+     * Staff: whitelist of route names. Admins: always true.
+     */
+    public function canAccessAdminRoute(?string $routeName): bool
+    {
+        if ($this->role === 'admin') {
+            return true;
+        }
+
+        if ($this->role !== 'staff') {
+            return false;
+        }
+
+        if (! $routeName) {
+            return false;
+        }
+
+        $allowed = config('admin_permissions.staff_routes', []);
+
+        return in_array($routeName, $allowed, true);
+    }
+
     public function getIsActiveAttribute()
     {
         return $this->status === 'active';
@@ -137,7 +172,9 @@ class User extends Authenticatable
      */
     protected function getActivityType()
     {
-        return $this->role === 'admin' ? ActivityLog::TYPE_ADMIN : ActivityLog::TYPE_CUSTOMER;
+        return in_array($this->role, ['admin', 'staff'], true)
+            ? ActivityLog::TYPE_ADMIN
+            : ActivityLog::TYPE_CUSTOMER;
     }
 
     public function logLoginActivity()

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Terms of Service - MSK Computers')
+@section('title', 'Terms of Service - Ceylon IT Solutions')
 
 @section('content')
 <div class="min-h-screen bg-dark-900 py-8">
@@ -17,13 +17,13 @@
                 
                 <h2 class="text-2xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>
                 <p class="text-gray-300 mb-6">
-                    By accessing and using the MSK Computers website and services, you accept and agree to be bound by these Terms of Service. 
+                    By accessing and using the Ceylon IT Solutions website and services, you accept and agree to be bound by these Terms of Service. 
                     If you do not agree to these terms, please do not use our services.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-white mb-4">2. About MSK Computers</h2>
+                <h2 class="text-2xl font-semibold text-white mb-4">2. About Ceylon IT Solutions</h2>
                 <p class="text-gray-300 mb-6">
-                    MSK Computers is a technology retailer specializing in computers, laptops, peripherals, and IT services. We are committed to 
+                    Ceylon IT Solutions is a technology retailer specializing in computers, laptops, peripherals, and IT services. We are committed to 
                     providing quality products and exceptional customer service to individuals and businesses in Sri Lanka.
                 </p>
 
@@ -140,7 +140,7 @@
 
                 <h2 class="text-2xl font-semibold text-white mb-4">9. Intellectual Property</h2>
                 <p class="text-gray-300 mb-6">
-                    All content on this website, including text, graphics, logos, images, and software, is the property of MSK Computers or 
+                    All content on this website, including text, graphics, logos, images, and software, is the property of Ceylon IT Solutions or 
                     its licensors and is protected by copyright and other intellectual property laws. You may not use, reproduce, or 
                     distribute any content without our written permission.
                 </p>
@@ -155,7 +155,7 @@
                 <h2 class="text-2xl font-semibold text-white mb-4">11. Limitation of Liability</h2>
                 <div class="text-gray-300 mb-6">
                     <p class="mb-4">
-                        To the fullest extent permitted by law, MSK Computers shall not be liable for any indirect, incidental, 
+                        To the fullest extent permitted by law, Ceylon IT Solutions shall not be liable for any indirect, incidental, 
                         special, consequential, or punitive damages, including but not limited to:
                     </p>
                     <ul class="list-disc list-inside space-y-2">
@@ -188,18 +188,48 @@
 
                 <h2 class="text-2xl font-semibold text-white mb-4">15. Contact Information</h2>
                 <div class="text-gray-300 mb-6">
-                    <p class="mb-4">If you have any questions about these Terms of Service, please contact us:</p>
-                    <div class="bg-dark-800 rounded-lg p-4">
-                        <p class="font-medium text-white mb-2">MSK Computers</p>
-                        <p>Email: <a href="mailto:info@ceylonitsolutions.com" class="text-primary-400 hover:text-primary-300">info@ceylonitsolutions.com</a></p>
-                        <p>Phone: <a href="tel:+94112345678" class="text-primary-400 hover:text-primary-300">+94 11 234 5678</a></p>
-                        <p>Website: <a href="{{ url('/') }}" class="text-primary-400 hover:text-primary-300">{{ url('/') }}</a></p>
+                    <p class="mb-4">If you have any questions about these Terms of Service, please contact us at any of our branches:</p>
+                    <div class="bg-dark-800 rounded-lg p-4 space-y-4">
+                        <div>
+                            <p class="font-medium text-white mb-1">Sharjah – UAE</p>
+                            <p class="text-gray-300 text-sm">
+                                Shubra No.18–19, Maleha St, Behind Souk Al Mubarak, Ind. Area 5, Sharjah
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +971 58 181 1579</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-white mb-1">Embilipitiya – Sri Lanka</p>
+                            <p class="text-gray-300 text-sm">
+                                No. 74, Main Street, Pallegama, Embilipitiya
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +94 47 223 0429 · +94 74 184 7422</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-white mb-1">Kandy – Sri Lanka</p>
+                            <p class="text-gray-300 text-sm">
+                                No. 9A, Danthure Road, Pilimathalawa, Kandy
+                            </p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +971 52 230 6476</p>
+                        </div>
+                        <div class="pt-2 border-t border-gray-700 mt-2">
+                            <p class="text-gray-300 text-sm">
+                                General email: <a href="mailto:info@ceylonitsolutions.com" class="text-primary-400 hover:text-primary-300">info@ceylonitsolutions.com</a>
+                            </p>
+                            <p class="text-gray-300 text-sm">
+                                Website: <a href="https://ceylonitsolutions.com/" class="text-primary-400 hover:text-primary-300">https://ceylonitsolutions.com/</a>
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">
+                                Sharjah – UAE: 11.00 AM – 11.00 PM (GMT+4:00 Dubai) ·
+                                Embilipitiya – LK: 09.00 AM – 06.00 PM (GMT+5:30 Colombo) ·
+                                Kandy – LK: 09.00 AM – 06.00 PM (GMT+5:30 Colombo)
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="border-t border-gray-700 pt-6">
                     <p class="text-sm text-gray-400 text-center">
-                        By using MSK Computers services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
+                        By using Ceylon IT Solutions services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
                     </p>
                 </div>
 

@@ -63,8 +63,7 @@ class AuthController extends Controller
             // Log successful login
             Auth::user()->logLoginActivity();
             
-            // Redirect based on role
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->canAccessAdminPanel()) {
                 return redirect()->intended(route('admin.dashboard'));
             }
             

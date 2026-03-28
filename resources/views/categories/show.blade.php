@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', $category->name . ' - MSK COMPUTERS')
-@section('description', 'Shop ' . $category->name . ' at MSK Computers. Find the best deals on computer hardware and technology products in Sri Lanka.')
-@section('keywords', $category->name . ', computer hardware, MSK Computers, Sri Lanka, technology, ' . strtolower($category->name))
-@section('og_title', $category->name . ' - MSK COMPUTERS')
-@section('og_description', 'Discover premium ' . $category->name . ' products at MSK Computers. Quality computer hardware and technology solutions.')
+@section('title', $category->name . ' - Ceylon IT Solutions')
+@section('description', 'Shop ' . $category->name . ' at Ceylon IT Solutions. Find the best deals on computer hardware and technology products in Sri Lanka.')
+@section('keywords', $category->name . ', computer hardware, Ceylon IT Solutions, Sri Lanka, technology, ' . strtolower($category->name))
+@section('og_title', $category->name . ' - Ceylon IT Solutions')
+@section('og_description', 'Discover premium ' . $category->name . ' products at Ceylon IT Solutions. Quality computer hardware and technology solutions.')
 @section('og_type', 'product.group')
 
 @section('content')

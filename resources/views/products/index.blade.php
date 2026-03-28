@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Products - MSK COMPUTERS')
-@section('description', 'Browse our extensive collection of computer hardware, gaming PCs, laptops, and accessories at MSK COMPUTERS.')
+@section('title', 'Products - Ceylon IT Solutions')
+@section('description', 'Browse our extensive collection of computer hardware, gaming PCs, laptops, and accessories at Ceylon IT Solutions.')
 
 @section('content')
 <!-- Page Header -->

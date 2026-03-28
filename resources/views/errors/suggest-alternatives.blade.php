@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Page Not Found')
-@section('description', 'The requested page could not be found, but here are some suggestions.')
+@section('title', 'Page Not Found - Ceylon IT Solutions')
+@section('description', 'The requested page could not be found on Ceylon IT Solutions. Here are some suggestions to help you find what you need.')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-b from-[#0f0f0f] to-[#1a1a1c] py-20">
