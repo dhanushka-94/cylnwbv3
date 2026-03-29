@@ -213,7 +213,7 @@
             <!-- Shop Information -->
             <div class="mb-6 p-4 bg-[#f59e0b]/10 border border-[#f59e0b]/20 rounded-lg">
                 <div class="text-center">
-                    <h4 class="font-bold text-white text-lg mb-2">MSK COMPUTERS</h4>
+                    <h4 class="font-bold text-white text-lg mb-2">CEYLON IT SOLUTIONS</h4>
                     <div class="text-sm text-gray-300 space-y-1">
                         <div>No.296/3D, Delpe Junction, Ragama</div>
                         <div>Sri Lanka</div>
@@ -232,8 +232,7 @@
                     <div>
                         <div class="font-medium text-white">Call Us</div>
                         <div class="space-y-1">
-                            <div><a href="tel:+94112959005" class="text-[#f59e0b] hover:text-[#d97706] text-sm">0112 95 9005</a></div>
-                            <div><a href="tel:+94777506939" class="text-[#f59e0b] hover:text-[#d97706] text-sm">0777 50 69 39</a></div>
+                            <div><a href="tel:+{{ config('bank.whatsapp_payment_number') }}" class="text-[#f59e0b] hover:text-[#d97706] text-sm">{{ config('bank.whatsapp_payment_display') }}</a></div>
                         </div>
                         <div class="text-xs text-gray-400">Call us anytime</div>
                     </div>
@@ -248,7 +247,7 @@
                     </div>
                     <div>
                         <div class="font-medium text-white">WhatsApp</div>
-                        <a href="#" id="whatsappLink" target="_blank" class="text-green-400 hover:text-green-300 text-sm">0777 50 69 39</a>
+                        <a href="#" id="whatsappLink" target="_blank" class="text-green-400 hover:text-green-300 text-sm">{{ config('bank.whatsapp_payment_display') }}</a>
                         <div class="text-xs text-gray-400">Quick response available</div>
                     </div>
                 </div>
@@ -304,7 +303,7 @@ function showCancelContactInfo(orderNumber) {
     
     // Update WhatsApp links
     const whatsappMessage = `Hi, I would like to cancel my order ${orderNumber}`;
-    const whatsappUrl = `https://wa.me/94777506939?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/{{ config('bank.whatsapp_payment_number') }}?text=${encodeURIComponent(whatsappMessage)}`;
     document.getElementById('whatsappLink').href = whatsappUrl;
     document.getElementById('whatsappNowButton').href = whatsappUrl;
     

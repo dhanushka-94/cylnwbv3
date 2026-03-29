@@ -69,19 +69,18 @@ Continue Shopping
 ### Need Alternative Products?
 Our team can help you find similar or better alternatives:
 
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939 (Chat with our experts)
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }} (Chat with our experts)
 - **Email:** info@ceylonitsolutions.com
 
 ### Visit Our Store
 Get hands-on experience with our products:
 
-**MSK Computers Showroom**  
+**Ceylon IT Solutions showroom**  
 No.12, Maradana Road, Colombo 08  
 **Hours:** Monday-Saturday 9AM-7PM, Sunday 10AM-6PM
 
 @component('mail::panel')
-**Why Choose MSK Computers?**
+**Why choose Ceylon IT Solutions?**
 
 ✅ **Best Prices** - Competitive pricing guaranteed  
 ✅ **Genuine Products** - 100% authentic items  
@@ -95,21 +94,20 @@ No.12, Maradana Road, Colombo 08
 Don't miss out on our latest deals and new arrivals:
 
 - 📧 **Email Updates:** Already subscribed with {{ $order->customer_email }}
-- 📱 **WhatsApp Alerts:** +94 777 506 939
+- 📱 **WhatsApp Alerts:** {{ config('bank.whatsapp_payment_display') }}
 - 📘 **Facebook:** Like our page for daily updates
 
 ## Customer Support
 
 If you have any questions about this cancellation or need assistance:
 
-- **General Inquiries:** 0112 95 9005
-- **Refund Status:** +94 777 506 939
+- **Refund Status:** {{ config('bank.whatsapp_payment_display') }}
 - **Email Support:** info@ceylonitsolutions.com
 
 We're sorry this order didn't work out, but we hope to serve you again soon!
 
 Best regards,  
-MSK Computers Customer Service Team
+Ceylon IT Solutions customer service team
 
 @component('mail::subcopy')
 Order cancelled: {{ now()->format('F d, Y \a\t g:i A') }}  

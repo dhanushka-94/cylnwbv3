@@ -36,7 +36,7 @@ Your payment has been received and processed successfully.
 **Payment Pending** ⏳
 
 Please ensure your payment is completed to avoid delays:
-- Bank Transfer: Send confirmation to +94 777 506 939
+- Bank Transfer: Send confirmation to {{ config('bank.whatsapp_payment_display') }}
 - Card Payment: Check your payment status
 @endcomponent
 @endif
@@ -65,14 +65,13 @@ View Order Details
 
 Questions about your order processing?
 
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }}
 - **Email:** info@ceylonitsolutions.com
 
 We'll notify you as soon as your order ships!
 
 Best regards,  
-MSK Computers Fulfillment Team
+Ceylon IT Solutions fulfillment team
 
 @component('mail::subcopy')
 Processing started: {{ now()->format('F d, Y \a\t g:i A') }}  

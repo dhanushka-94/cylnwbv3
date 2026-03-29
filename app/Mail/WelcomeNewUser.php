@@ -30,7 +30,7 @@ class WelcomeNewUser extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to MSK Computers!',
+            subject: 'Welcome to Ceylon IT Solutions!',
         );
     }
 

@@ -453,7 +453,7 @@ class WebXPayService
     {
         // You can customize this to include any additional data you need
         return implode('|', [
-            'msk_computers',           // cus_1: Store identifier
+            'ceylon_it_solutions',     // cus_1: Store identifier
             $order->id,               // cus_2: Internal order ID
             $order->user_id ?? 'guest', // cus_3: User ID or guest
             date('Y-m-d H:i:s')       // cus_4: Timestamp

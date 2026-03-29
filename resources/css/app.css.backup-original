@@ -6,7 +6,7 @@
 @source '../**/*.js';
 
 @theme {
-    /* MSK COMPUTERS Brand Colors - Dark & Yellow Theme */
+    /* Ceylon IT Solutions (CITS) — brand colors — dark & amber theme */
     --color-primary-50: #fffbeb;
     --color-primary-100: #fef3c7;
     --color-primary-200: #fde68a;
@@ -51,7 +51,7 @@
     --spacing-128: 32rem;
 }
 
-/* MSK COMPUTERS Custom Styles */
+/* Ceylon IT Solutions — custom styles */
 @layer base {
     html {
         scroll-behavior: smooth;

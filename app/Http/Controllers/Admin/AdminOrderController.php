@@ -371,7 +371,7 @@ class AdminOrderController extends Controller
 
         try {
             // Generate order number
-            $orderNumber = 'MSK-' . date('Y') . '-' . str_pad(Order::count() + 1, 6, '0', STR_PAD_LEFT);
+            $orderNumber = 'CITS-' . date('Y') . '-' . str_pad(Order::count() + 1, 6, '0', STR_PAD_LEFT);
 
             // Create order
             $order = Order::create([

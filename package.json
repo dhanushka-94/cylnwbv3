@@ -1,5 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/package.json",
+    "name": "citsv3",
     "private": true,
     "type": "module",
     "scripts": {

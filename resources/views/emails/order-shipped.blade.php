@@ -73,17 +73,16 @@ Track Your Package
 ## Need Help?
 
 - **Delivery Issues:** Contact the courier directly
-- **Order Questions:** +94 777 506 939
-- **Emergency Support:** 0112 95 9005
+- **Order Questions:** {{ config('bank.whatsapp_payment_display') }}
 
 @component('mail::button', ['url' => route('orders.show', $order->order_number)])
 View Order Status
 @endcomponent
 
-Thank you for choosing MSK Computers!
+Thank you for choosing Ceylon IT Solutions!
 
 Best regards,  
-MSK Computers Shipping Team
+Ceylon IT Solutions Shipping Team
 
 @component('mail::subcopy')
 Shipped: {{ $order->shipped_at->format('F d, Y \a\t g:i A') }}  

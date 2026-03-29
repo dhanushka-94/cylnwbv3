@@ -1,9 +1,9 @@
 @component('mail::message')
-# Welcome to MSK Computers!
+# Welcome to Ceylon IT Solutions!
 
 Hello {{ $user->name }},
 
-Welcome to MSK Computers! We're excited to have you as part of our community.
+Welcome to Ceylon IT Solutions! We're excited to have you as part of our community.
 
 ## What's Next?
 
@@ -37,8 +37,7 @@ As a welcome gift, you'll receive notifications about our exclusive deals and ne
 
 Our customer support team is here to help:
 
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }}
 - **Email:** info@ceylonitsolutions.com
 - **Visit Us:** No.12, Maradana Road, Colombo 08
 
@@ -46,15 +45,14 @@ Our customer support team is here to help:
 Start Shopping
 @endcomponent
 
-Thank you for choosing MSK Computers!
+Thank you for choosing Ceylon IT Solutions!
 
 Best regards,  
-The MSK Computers Team
+The Ceylon IT Solutions Team
 
 @component('mail::subcopy')
 Follow us on social media for the latest updates:
-- Facebook: MSK Computers
-- Instagram: @mskcomputers
-- YouTube: MSK Computers Sri Lanka
+- Facebook: Ceylon IT Solutions
+- Instagram: @ceylonitsolutions
 @endcomponent
 @endcomponent

@@ -52,7 +52,7 @@ class TransactionSeeder extends Seeder
                 'customer_email' => $order->customer_email,
                 'customer_phone' => $order->customer_phone,
                 'transaction_fee' => $transactionFee,
-                'description' => 'MSK Computers Order #' . $order->order_number,
+                'description' => 'Ceylon IT Solutions Order #' . $order->order_number,
                 'failure_reason' => $status === 'failed' ? $this->getRandomFailureReason() : null,
                 'initiated_at' => now()->subMinutes(rand(1, 1440)), // Random time in last 24 hours
                 'completed_at' => $status === 'completed' ? now()->subMinutes(rand(0, 720)) : null,

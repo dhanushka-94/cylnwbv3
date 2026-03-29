@@ -332,7 +332,7 @@
             <!-- Shop Information -->
             <div class="mb-6 p-4 bg-[#f59e0b]/10 border border-[#f59e0b]/20 rounded-lg">
                 <div class="text-center">
-                    <h4 class="font-bold text-white text-lg mb-2">MSK COMPUTERS</h4>
+                    <h4 class="font-bold text-white text-lg mb-2">CEYLON IT SOLUTIONS</h4>
                     <div class="text-sm text-gray-300 space-y-1">
                         <div>No.296/3D, Delpe Junction, Ragama</div>
                         <div>Sri Lanka</div>
@@ -351,8 +351,7 @@
                     <div>
                         <div class="font-medium text-white">Call Us</div>
                         <div class="space-y-1">
-                            <div><a href="tel:+94112959005" class="text-[#f59e0b] hover:text-[#d97706] text-sm">0112 95 9005</a></div>
-                            <div><a href="tel:+94777506939" class="text-[#f59e0b] hover:text-[#d97706] text-sm">0777 50 69 39</a></div>
+                            <div><a href="tel:+{{ config('bank.whatsapp_payment_number') }}" class="text-[#f59e0b] hover:text-[#d97706] text-sm">{{ config('bank.whatsapp_payment_display') }}</a></div>
                         </div>
                         <div class="text-xs text-gray-400">Call us anytime</div>
                     </div>
@@ -367,7 +366,7 @@
                     </div>
                     <div>
                         <div class="font-medium text-white">WhatsApp</div>
-                        <a href="https://wa.me/94777506939?text=Hi, I would like to cancel my order {{ $order->order_number }}" 
+                        <a href="https://wa.me/{{ config('bank.whatsapp_payment_number') }}?text=Hi, I would like to cancel my order {{ $order->order_number }}" 
                            target="_blank"
                            class="text-green-400 hover:text-green-300 text-sm">0777 50 69 39</a>
                         <div class="text-xs text-gray-400">Quick response available</div>
@@ -406,7 +405,7 @@
                         class="flex-1 px-4 py-2 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors">
                     Close
                 </button>
-                <a href="https://wa.me/94777506939?text=Hi, I would like to cancel my order {{ $order->order_number }}" 
+                <a href="https://wa.me/{{ config('bank.whatsapp_payment_number') }}?text=Hi, I would like to cancel my order {{ $order->order_number }}" 
                    target="_blank"
                    class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-center">
                     WhatsApp Now

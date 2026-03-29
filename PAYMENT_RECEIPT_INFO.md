@@ -190,7 +190,7 @@ This email serves as your official payment receipt. Please keep it for:
 
 ### Warranty Information
 - **Manufacturer Warranty:** As per product specifications
-- **MSK Service Support:** Available at our service center
+- **CITS service support:** Available at our service center
 - **Extended Warranty:** Available for purchase
 
 ## Payment Security
@@ -203,9 +203,8 @@ This email serves as your official payment receipt. Please keep it for:
 
 Questions about your payment or order?
 
-- **Phone:** 0112 95 9005
 - **WhatsApp:** +94 777 506 939
-- **Email:** orders@mskcomputers.lk
+- **Email:** orders@ceylonitsolutions.com
 
 ### Account Access
 View your order status anytime:
@@ -216,10 +215,10 @@ My Account Dashboard
 
 ## Thank You!
 
-Thank you for your payment and for choosing MSK Computers. We appreciate your business and look forward to delivering your order soon!
+Thank you for your payment and for choosing Ceylon IT Solutions. We appreciate your business and look forward to delivering your order soon!
 
 Best regards,  
-MSK Computers Payments Team
+Ceylon IT Solutions payments team
 
 @component('mail::subcopy')
 Payment confirmed: {{ now()->format('F d, Y \a\t g:i A') }}  

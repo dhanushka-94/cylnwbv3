@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# MSK COMPUTERS Deployment Script
+# Ceylon IT Solutions (CITS) deployment script
 # Usage: ./deploy.sh [environment]
 # Example: ./deploy.sh production
 
 set -e  # Exit on any error
 
 # Configuration
-PROJECT_NAME="MSK COMPUTERS"
-DOMAIN="mskcomputers.lk"
+PROJECT_NAME="Ceylon IT Solutions"
+DOMAIN="ceylonitsolutions.com"
 PROJECT_DIR="/var/www/${DOMAIN}"
-BACKUP_DIR="/var/backups/mskcomputers"
-DB_NAME="mskcomputers_db"
-DB_USER="mskcomputers_user"
+BACKUP_DIR="/var/backups/ceylonitsolutions"
+DB_NAME="ceylonitsolutions_db"
+DB_USER="ceylonitsolutions_user"
 ENVIRONMENT=${1:-production}
 
 # Colors for output
@@ -103,7 +103,7 @@ enable_maintenance() {
     log "Enabling maintenance mode..."
     if [[ -f "$PROJECT_DIR/artisan" ]]; then
         cd "$PROJECT_DIR"
-        php artisan down --retry=60 --secret="msk-maintenance-2024" || warning "Could not enable maintenance mode"
+        php artisan down --retry=60 --secret="cits-maintenance-2024" || warning "Could not enable maintenance mode"
     fi
 }
 
@@ -330,7 +330,7 @@ rollback() {
 
 # Help function
 show_help() {
-    echo "MSK COMPUTERS Deployment Script"
+    echo "Ceylon IT Solutions deployment script"
     echo ""
     echo "Usage: $0 [command] [options]"
     echo ""

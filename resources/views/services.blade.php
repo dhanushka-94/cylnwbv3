@@ -54,7 +54,7 @@
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-white mb-2">WhatsApp</h3>
-                <p class="text-[#f59e0b] font-medium">+94755506939</p>
+                <p class="text-[#f59e0b] font-medium">{{ config('bank.whatsapp_payment_display') }}</p>
             </div>
         </div>
     </div>
@@ -320,11 +320,11 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-white mb-2">MSK Computers</h3>
+                <h3 class="text-lg font-semibold text-white mb-2">Ceylon IT Solutions</h3>
                 <p class="text-gray-400 text-sm mb-4">No.296/3B, Delpe Junction<br>Ragama, Sri Lanka</p>
                 <div class="space-y-2">
                     <p class="text-[#f59e0b] font-medium">Call: 075 550 69 39</p>
-                    <p class="text-[#f59e0b] font-medium">WhatsApp: +94755506939</p>
+                    <p class="text-[#f59e0b] font-medium">WhatsApp: {{ config('bank.whatsapp_payment_display') }}</p>
                 </div>
             </div>
             
@@ -333,8 +333,8 @@
                     <a href="tel:0755506939" class="block w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-semibold py-3 px-6 rounded-lg transition-colors">
                         Call Now: 075 550 69 39
                     </a>
-                    <a href="https://wa.me/94755506939" class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
-                        WhatsApp: +94755506939
+                    <a href="https://wa.me/{{ config('bank.whatsapp_payment_number') }}" class="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        WhatsApp: {{ config('bank.whatsapp_payment_display') }}
                     </a>
                 </div>
             </div>

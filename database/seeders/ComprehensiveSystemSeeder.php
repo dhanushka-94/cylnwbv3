@@ -64,7 +64,7 @@ class ComprehensiveSystemSeeder extends Seeder
         $admin = User::firstOrCreate(
             ['email' => 'admin@ceylonitsolutions.com'],
             [
-                'name' => 'MSK Admin',
+                'name' => 'CITS Admin',
                 'password' => Hash::make('admin123'),
                 'email_verified_at' => now(),
                 'role' => 'admin',
@@ -206,7 +206,7 @@ class ComprehensiveSystemSeeder extends Seeder
             
             // Create order
             $order = Order::create([
-                'order_number' => 'MSK' . str_pad($i, 6, '0', STR_PAD_LEFT),
+                'order_number' => 'CITS' . str_pad($i, 6, '0', STR_PAD_LEFT),
                 'user_id' => $customer->id,
                 'customer_name' => $customer->name,
                 'customer_email' => $customer->email,

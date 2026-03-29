@@ -232,20 +232,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Contact Section -->
-        <div class="mt-12 bg-[#1c1c1e] border border-gray-800 rounded-xl p-8 text-center">
-            <h3 class="text-2xl font-bold text-white mb-4">Need Help with Your Warranty?</h3>
-            <p class="text-gray-400 mb-6">Contact our support team for warranty assistance and claims</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('contact-us.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-black px-8 py-3 rounded-lg font-semibold transition-colors">
-                    Contact Support
-                </a>
-                <a href="tel:0112959005" class="bg-[#1c1c1e] border border-gray-700 hover:border-[#f59e0b] text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                    Call: 0112 95 9005
-                </a>
-            </div>
-        </div>
     </div>
 </section>
 @endsection

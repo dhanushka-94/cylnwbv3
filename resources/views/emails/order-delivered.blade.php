@@ -48,8 +48,7 @@ Register Products
 ## Need Support?
 
 ### Technical Support
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }}
 - **Email:** support@ceylonitsolutions.com
 
 ### Returns & Exchanges
@@ -65,7 +64,7 @@ Register Products
 @component('mail::panel')
 **Feedback Request** ⭐
 
-How was your experience with MSK Computers?  
+How was your experience with Ceylon IT Solutions?  
 Your feedback helps us improve our service!
 
 **Rate Your Experience:**
@@ -86,19 +85,18 @@ Reorder Items
 
 Stay updated with our latest products and offers:
 
-- **Facebook:** MSK Computers
-- **Instagram:** @mskcomputers  
-- **YouTube:** MSK Computers Sri Lanka
+- **Facebook:** Ceylon IT Solutions
+- **Instagram:** @ceylonitsolutions  
 - **Website:** www.ceylonitsolutions.com
 
-Thank you for choosing MSK Computers! We hope you love your new products.
+Thank you for choosing Ceylon IT Solutions! We hope you love your new products.
 
 Best regards,  
-The MSK Computers Team
+The Ceylon IT Solutions Team
 
 @component('mail::subcopy')
 Order completed: {{ $order->delivered_at->format('F d, Y \a\t g:i A') }}  
 Order Number: {{ $order->order_number }}  
-Need help? Contact us anytime at +94 777 506 939
+Need help? Contact us anytime at {{ config('bank.whatsapp_payment_display') }}
 @endcomponent
 @endcomponent

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Us - Ceylon IT Solutions | Serving Sri Lanka Since 2008')
-@section('description', 'Learn about Ceylon IT Solutions - trusted computer retailer since 2008. Quality products, expert service, and commitment to excellence.')
+@section('title', 'About Us - Ceylon IT Solutions (CITS)')
+@section('description', 'Vision, goal, mission, brand positioning and group purpose of Ceylon IT Solutions (CITS).')
 @section('keywords', 'about Ceylon IT Solutions, computer company Sri Lanka, warranty, delivery service, after sales service, computer retailer')
 
 @section('content')
@@ -16,58 +16,42 @@
                 About Our Company
             </div>
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                About <span class="text-[#f59e0b]">MSK COMPUTERS</span>
+                About <span class="text-[#f59e0b]">Ceylon IT Solutions</span>
             </h1>
             <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                MSK COMPUTERS has been serving Sri Lanka's computer needs since 2008. We are committed to providing quality computers and exceptional service to all our customers.
+                Ceylon IT Solutions (CITS) — strategy, purpose, and commitment to our stakeholders and markets.
             </p>
         </div>
     </div>
 </section>
 
-<!-- Vision & Mission Section -->
+<!-- Vision, Goal, Mission, Brand Positioning & Group Purpose -->
 <section class="py-16 bg-[#0f0f0f]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Vision -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Ceylon IT Solutions (CITS)</h2>
+            <p class="text-gray-400">Strategy, purpose &amp; brand</p>
+        </div>
+        <div class="space-y-8">
             <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-blue-400 mb-1">අපේ දැක්ම</h2>
-                        <h3 class="text-xl font-semibold text-white">Our Vision</h3>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <p class="text-gray-300 text-lg leading-relaxed">ලංකාවේ සියලු දෙනා හට පරිගණකයක් ලබා දීම</p>
-                    <p class="text-gray-400 leading-relaxed">Providing a computer to everyone in Sri Lanka</p>
-                </div>
+                <h3 class="text-lg font-semibold text-blue-400 mb-4">Vision</h3>
+                <p class="text-gray-300 leading-relaxed">CITS's strategy will focus on achieving profitable growth and attractive returns to our stakeholders, while managing the transition from a very successful past and adapting to the new IT industry needs and market changes.</p>
             </div>
-
-            <!-- Mission -->
             <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-16 h-16 bg-[#f59e0b]/20 rounded-lg flex items-center justify-center">
-                        <svg class="w-8 h-8 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-[#f59e0b] mb-1">අපේ මෙහෙවර</h2>
-                        <h3 class="text-xl font-semibold text-white">Our Mission</h3>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <p class="text-gray-300 text-lg leading-relaxed">ගුණාත්මකභාවයෙන් යුතු පරිගණක හා පරිගණක උපාංග අලවිය හා අලෙවියෙන් පසු විශිෂ්ඨ සේවාවක් ලබාදීම</p>
-                    <p class="text-gray-400 leading-relaxed">Providing excellent after sales and sales quality computer and computer peripherals</p>
-                </div>
+                <h3 class="text-lg font-semibold text-[#f59e0b] mb-4">Goal</h3>
+                <p class="text-gray-300 leading-relaxed">To be a reputable and well-respected brand to our Stakeholders while evolving as one of the most efficient provider of IT solutions in our chosen markets.</p>
+            </div>
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
+                <h3 class="text-lg font-semibold text-green-400 mb-4">Mission</h3>
+                <p class="text-gray-300 leading-relaxed">To create long-term value for all our stakeholders</p>
+            </div>
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
+                <h3 class="text-lg font-semibold text-purple-400 mb-4">Brand Positioning</h3>
+                <p class="text-gray-300 leading-relaxed text-lg tracking-wide">Superior Quality <span class="text-gray-600">|</span> Lasting Value <span class="text-gray-600">|</span> Tested &amp; Trusted</p>
+            </div>
+            <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
+                <h3 class="text-lg font-semibold text-cyan-400 mb-4">Group Purpose</h3>
+                <p class="text-gray-300 leading-relaxed">To drive change for a better world</p>
             </div>
         </div>
     </div>
@@ -79,7 +63,7 @@
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Our Story</h2>
         <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
             <p class="text-gray-300 text-lg leading-relaxed">
-                Founded in 2016, MSK COMPUTERS has grown from a small shop into one of Sri Lanka's most trusted computer retailers. We proudly serve students, professionals, businesses, and government institutions with quality products, competitive pricing, and exceptional customer service. Staying ahead with the latest technology, we remain committed to our core values of trust, quality, and customer satisfaction.
+                Ceylon IT Solutions (CITS) has grown from a small shop into one of Sri Lanka's most trusted computer retailers. We proudly serve students, professionals, businesses, and government institutions with quality products, competitive pricing, and exceptional customer service. Staying ahead with the latest technology, we remain committed to our core values of trust, quality, and customer satisfaction.
             </p>
         </div>
     </div>
@@ -89,7 +73,7 @@
 <section class="py-16 bg-[#0f0f0f]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose MSK COMPUTERS</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose Ceylon IT Solutions</h2>
             <p class="text-lg text-gray-400">Trusted expertise and exceptional service that sets us apart</p>
         </div>
         
@@ -165,7 +149,7 @@
             <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-6">
                 <h3 class="text-lg font-bold text-[#f59e0b] mb-3">Kandy Branch – Sri Lanka</h3>
                 <p class="text-gray-300 text-sm mb-2">No. 9A, Danthure Road, Pilimathalawa, Kandy</p>
-                <p class="text-gray-400 text-sm">Mobile / WhatsApp: +971 52 230 6476</p>
+                <p class="text-gray-400 text-sm">Mobile / WhatsApp: {{ config('bank.whatsapp_payment_display') }}</p>
             </div>
         </div>
     </div>
@@ -352,47 +336,10 @@
                 <p class="text-gray-500 text-xs">We take responsibility for any courier damage</p>
             </div>
         </div>
-
-        <!-- Courier Rates -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Company Paid -->
-            <div class="bg-[#1a1a1c] border border-green-500/30 rounded-xl p-8">
-                <h3 class="text-xl font-bold text-green-400 mb-2">Company Paid</h3>
-                <h4 class="text-lg text-gray-300 mb-6">අප විසින් ගෙවන්නේ නම්</h4>
-                
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center p-4 bg-gray-800/50 rounded-lg">
-                        <span class="text-gray-300">First 1 kg:</span>
-                        <span class="text-green-400 font-bold">Rs. 350</span>
-                    </div>
-                    <div class="flex justify-between items-center p-4 bg-gray-800/50 rounded-lg">
-                        <span class="text-gray-300">Additional per kg:</span>
-                        <span class="text-green-400 font-bold">Rs. 100</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Customer Paid -->
-            <div class="bg-[#1a1a1c] border border-orange-500/30 rounded-xl p-8">
-                <h3 class="text-xl font-bold text-orange-400 mb-2">Customer Paid</h3>
-                <h4 class="text-lg text-gray-300 mb-6">ඔබ විසින් ගෙවන්නේ නම්</h4>
-                
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center p-4 bg-gray-800/50 rounded-lg">
-                        <span class="text-gray-300">First 1 kg:</span>
-                        <span class="text-orange-400 font-bold">Rs. 500</span>
-                    </div>
-                    <div class="flex justify-between items-center p-4 bg-gray-800/50 rounded-lg">
-                        <span class="text-gray-300">Additional per kg:</span>
-                        <span class="text-orange-400 font-bold">Rs. 170</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <div class="mt-8 p-4 bg-gray-800/30 border border-gray-700 rounded-lg text-center">
             <p class="text-gray-400 text-sm">
-                <strong>Note:</strong> Courier services are not active on weekends (Saturday/Sunday). Charges are determined by weight (kg), not distance.
+                <strong>Note:</strong> Courier services are not active on weekends (Saturday/Sunday).
             </p>
         </div>
     </div>
@@ -457,14 +404,14 @@
                             <div>
                                 <p><strong>Kandy Branch</strong></p>
                                 <p>No. 9A, Danthure Road, Pilimathalawa, Kandy</p>
-                                <p>+971 52 230 6476</p>
+                                <p>{{ config('bank.whatsapp_payment_display') }}</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                        <p class="text-blue-400 text-sm mb-2">බිල්පත සහ warranty අයිතමය එවිය යුතුය. Courier Charge ඔබ විසින් දැරිය යුතුය</p>
-                        <p class="text-blue-300 text-xs">Include bill and warranty item. Courier charges borne by customer.</p>
+                        <p class="text-blue-400 text-sm mb-2">බිල්පත සහ warranty අයිතමය එවිය යුතුය</p>
+                        <p class="text-blue-300 text-xs">Include bill and warranty item when sending items for warranty or service.</p>
                     </div>
                 </div>
             </div>

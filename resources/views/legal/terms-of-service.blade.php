@@ -209,7 +209,7 @@
                             <p class="text-gray-300 text-sm">
                                 No. 9A, Danthure Road, Pilimathalawa, Kandy
                             </p>
-                            <p class="text-primary-400 text-sm">Phone / WhatsApp: +971 52 230 6476</p>
+                            <p class="text-primary-400 text-sm">Phone / WhatsApp: {{ config('bank.whatsapp_payment_display') }}</p>
                         </div>
                         <div class="pt-2 border-t border-gray-700 mt-2">
                             <p class="text-gray-300 text-sm">

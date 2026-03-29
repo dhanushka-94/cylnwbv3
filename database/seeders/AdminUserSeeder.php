@@ -21,7 +21,7 @@ class AdminUserSeeder extends Seeder
         
         if (!$admin) {
             User::create([
-                'name' => 'MSK Admin',
+                'name' => 'CITS Admin',
                 'email' => $adminEmail,
                 'password' => Hash::make('admin123'), // Change this in production
                 'role' => 'admin',

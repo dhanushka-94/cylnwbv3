@@ -4,6 +4,11 @@
 @section('description', 'Your order has been successfully placed at Ceylon IT Solutions. Track your order and get updates on delivery.')
 
 @section('content')
+@php
+    /** Order Confirmed — WhatsApp for payment slips: +971 58 181 1579 (wa.me requires digits only) */
+    $orderWhatsappDigits = '971581811579';
+    $orderWhatsappDisplay = '+971 58 181 1579';
+@endphp
 <div class="min-h-screen bg-[#0f0f0f] py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -281,19 +286,19 @@
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between">
                             <span class="text-gray-400">Bank Name:</span>
-                            <span class="text-white font-medium">Commercial Bank</span>
+                            <span class="text-white font-medium">{{ config('bank.bank_name') }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Account Name:</span>
-                            <span class="text-white font-medium">MSK Computers</span>
+                            <span class="text-white font-medium">{{ config('bank.account_name') }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Account Number:</span>
-                            <span class="text-white font-medium">1000578810</span>
+                            <span class="text-white font-medium">{{ config('bank.account_number') }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Branch:</span>
-                            <span class="text-white font-medium">Ragama Branch</span>
+                            <span class="text-white font-medium">{{ config('bank.branch') }}</span>
                         </div>
                         <div class="flex justify-between border-t border-gray-700 pt-2 mt-3">
                             <span class="text-gray-400">Amount to Transfer:</span>
@@ -318,6 +323,7 @@
                         <ul class="text-sm text-blue-200 space-y-1">
                             <li>• Transfer the exact amount: <strong>LKR {{ number_format($order->total_amount, 2) }}</strong></li>
                             <li>• Use order number <strong>{{ $order->order_number }}</strong> as reference</li>
+                            <li>• After paying, <strong>send your payment slip on WhatsApp</strong> to {{ $orderWhatsappDisplay }} so we can verify faster</li>
                             <li>• Keep your transfer receipt for records</li>
                             <li>• We'll confirm payment within 24 hours</li>
                         </ul>
@@ -344,17 +350,48 @@
                             Upload Transfer Slip (Optional)
                         </h5>
                         <p class="text-sm text-sky-200 mb-3">
-                            You can upload your transfer slip to help us verify your payment faster.
+                            Send a photo or PDF of your slip on WhatsApp (fastest), or email us.
                         </p>
-                        <a href="mailto:info@ceylonitsolutions.com?subject=Transfer Slip - Order {{ $order->order_number }}&body=Please find attached my bank transfer slip for order {{ $order->order_number }}." 
-                           class="inline-flex items-center px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium rounded-lg transition-colors">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                            Email Transfer Slip
-                        </a>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://wa.me/{{ $orderWhatsappDigits }}?text={{ rawurlencode('Hi, I have completed the bank transfer for order '.$order->order_number.'. Amount: LKR '.number_format($order->total_amount, 2).'. I am attaching my payment slip below.') }}" 
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center px-4 py-2.5 bg-[#25D366] hover:bg-[#20BA5A] text-white text-sm font-semibold rounded-lg transition-colors shadow-lg">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/></svg>
+                                WhatsApp payment slip — {{ $orderWhatsappDisplay }}
+                            </a>
+                            <a href="mailto:info@ceylonitsolutions.com?subject=Transfer Slip - Order {{ $order->order_number }}&body=Please find attached my bank transfer slip for order {{ $order->order_number }}." 
+                               class="inline-flex items-center px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium rounded-lg transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                Email slip
+                            </a>
+                        </div>
                     </div>
                     @endif
+                </div>
+            </div>
+
+            <!-- Prominent WhatsApp: send payment slip -->
+            <div class="mt-6 rounded-xl border border-[#25D366]/50 bg-[#25D366]/10 p-5 sm:p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div class="flex items-start gap-3">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
+                            <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/></svg>
+                        </span>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white">Send your payment slip on WhatsApp</h4>
+                            <p class="text-sm text-gray-300 mt-1">After you transfer, open WhatsApp here and attach a clear photo or PDF of your bank slip. Mention order <strong class="text-white">{{ $order->order_number }}</strong> if it is not already in your message.</p>
+                            <p class="text-sm text-[#86efac] mt-2">{{ $orderWhatsappDisplay }}</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/{{ $orderWhatsappDigits }}?text={{ rawurlencode('Hi, I have completed the bank transfer for order '.$order->order_number.'. Amount: LKR '.number_format($order->total_amount, 2).'. Please see my payment slip attached.') }}" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex shrink-0 items-center justify-center px-6 py-3.5 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold rounded-xl shadow-lg transition-colors whitespace-nowrap">
+                        Open WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
@@ -445,11 +482,8 @@
             <h3 class="text-lg font-medium text-white mb-2">Need Help?</h3>
             <p class="text-gray-400 mb-4">If you have any questions about your order, feel free to contact us</p>
             <div class="flex items-center justify-center space-x-6 text-sm">
-                <a href="tel:0112959005" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
-                    📞 0112 95 9005
-                </a>
-                <a href="https://wa.me/94777506939" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
-                    📱 WhatsApp: +94 777 506 939
+                <a href="https://wa.me/{{ $orderWhatsappDigits }}" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
+                    📱 WhatsApp: {{ $orderWhatsappDisplay }}
                 </a>
                 <a href="mailto:info@ceylonitsolutions.com" class="text-[#3b82f6] hover:text-[#1d4ed8] transition-colors">
                     ✉️ info@ceylonitsolutions.com

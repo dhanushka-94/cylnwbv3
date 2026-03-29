@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // MSK COMPUTERS Brand Colors - Dark & Yellow Theme
+        // Ceylon IT Solutions (CITS) — brand colors — dark & amber theme
         primary: {
           50: '#fffbeb',
           100: '#fef3c7',

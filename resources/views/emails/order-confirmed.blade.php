@@ -46,14 +46,13 @@ Track Your Order
 
 If you need to modify or cancel your order, please contact us **within 2 hours** of confirmation:
 
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939 (Immediate Response)
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }} (Immediate Response)
 - **Email:** info@ceylonitsolutions.com
 
-Thank you for choosing MSK Computers!
+Thank you for choosing Ceylon IT Solutions!
 
 Best regards,  
-MSK Computers Team
+Ceylon IT Solutions Team
 
 @component('mail::subcopy')
 Order confirmed at {{ now()->format('F d, Y \a\t g:i A') }}  

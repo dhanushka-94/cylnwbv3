@@ -101,14 +101,14 @@ Route::get('/services', function () {
     return view('e-services');
 })->name('services.index');
 
-// Bank Details page (temporarily showing Available Soon UI)
+// Bank Details page
 Route::get('/bank-details', function () {
-    return view('e-services');
+    return view('bank-details');
 })->name('bank-details.index');
 
-// About Us page (temporarily showing Available Soon UI)
+// About Us page
 Route::get('/about-us', function () {
-    return view('e-services');
+    return view('about-us');
 })->name('about-us.index');
 
 // Contact Us page

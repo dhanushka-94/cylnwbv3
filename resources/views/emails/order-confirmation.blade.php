@@ -58,11 +58,12 @@ You selected Cash on Delivery. Please have the exact amount ready when your orde
 Please transfer the order amount to our bank account and send the payment slip to our WhatsApp number.
 
 **Bank Details:**
-- Bank: [Bank Name]
-- Account Number: [Account Number]
-- Account Name: MSK Computers (Pvt) Ltd
+- Bank: {{ config('bank.bank_name') }}
+- Branch: {{ config('bank.branch') }}
+- Account Number: {{ config('bank.account_number') }}
+- Account Name: {{ config('bank.account_name') }}
 
-Send payment confirmation to: +94 777 506 939
+Send payment confirmation to: {{ config('bank.whatsapp_payment_display') }}
 @endcomponent
 @endif
 
@@ -88,8 +89,7 @@ Track Your Order
 
 If you have any questions about your order:
 
-- **Phone:** 0112 95 9005
-- **WhatsApp:** +94 777 506 939 (24/7 Support)
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }} (24/7 Support)
 - **Email:** info@ceylonitsolutions.com
 
 **Store Location:**  
@@ -99,10 +99,10 @@ No.12, Maradana Road, Colombo 08
 Monday - Saturday: 9:00 AM - 7:00 PM  
 Sunday: 10:00 AM - 6:00 PM
 
-Thank you for choosing MSK Computers!
+Thank you for choosing Ceylon IT Solutions!
 
 Best regards,  
-MSK Computers Team
+Ceylon IT Solutions Team
 
 @component('mail::subcopy')
 This is an automated confirmation email. Please keep this email for your records.

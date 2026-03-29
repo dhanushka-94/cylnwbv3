@@ -14,9 +14,9 @@
                         <p class="text-orange-100">Invoice #{{ $order->order_number }}</p>
                     </div>
                     <div class="text-right text-white">
-                        <h2 class="text-xl font-semibold mb-2">MSK COMPUTERS</h2>
-                        <p class="text-orange-100">Your Trusted IT Partner</p>
-                        <p class="text-orange-100">Sri Lanka's Leading Computer Store</p>
+                        <h2 class="text-xl font-semibold mb-2">CEYLON IT SOLUTIONS</h2>
+                        <p class="text-orange-100">CITS — IT solutions &amp; retail</p>
+                        <p class="text-orange-100">Sri Lanka &amp; United Arab Emirates</p>
                     </div>
                 </div>
             </div>
@@ -190,8 +190,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-6m-2 0h6m-6 0H5m14 0v-5H9v5"/>
                                     </svg>
                                     <div>
-                                        <p class="font-medium text-gray-900">MSK COMPUTERS</p>
-                                        <p class="text-gray-700">Your Trusted IT Partner</p>
+                                        <p class="font-medium text-gray-900">{{ config('bank.account_name') }}</p>
+                                        <p class="text-gray-700">Ceylon IT Solutions (CITS)</p>
                                     </div>
                                 </div>
                                 
@@ -201,8 +201,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-gray-800">NO. 74, MAIN STREET, PALLEGAMA, EMBILIPITIYA</p>
-                                        <p class="text-gray-800">Sri Lanka</p>
+                                        <p class="text-gray-800">Sharjah, UAE · Embilipitiya &amp; Kandy, Sri Lanka</p>
+                                        <p class="text-gray-800">Registered: No. 74, Main Street, Pallegama, Embilipitiya</p>
                                     </div>
                                 </div>
                                 
@@ -211,8 +211,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-gray-800">0112 95 9005</p>
-                                        <p class="text-gray-800">0777 50 69 39 / 071 53 21 750</p>
+                                        <p class="text-gray-800">WhatsApp: {{ config('bank.whatsapp_payment_display') }}</p>
+                                        <p class="text-gray-700 text-xs">SL branches: +94 47 223 0429 · +94 74 184 7422</p>
                                     </div>
                                 </div>
                                 
@@ -234,11 +234,11 @@
                         <div>
                             <h4 class="font-semibold text-gray-900 mb-4">Terms & Conditions:</h4>
                             <div class="text-xs text-gray-700 space-y-2">
-                                <p>• Thank you for choosing MSK Computers - Your Trusted IT Partner</p>
+                                <p>• Thank you for choosing Ceylon IT Solutions (CITS)</p>
                                 <p>• All sales are final unless otherwise specified</p>
-                                <p>• Products come with manufacturer warranty</p>
-                                <p>• For technical support and inquiries, please contact us</p>
-                                <p>• Sri Lanka's leading computer specialist since establishment</p>
+                                <p>• Products come with manufacturer warranty where applicable</p>
+                                <p>• For support and inquiries, contact us via WhatsApp or email above</p>
+                                <p>• Trusted IT solutions and retail — Sri Lanka &amp; UAE</p>
                             </div>
                         </div>
                     </div>

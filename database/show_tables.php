@@ -3,7 +3,7 @@
 // Simple helper to list all tables in the primary site database using .env-style defaults.
 
 try {
-    $dsn = 'mysql:host=127.0.0.1;dbname=mskcomputers_sitedb;charset=utf8mb4';
+    $dsn = 'mysql:host=127.0.0.1;dbname=ceylon_itsolutions;charset=utf8mb4';
     $user = 'root';
     $pass = '';
 

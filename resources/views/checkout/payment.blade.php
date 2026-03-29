@@ -347,11 +347,11 @@
                                     <div class="space-y-3">
                                         <div>
                                             <div class="text-gray-400 mb-1">Bank Name:</div>
-                                            <div class="text-white font-medium">Commercial Bank</div>
+                                            <div class="text-white font-medium">{{ config('bank.bank_name') }}</div>
                                         </div>
                                         <div>
                                             <div class="text-gray-400 mb-1">Account Name:</div>
-                                            <div class="text-white font-medium">MSK Computers</div>
+                                            <div class="text-white font-medium">{{ config('bank.account_name') }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -359,11 +359,11 @@
                                     <div class="space-y-3">
                                         <div>
                                             <div class="text-gray-400 mb-1">Account Number:</div>
-                                            <div class="text-white font-medium">1000578810</div>
+                                            <div class="text-white font-medium">{{ config('bank.account_number') }}</div>
                                         </div>
                                         <div>
                                             <div class="text-gray-400 mb-1">Branch:</div>
-                                            <div class="text-white font-medium">Ragama Branch</div>
+                                            <div class="text-white font-medium">{{ config('bank.branch') }}</div>
                                         </div>
                                     </div>
                                 </div>

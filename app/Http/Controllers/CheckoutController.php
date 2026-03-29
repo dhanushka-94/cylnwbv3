@@ -21,10 +21,12 @@ class CheckoutController extends Controller
     public function selectOption()
     {
         // Check if cart has items
-        $cartItems = Cart::where('session_id', session()->getId())
-            ->orWhere(function($query) {
+        $sessionId = session()->getId();
+        $cartItems = Cart::query()
+            ->where(function ($q) use ($sessionId) {
+                $q->where('session_id', $sessionId);
                 if (Auth::check()) {
-                    $query->where('user_id', Auth::id());
+                    $q->orWhere('user_id', Auth::id());
                 }
             })
             ->get();
@@ -76,10 +78,12 @@ class CheckoutController extends Controller
     public function quotation()
     {
         // Check if cart has items
-        $cartItems = Cart::where('session_id', session()->getId())
-            ->orWhere(function($query) {
+        $sessionId = session()->getId();
+        $cartItems = Cart::query()
+            ->where(function ($q) use ($sessionId) {
+                $q->where('session_id', $sessionId);
                 if (Auth::check()) {
-                    $query->where('user_id', Auth::id());
+                    $q->orWhere('user_id', Auth::id());
                 }
             })
             ->get();
@@ -89,7 +93,7 @@ class CheckoutController extends Controller
         }
 
         return view('checkout.quotation');
-            }
+    }
 
     /**
      * Show payment checkout page
@@ -97,8 +101,8 @@ class CheckoutController extends Controller
      */
     public function payment()
     {
-        // Payment options hidden for now - redirect to main checkout
-        return redirect()->route('checkout.index')->with('info', 'Please use Get Quote to proceed. Payment options are temporarily unavailable.');
+        return redirect()->route('checkout.index')
+            ->with('info', 'Complete your purchase on checkout: choose Buy now and pay by bank transfer.');
     }
 
     /**
@@ -150,8 +154,8 @@ class CheckoutController extends Controller
             'shipping_postal_code' => 'nullable|string|max:20',
             'shipping_country' => 'nullable|string|max:100',
             
-            // Available payment methods
-            'payment_method' => 'required|in:webxpay,kokopay,bank_transfer',
+            // Checkout: bank transfer only (card / Koko Pay disabled for now)
+            'payment_method' => 'required|in:bank_transfer',
             'terms' => 'required|accepted',
         ], [
             'customer_phone.regex' => 'Please enter a valid Sri Lankan phone number (10 digits starting with 0, e.g., 0771234567)',
@@ -168,10 +172,12 @@ class CheckoutController extends Controller
         \Log::info('Checkout validation passed, proceeding with order creation');
 
         // Get cart items
-        $cartItems = Cart::where('session_id', session()->getId())
-            ->orWhere(function($query) {
+        $sessionId = session()->getId();
+        $cartItems = Cart::query()
+            ->where(function ($q) use ($sessionId) {
+                $q->where('session_id', $sessionId);
                 if (Auth::check()) {
-                    $query->where('user_id', Auth::id());
+                    $q->orWhere('user_id', Auth::id());
                 }
             })
             ->get();

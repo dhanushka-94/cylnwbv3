@@ -71,7 +71,7 @@ class CleanDatabaseSeeder extends Seeder
         
         // Create main admin user
         $admin = User::create([
-            'name' => 'MSK Admin',
+            'name' => 'CITS Admin',
             'email' => 'admin@ceylonitsolutions.com',
             'password' => Hash::make('admin123'),
             'email_verified_at' => now(),

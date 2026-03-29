@@ -137,7 +137,7 @@
                                 <p class="text-gray-400 text-sm mb-3">Control who can see your profile information</p>
                                 <select class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-500">
                                     <option value="private">Private (Only you)</option>
-                                    <option value="limited">Limited (MSK Staff only)</option>
+                                    <option value="limited">Limited (CITS staff only)</option>
                                 </select>
                             </div>
 
@@ -145,7 +145,7 @@
                                 <h4 class="text-white font-medium mb-2">Order History Visibility</h4>
                                 <p class="text-gray-400 text-sm mb-3">Choose who can view your order history</p>
                                 <select class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary-500">
-                                    <option value="private">Private (Only you and MSK support)</option>
+                                    <option value="private">Private (only you and CITS support)</option>
                                     <option value="public">Public (Visible in reviews)</option>
                                 </select>
                             </div>

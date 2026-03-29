@@ -693,7 +693,7 @@ class PaymentController extends Controller
                 'lastName' => $lastName,
                 'email' => $order->customer_email ?: 'customer@ceylonitsolutions.com',
                 'contactNumber' => $order->customer_phone,
-                'description' => 'MSK Computers Order #' . $order->id,
+                'description' => 'Ceylon IT Solutions Order #' . $order->id,
             ];
 
             Log::info('Koko Pay customer data prepared', $customerData);

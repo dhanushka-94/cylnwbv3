@@ -11,7 +11,7 @@ return [
     */
 
     // API Credentials - Live Environment
-    'api_username' => env('WEBXPAY_API_USERNAME', 'mskcomp'),
+    'api_username' => env('WEBXPAY_API_USERNAME', 'ceylonit'),
     'api_password' => env('WEBXPAY_API_PASSWORD', 'Bk@yFIqlG3vh'),
     'secret_key' => env('WEBXPAY_SECRET_KEY', '9187fa33-170a-4496-bd76-9e8aecfa8d62'),
     

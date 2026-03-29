@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Checkout - Ceylon IT Solutions')
-@section('description', 'Complete your purchase at Ceylon IT Solutions with secure checkout and multiple payment options.')
+@section('description', 'Checkout at Ceylon IT Solutions: get a quote or pay by bank transfer.')
 
 @section('content')
 <div class="min-h-screen bg-[#0f0f0f] py-8">
@@ -12,7 +12,7 @@
             <div class="flex items-start justify-between gap-4 flex-wrap">
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Checkout</h1>
-                    <p class="text-gray-400 text-sm sm:text-base">Get a quotation for your order or contact us for payment options.</p>
+                    <p class="text-gray-400 text-sm sm:text-base">Get a quotation, or choose Buy now and pay by bank transfer (only payment method available at the moment).</p>
                 </div>
                 
                 @guest
@@ -328,53 +328,8 @@
                         </div>
                     </div>
 
-                    <!-- Shipping/Delivery Information -->
-                    <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-6">
-                        <div class="flex items-center mb-4">
-                            <svg class="w-5 h-5 text-primary-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
-                            </svg>
-                            <h3 class="text-lg font-medium text-white">Shipping/Delivery Information</h3>
-                        </div>
-                        
-                        <div class="bg-amber-900/20 border border-amber-700/50 rounded-lg p-4">
-                            <div class="flex items-start space-x-3">
-                                <svg class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <div>
-                                    <h4 class="text-amber-400 font-medium text-sm mb-2">Important Notice - Delivery Charges</h4>
-                                    <p class="text-amber-300 text-sm mb-3">
-                                        Kindly note that delivery charges are due at the time of parcel receipt.
-                                    </p>
-                                    <p class="text-amber-300 text-sm font-medium">
-                                        පාර්සලය ලැබුණු අවස්ථාවේදී බෙදා හැරීමේ ගාස්තු ගෙවිය යුතු බව කරුණාවෙන් සලකන්න.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Transaction Fee Notice (shown only when Credit/Debit Card is selected) -->
-                        <div class="bg-blue-900/20 border border-blue-700/50 rounded-lg p-4 webxpay-notice" style="display: none;">
-                            <div class="flex items-start space-x-3">
-                                <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <div>
-                                    <h4 class="text-blue-400 font-medium text-sm mb-2">Card Payment Processing Fee</h4>
-                                    <p class="text-blue-300 text-sm mb-3">
-                                        A standard transaction fee of 3% will be applied for secure card payment processing.
-                                    </p>
-                                    <p class="text-blue-300 text-sm font-medium">
-                                        ✓ SSL Encrypted • ✓ PCI Compliant • ✓ Instant Processing
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Koko Pay KOKO Notice (shown only when Koko Pay is selected) -->
-                    <div class="bg-purple-900/20 border border-purple-700/50 rounded-lg p-4 kokopay-notice" style="display: none;">
+                    <!-- Koko Pay notice (disabled) -->
+                    <div class="hidden bg-purple-900/20 border border-purple-700/50 rounded-lg p-4 kokopay-notice" style="display: none;">
                         <div class="flex items-start space-x-3">
                             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
@@ -407,128 +362,26 @@
                         </div>
                     </div>
 
-                    <!-- Simple Checkout Options -->
+                    <!-- Bank transfer reference (used when you click Buy Now) -->
                     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-4 sm:p-6">
-                        <!-- Get Quote - Only option (payment options hidden for now) -->
-                        <div class="mb-5">
-                            <label class="block cursor-pointer checkout-option active" data-type="quotation">
-                                <input type="radio" 
-                                       name="checkout_type" 
-                                       value="quotation"
-                                       checked
-                                       class="sr-only checkout-radio">
-                                <div class="p-4 sm:p-5 border border-blue-500/70 bg-blue-500/10 rounded-lg hover:bg-blue-500/15 transition-all text-left sm:text-center option-card">
-                                    <div class="flex items-center sm:justify-center gap-3 sm:gap-4">
-                                        <div class="flex-shrink-0 hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-blue-500/10 border border-blue-500/40">
-                                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h4 class="text-base sm:text-lg font-semibold text-white leading-tight">
-                                                Get Quote
-                                            </h4>
-                                            <p class="text-xs sm:text-sm text-gray-300 mt-1">
-                                                Download a professional PDF quotation. No payment required.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <!-- Buy Now - hidden (payment options disabled for now) -->
-                        <div class="mb-5 hidden">
-                            <label class="block cursor-pointer checkout-option" data-type="payment">
-                                <input type="radio" 
-                                       name="checkout_type" 
-                                       value="payment"
-                                       class="sr-only checkout-radio">
-                                <div class="p-4 sm:p-5 border border-green-500/70 bg-green-500/10 rounded-lg hover:bg-green-500/15 transition-all text-left sm:text-center option-card">
-                                    <div class="flex items-center sm:justify-center gap-3 sm:gap-4">
-                                        <div class="flex-shrink-0 hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-green-500/10 border border-green-500/40">
-                                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h4 class="text-base sm:text-lg font-semibold text-white leading-tight">
-                                                Buy now &amp; complete your order
-                                            </h4>
-                                            <p class="text-xs sm:text-sm text-gray-300 mt-1">
-                                                Compact, mobile-friendly checkout with your preferred payment method.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <!-- Payment Methods Section (hidden - payment options disabled for now) -->
-                        <div id="payment-methods-section" class="space-y-3 sm:space-y-4 hidden" style="display: none !important;">
+                        <div id="payment-methods-section" class="space-y-3 sm:space-y-4">
+                            <h3 class="text-lg font-medium text-white mb-1">Pay by bank transfer</h3>
+                            <p class="text-xs text-gray-400 mb-2">After you place an order with <strong class="text-gray-200">Buy Now</strong> in the summary, complete payment using the details below. <strong class="text-gray-200">Download Quote</strong> only generates a PDF — no payment here.</p>
                             <h4 class="text-sm sm:text-base font-semibold text-white mb-3 sm:mb-4 flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-500/10 border border-primary-500/40">
-                                    <svg class="w-3.5 h-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500/10 border border-green-500/40">
+                                    <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 8h9M5 16h6"/>
                                     </svg>
                                 </span>
-                                <span>Choose your payment method</span>
+                                <span>Bank transfer</span>
                             </h4>
                             
-                            <!-- Credit/Debit Card Payment -->
-                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-primary-500 bg-gradient-to-r from-primary-900/20 via-primary-900/10 to-transparent rounded-lg hover:border-primary-400 transition-colors cursor-pointer gap-3">
-                                <input type="radio" 
-                                       name="payment_method" 
-                                       value="webxpay"
-                                       class="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
-                                <div class="ml-0 sm:ml-3 flex-1">
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <div class="text-sm font-semibold text-white">Credit / Debit Card (WebXPay)</div>
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-primary-500 text-black">
-                                            Recommended
-                                        </span>
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-600/80 text-white">
-                                            Secure • Instant
-                                        </span>
-                                    </div>
-                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
-                                        Pay with VISA / Mastercard, debit &amp; credit cards and online banking via our secure WebXPay gateway.
-                                    </p>
-                                </div>
-                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-primary-300 text-xs sm:text-sm">
-                                    <img src="{{ asset('images/webxpay-logo.webp') }}" alt="WebXPay" class="h-6 w-auto">
-                                    <span>3% processing fee applies</span>
-                                </div>
-                            </label>
-                            
-                            <!-- Koko Pay - KOKO Option -->
-                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border border-gray-700 rounded-lg hover:border-purple-400 transition-colors cursor-pointer gap-3">
-                                <input type="radio" 
-                                       name="payment_method" 
-                                       value="kokopay"
-                                       class="h-4 w-4 text-purple-500 focus:ring-purple-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
-                                <div class="ml-0 sm:ml-3 flex-1">
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <div class="text-sm font-semibold text-white">Koko Pay</div>
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white">
-                                            Buy Now, Pay Later
-                                        </span>
-                                    </div>
-                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
-                                        Split your payment into 3 installments (today, 30 days, 60 days). 10% KOKO transaction fee applies.
-                                    </p>
-                                </div>
-                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-purple-300 text-xs sm:text-sm">
-                                    <img src="{{ asset('images/kokopay-logo.png') }}" alt="Koko Pay" class="h-6 w-auto">
-                                    <span>3 × easy monthly payments</span>
-                                </div>
-                            </label>
-                            
-                            <!-- Bank Transfer - Manual Payment -->
-                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border border-gray-700 rounded-lg hover:border-green-500/70 transition-colors cursor-pointer gap-3">
+                            <!-- Bank transfer (only active method) -->
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-green-500/60 bg-gradient-to-r from-green-900/20 via-green-900/10 to-transparent rounded-lg cursor-pointer gap-3">
                                 <input type="radio" 
                                        name="payment_method" 
                                        value="bank_transfer"
+                                       checked
                                        class="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
                                 <div class="ml-0 sm:ml-3 flex-1">
                                     <div class="flex flex-wrap items-center gap-2">
@@ -549,8 +402,8 @@
                                 </div>
                             </label>
                             
-                            <!-- Bank Transfer Details (shown only when Bank Transfer is selected) -->
-                            <div class="bg-green-900/20 border border-green-700/50 rounded-lg p-4 bank-transfer-notice" style="display: none;">
+                            <!-- Bank transfer details (reference for completing payment) -->
+                            <div class="bg-green-900/20 border border-green-700/50 rounded-lg p-4 bank-transfer-notice">
                                 <div class="flex items-start space-x-3">
                                     <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m11 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2M9 7h6m-6 4h6m-6 4h6m-6 4h6"/>
@@ -562,19 +415,19 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                                 <div>
                                                     <div class="text-gray-400 mb-1">Bank Name:</div>
-                                                    <div class="text-white font-medium">Commercial Bank</div>
+                                                    <div class="text-white font-medium">{{ config('bank.bank_name') }}</div>
                                                 </div>
                                                 <div>
                                                     <div class="text-gray-400 mb-1">Account Name:</div>
-                                                    <div class="text-white font-medium">MSK Computers</div>
+                                                    <div class="text-white font-medium">{{ config('bank.account_name') }}</div>
                                                 </div>
                                                 <div>
                                                     <div class="text-gray-400 mb-1">Account Number:</div>
-                                                    <div class="text-white font-medium">1000578810</div>
+                                                    <div class="text-white font-medium">{{ config('bank.account_number') }}</div>
                                                 </div>
                                                 <div>
                                                     <div class="text-gray-400 mb-1">Branch:</div>
-                                                    <div class="text-white font-medium">Ragama Branch</div>
+                                                    <div class="text-white font-medium">{{ config('bank.branch') }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -585,7 +438,7 @@
                                             </p>
                                             <ul class="text-green-200 space-y-1 text-xs ml-4">
                                                 <li>• Please include your <strong>Order Number</strong> in the transfer reference</li>
-                                                <li>• Send the payment slip/screenshot to <strong>payments@ceylonitsolutions.com</strong></li>
+                                                <li>• After payment, send your slip on <strong>WhatsApp {{ config('bank.whatsapp_payment_display') }}</strong> (fastest), or email <strong>payments@ceylonitsolutions.com</strong></li>
                                                 <li>• Your order will be processed within 1-2 business days after payment confirmation</li>
                                                 <li>• Keep your payment receipt for tracking purposes</li>
                                             </ul>
@@ -593,44 +446,6 @@
                                                     </div>
                                                 </div>
                                                 </div>
-                                                
-                            <!-- WebXPay Notice (shown only when WebXPay is selected) -->
-                            <div class="bg-primary-900/20 border border-primary-700/50 rounded-lg p-4 webxpay-notice" style="display: none;">
-                                <div class="flex items-start space-x-3">
-                                    <svg class="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                                        </svg>
-                                                        <div>
-                                        <h4 class="text-primary-400 font-medium text-sm mb-2">Secure Card Payment with WebXPay</h4>
-                                        <p class="text-primary-300 text-sm mb-3">
-                                            You'll be redirected to our secure payment gateway to complete your card payment. 
-                                            A 3% transaction fee will be added to your total.
-                                        </p>
-                                        <div class="text-xs text-primary-200">
-                                            ✓ SSL Encrypted • ✓ PCI Compliant • ✓ Instant Processing
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                            <!-- Koko Pay KOKO Notice (shown only when Koko Pay is selected) -->
-                            <div class="bg-purple-900/20 border border-purple-700/50 rounded-lg p-4 kokopay-notice" style="display: none;">
-                                <div class="flex items-start space-x-3">
-                                    <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                                                </svg>
-                                                <div>
-                                        <h4 class="text-purple-400 font-medium text-sm mb-2">Buy Now, Pay Later with Koko Pay</h4>
-                                        <p class="text-purple-300 text-sm mb-3">
-                                            Split your payment into 3 easy installments. Pay only 1/3 today, remaining in 30 & 60 days.
-                                            A 10% transaction fee will be added to your total.
-                                        </p>
-                                        <div class="text-xs text-purple-200">
-                                            ✓ Instant Approval • ✓ No Credit Check • ✓ Flexible Payments
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -749,14 +564,29 @@
                                 </span>
                             </label>
                             
-                            <button type="submit" 
-                                    id="submit-button"
-                                    class="w-full py-4 px-6 border border-transparent text-lg font-medium rounded-lg text-black bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] hover:from-[#d97706] hover:to-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b] transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="submit-icon">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                </svg>
-                                <span id="submit-text">Buy Now</span>
-                            </button>
+                            <div class="flex flex-col gap-3">
+                                <button type="submit"
+                                        id="download-quote-button"
+                                        formaction="{{ route('quotation.generate') }}"
+                                        formmethod="post"
+                                        class="w-full py-3.5 px-6 border border-transparent text-base font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0f0f0f] focus:ring-blue-500 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Download Quote (PDF)
+                                </button>
+                                <button type="submit"
+                                        id="buy-now-button"
+                                        formaction="{{ route('checkout.process') }}"
+                                        formmethod="post"
+                                        class="w-full py-3.5 px-6 border border-transparent text-base font-semibold rounded-lg text-black bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] hover:from-[#d97706] hover:to-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0f0f0f] focus:ring-[#f59e0b] transition-all duration-300 flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                    Buy Now
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 text-center mt-1">Download Quote saves a PDF (no payment). Buy Now places your order for bank transfer.</p>
                         </div>
                     </div>
                 </div>
@@ -765,16 +595,6 @@
     </div>
 </div>
 
-<style>
-.checkout-option.active .option-card {
-    border-width: 3px !important;
-    transform: scale(1.02);
-}
-
-.checkout-option:hover .option-card {
-    transform: scale(1.01);
-}
-</style>
 
 <script>
 console.log('Checkout JavaScript loaded - script is running');
@@ -810,74 +630,55 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Checkout form found:', checkoutForm ? 'Yes' : 'No');
 
     // Checkout type handling
-    const checkoutOptions = document.querySelectorAll('.checkout-option');
-    const checkoutTypeRadios = document.querySelectorAll('input[name="checkout_type"]');
-    const paymentMethodsSection = document.getElementById('payment-methods-section');
-    const submitButton = document.getElementById('submit-button');
-    const submitText = document.getElementById('submit-text');
-    const submitIcon = document.getElementById('submit-icon');
+    const downloadQuoteButton = document.getElementById('download-quote-button');
+    const buyNowButton = document.getElementById('buy-now-button');
 
-    function updateCheckoutType() {
-        const selectedType = document.querySelector('input[name="checkout_type"]:checked');
-        console.log('🔄 Updating checkout type. Selected:', selectedType ? selectedType.value : 'none');
-        
-        if (selectedType && selectedType.value === 'quotation') {
-            // Quotation mode
-            console.log('✅ Switching to QUOTATION mode');
-            if (paymentMethodsSection) paymentMethodsSection.style.display = 'none';
-            if (checkoutForm) {
-                checkoutForm.action = '{{ route("quotation.generate") }}';
-                console.log('📝 Form action set to:', checkoutForm.action);
-            }
-            
-            // Update button for quotation
-            if (submitButton) {
-                submitButton.className = 'w-full py-4 px-6 border border-transparent text-lg font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2';
-            }
-            if (submitText) submitText.textContent = 'Download Quote';
-            if (submitIcon) {
-                submitIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>';
-            }
-        } else {
-            // Payment mode
-            console.log('💳 Switching to PAYMENT mode');
-            if (paymentMethodsSection) paymentMethodsSection.style.display = 'block';
-            if (checkoutForm) {
-                checkoutForm.action = '{{ route("checkout.process") }}';
-                console.log('📝 Form action set to:', checkoutForm.action);
-            }
-            
-            // Update button for payment
-            if (submitButton) {
-                submitButton.className = 'w-full py-4 px-6 border border-transparent text-lg font-medium rounded-lg text-black bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] hover:from-[#d97706] hover:to-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b] transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2';
-            }
-            if (submitText) submitText.textContent = 'Buy Now';
-            if (submitIcon) {
-                submitIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>';
-            }
+    const baseOrderTotal = {{ $total }};
+
+    function formatCurrency(amount) {
+        return 'LKR ' + parseFloat(amount).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    function updatePaymentFees() {
+        const orderTotalElement = document.querySelector('.order-total');
+
+        document.querySelectorAll('.webxpay-notice, .kokopay-notice').forEach(function (el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.webxpay-fee, .kokopay-fee').forEach(function (el) {
+            el.style.display = 'none';
+        });
+
+        if (orderTotalElement) {
+            orderTotalElement.textContent = formatCurrency(baseOrderTotal);
+        }
+
+        const transferSlipInput = document.getElementById('transfer_slip');
+        if (transferSlipInput) {
+            transferSlipInput.removeAttribute('required');
         }
     }
 
-    // Initialize checkout type
-    updateCheckoutType();
+    updatePaymentFees();
 
-    // Add click event listeners to option cards
-    checkoutOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            console.log('Checkout option clicked:', this.dataset.type);
-            const radio = this.querySelector('input[type="radio"]');
-            if (radio) {
-                radio.checked = true;
-                updateCheckoutType();
-            }
+    if (downloadQuoteButton) {
+        downloadQuoteButton.addEventListener('click', function () {
+            document.querySelectorAll('input[name="payment_method"]').forEach(function (el) {
+                el.disabled = true;
+            });
         });
-    });
+    }
+    if (buyNowButton) {
+        buyNowButton.addEventListener('click', function () {
+            document.querySelectorAll('input[name="payment_method"]').forEach(function (el) {
+                el.disabled = false;
+            });
+        });
+    }
 
-    // Add event listeners for checkout type change
-    checkoutTypeRadios.forEach(radio => {
-        radio.addEventListener('change', updateCheckoutType);
-    });
-    
     // Add form submission logging
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', function(e) {
@@ -885,126 +686,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Form data being submitted:', new FormData(checkoutForm));
             console.log('Selected payment method:', document.querySelector('input[name="payment_method"]:checked')?.value);
         });
-    }
-    
-    // Transaction fee calculation and display
-    const baseOrderTotal = {{ $total }};
-    
-    function formatCurrency(amount) {
-        return 'LKR ' + parseFloat(amount).toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    }
-    
-    function updatePaymentFees() {
-        const webxpayRadio = document.querySelector('input[name="payment_method"][value="webxpay"]');
-        const kokopayRadio = document.querySelector('input[name="payment_method"][value="kokopay"]');
-        const bankTransferRadio = document.querySelector('input[name="payment_method"][value="bank_transfer"]');
-        
-        // Payment method elements
-        const webxpayNotice = document.querySelector('.webxpay-notice');
-        const webxpayFeeRow = document.querySelector('.webxpay-fee');
-        const webxpayFeeAmount = document.querySelector('.webxpay-fee-amount');
-        
-        // Koko Pay elements
-        const kokopayNotice = document.querySelector('.kokopay-notice');
-        const kokopayFeeRow = document.querySelector('.kokopay-fee');
-        const kokopayFeeAmount = document.querySelector('.kokopay-fee-amount');
-        
-        // Koko Pay 3-split breakdown elements
-        const kokopaySplit1 = document.querySelector('.kokopay-split-1');
-        const kokopaySplit2 = document.querySelector('.kokopay-split-2');
-        const kokopaySplit3 = document.querySelector('.kokopay-split-3');
-        
-        // Bank Transfer elements
-        const bankTransferNotice = document.querySelector('.bank-transfer-notice');
-        
-        const orderTotalElement = document.querySelector('.order-total');
-        
-        // Hide all notices and fee rows by default
-        if (webxpayNotice) webxpayNotice.style.display = 'none';
-        if (webxpayFeeRow) webxpayFeeRow.style.display = 'none';
-        if (kokopayNotice) kokopayNotice.style.display = 'none';
-        if (kokopayFeeRow) kokopayFeeRow.style.display = 'none';
-        if (bankTransferNotice) bankTransferNotice.style.display = 'none';
-        
-        if (webxpayRadio && webxpayRadio.checked) {
-            // Show WebXPay transaction fee notice and row
-            if (webxpayNotice) webxpayNotice.style.display = 'block';
-            if (webxpayFeeRow) webxpayFeeRow.style.display = 'flex';
-            
-            // Calculate 3% transaction fee
-            const transactionFee = baseOrderTotal * 0.03;
-            const newTotal = baseOrderTotal + transactionFee;
-            
-            // Update amounts with proper formatting
-            if (webxpayFeeAmount) webxpayFeeAmount.textContent = formatCurrency(transactionFee);
-            if (orderTotalElement) orderTotalElement.textContent = formatCurrency(newTotal);
-            
-            // Remove transfer slip requirement for WebXPay
-            const transferSlipInput = document.getElementById('transfer_slip');
-            if (transferSlipInput) {
-                transferSlipInput.removeAttribute('required');
-            }
-            
-            console.log('WebXPay selected - Transaction Fee: ' + formatCurrency(transactionFee) + ', New Total: ' + formatCurrency(newTotal));
-            
-        } else if (kokopayRadio && kokopayRadio.checked) {
-            // Show Koko Pay KOKO notice and transaction fee row
-            if (kokopayNotice) kokopayNotice.style.display = 'block';
-            if (kokopayFeeRow) kokopayFeeRow.style.display = 'flex';
-            
-            // Calculate 10% transaction fee for Koko Pay
-            const transactionFee = baseOrderTotal * 0.10;
-            const newTotal = baseOrderTotal + transactionFee;
-            
-            // Calculate 3-split breakdown (total with fee divided by 3)
-            const splitAmount = newTotal / 3;
-            
-            // Update amounts with proper formatting
-            if (kokopayFeeAmount) kokopayFeeAmount.textContent = formatCurrency(transactionFee);
-            if (orderTotalElement) orderTotalElement.textContent = formatCurrency(newTotal);
-            
-            // Update 3-split breakdown
-            if (kokopaySplit1) kokopaySplit1.textContent = formatCurrency(splitAmount);
-            if (kokopaySplit2) kokopaySplit2.textContent = formatCurrency(splitAmount);
-            if (kokopaySplit3) kokopaySplit3.textContent = formatCurrency(splitAmount);
-            
-            // Remove transfer slip requirement for KokoPay
-            const transferSlipInput = document.getElementById('transfer_slip');
-            if (transferSlipInput) {
-                transferSlipInput.removeAttribute('required');
-            }
-            
-            console.log('Koko Pay selected - Transaction Fee: ' + formatCurrency(transactionFee) + ', New Total: ' + formatCurrency(newTotal));
-            
-        } else if (bankTransferRadio && bankTransferRadio.checked) {
-            // Show Bank Transfer details
-            if (bankTransferNotice) bankTransferNotice.style.display = 'block';
-            
-            // Reset to original total (no fees for bank transfer)
-            if (orderTotalElement) orderTotalElement.textContent = formatCurrency(baseOrderTotal);
-            
-            // Transfer slip upload is optional for bank transfer
-            const transferSlipInput = document.getElementById('transfer_slip');
-            if (transferSlipInput) {
-                transferSlipInput.removeAttribute('required');
-            }
-            
-            console.log('Bank Transfer selected - No fees applied, Total: ' + formatCurrency(baseOrderTotal));
-        } else {
-            // Reset to original total for no selection
-            if (orderTotalElement) orderTotalElement.textContent = formatCurrency(baseOrderTotal);
-            
-            // Remove transfer slip requirement for other payment methods
-            const transferSlipInput = document.getElementById('transfer_slip');
-            if (transferSlipInput) {
-                transferSlipInput.removeAttribute('required');
-            }
-            
-            console.log('No payment method selected - Total: ' + formatCurrency(baseOrderTotal));
-        }
     }
     
     // Listen for payment method changes
@@ -1024,7 +705,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Different shipping checkbox found:', differentShippingCheckbox ? 'Yes' : 'No');
     console.log('Shipping fields found:', shippingFields ? 'Yes' : 'No');
     
-    differentShippingCheckbox.addEventListener('change', function() {
+    if (!differentShippingCheckbox) {
+        console.warn('different_shipping_address checkbox not found');
+    } else differentShippingCheckbox.addEventListener('change', function() {
         console.log('Different shipping checkbox changed:', this.checked);
         
         if (this.checked) {
@@ -1213,44 +896,43 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    const submitButton = checkoutForm.querySelector('button[type="submit"]');
-    console.log('Submit button found:', submitButton ? 'Yes' : 'No');
+    const submitButtons = checkoutForm.querySelectorAll('button[type="submit"]');
+    console.log('Submit buttons found:', submitButtons.length);
     
-    if (!submitButton) {
-        console.error('Submit button not found!');
+    if (submitButtons.length === 0) {
+        console.error('No submit buttons found!');
         return;
     }
     
-    // Add click event to submit button for debugging
-    submitButton.addEventListener('click', function(e) {
-        console.log('Submit button clicked!');
-        console.log('Button disabled state:', submitButton.disabled);
-        console.log('Form valid state:', checkoutForm.checkValidity());
-        
-        // Check form validity manually
-        const invalidFields = [];
-        const allFields = checkoutForm.querySelectorAll('input, select, textarea');
-        allFields.forEach(field => {
-            if (!field.checkValidity()) {
-                invalidFields.push({
-                    name: field.name || field.id,
-                    type: field.type,
-                    value: field.value,
-                    validationMessage: field.validationMessage
-                });
+    submitButtons.forEach(function (submitButton) {
+        submitButton.addEventListener('click', function() {
+            console.log('Submit button clicked:', submitButton.id);
+            console.log('Button disabled state:', submitButton.disabled);
+            console.log('Form valid state:', checkoutForm.checkValidity());
+            const invalidFields = [];
+            checkoutForm.querySelectorAll('input, select, textarea').forEach(function (field) {
+                if (!field.checkValidity()) {
+                    invalidFields.push({
+                        name: field.name || field.id,
+                        type: field.type,
+                        value: field.value,
+                        validationMessage: field.validationMessage
+                    });
+                }
+            });
+            if (invalidFields.length > 0) {
+                console.log('Invalid fields found:', invalidFields);
+            } else {
+                console.log('All fields are valid');
             }
         });
-        
-        if (invalidFields.length > 0) {
-            console.log('Invalid fields found:', invalidFields);
-        } else {
-            console.log('All fields are valid');
-        }
     });
     
     // Add form submit event
     checkoutForm.addEventListener('submit', function(e) {
+        const submitter = e.submitter;
         console.log('=== FORM SUBMISSION STARTED ===');
+        console.log('Submitter:', submitter ? submitter.id : '(none)');
         console.log('Form action:', checkoutForm.action);
         console.log('Form method:', checkoutForm.method);
         
@@ -1282,9 +964,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // SIMPLIFIED: Disable complex validation temporarily for debugging
         console.log('🔥 SIMPLIFIED VALIDATION MODE - Checking basic requirements only');
         
-        // Check if we're in quotation mode
-        const isQuotationMode = document.querySelector('input[name="checkout_type"]:checked')?.value === 'quotation';
-        console.log('🔍 Is quotation mode?', isQuotationMode);
+        const isQuotationMode = submitter && submitter.id === 'download-quote-button';
+        console.log('🔍 Is quotation (PDF) download?', isQuotationMode);
         
         // Only check absolutely critical fields
         const criticalFieldsCheck = [
@@ -1301,6 +982,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let criticalMissing = [];
         
         criticalFieldsCheck.forEach(field => {
+            if (field.required === false) {
+                return;
+            }
             if (field.type === 'checkbox') {
                 const element = document.querySelector(`[name="${field.name}"]`);
                 if (!element || !element.checked) {
@@ -1330,24 +1014,24 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ All critical fields present, allowing submission');
         alwaysRequiredFields.forEach(fieldName => {
             if (fieldName === 'payment_method') {
-                // Special handling for radio buttons
+                if (isQuotationMode) {
+                    return;
+                }
                 const paymentRadios = document.querySelectorAll('[name="payment_method"]');
-                const paymentSelected = Array.from(paymentRadios).some(radio => radio.checked);
+                const paymentSelected = Array.from(paymentRadios).some(radio => radio.checked && !radio.disabled);
                 if (!paymentSelected) {
                     console.log('Missing required field:', fieldName, '(no radio button selected)');
                     missingFields.push(fieldName);
                     allValid = false;
                 }
             } else if (fieldName === 'terms') {
-                // Special handling for terms checkbox
                 const termsField = document.querySelector('[name="terms"]');
                 if (termsField && !termsField.checked) {
                     console.log('Missing required field:', fieldName, '(checkbox not checked)');
                     missingFields.push(fieldName);
                     allValid = false;
                 }
-        } else {
-                // Regular text/email/tel fields
+            } else {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 if (field && (!field.value || !field.value.trim())) {
                     console.log('Missing required field:', fieldName, 'Value:', field.value);
@@ -1410,7 +1094,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         errorMessage += '• Billing City\n';
                         break;
                     case 'payment_method':
-                        errorMessage += '• Payment Method (select Credit/Debit Card, Koko Pay, or Bank Transfer)\n';
+                        errorMessage += '• Payment Method — select Bank transfer (use Buy Now)\n';
                         break;
                     case 'terms':
                         errorMessage += '• Terms of Service agreement (check the checkbox)\n';
@@ -1433,9 +1117,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('=== VALIDATION PASSED ===');
         }
         
-        // Disable submit button to prevent double submission
-        submitButton.disabled = true;
-        submitButton.textContent = 'Processing...';
+        if (submitter) {
+            submitter.disabled = true;
+            const label = submitter.id === 'download-quote-button' ? 'Preparing PDF…' : 'Processing…';
+            submitter.textContent = label;
+        }
         
         console.log('Form validation passed, submitting...');
         console.log('Form data being submitted...');

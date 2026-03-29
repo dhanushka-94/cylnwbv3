@@ -46,8 +46,7 @@ Best regards,
 
 @component('mail::subcopy')
 If you have any questions about your order, please contact us:
-- Phone: 0112 95 9005
-- WhatsApp: +94 777 506 939
+- WhatsApp: {{ config('bank.whatsapp_payment_display') }}
 - Email: info@ceylonitsolutions.com
 @endcomponent
 @endcomponent

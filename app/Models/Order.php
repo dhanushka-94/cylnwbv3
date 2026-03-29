@@ -75,7 +75,7 @@ class Order extends Model
 
         static::creating(function ($model) {
             if (!$model->order_number) {
-                $model->order_number = 'MSK-' . date('Y') . '-' . strtoupper(Str::random(8));
+                $model->order_number = 'CITS-' . date('Y') . '-' . strtoupper(Str::random(8));
             }
         });
     }

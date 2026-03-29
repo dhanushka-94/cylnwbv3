@@ -45,7 +45,7 @@ class CreateSampleActivityLogs extends Command
             ['type' => 'admin', 'action' => 'user_viewed', 'description' => 'Admin viewed user profile'],
             ['type' => 'admin', 'action' => 'order_status_updated', 'description' => 'Admin updated order status to shipped'],
             ['type' => 'customer', 'action' => ActivityLog::ACTION_LOGOUT, 'description' => 'User logged out'],
-            ['type' => 'customer', 'action' => 'homepage_visited', 'description' => 'Visited MSK Computers homepage'],
+            ['type' => 'customer', 'action' => 'homepage_visited', 'description' => 'Visited Ceylon IT Solutions homepage'],
             ['type' => 'system', 'action' => ActivityLog::ACTION_EMAIL_SENT, 'description' => 'Order confirmation email sent'],
             ['type' => 'customer', 'action' => ActivityLog::ACTION_PROFILE_UPDATED, 'description' => 'User updated profile information'],
             ['type' => 'admin', 'action' => 'bulk_action_performed', 'description' => 'Admin performed bulk order update'],
@@ -92,7 +92,7 @@ class CreateSampleActivityLogs extends Command
                     $properties = [
                         'order_total' => rand(500, 5000),
                         'items_count' => rand(1, 5),
-                        'order_number' => 'MSK-2024-' . strtoupper(substr(md5(rand()), 0, 8)),
+                        'order_number' => 'CITS-2024-' . strtoupper(substr(md5(rand()), 0, 8)),
                     ];
                     break;
                 case ActivityLog::ACTION_PRODUCT_ADDED_TO_CART:

@@ -45,18 +45,18 @@ Retry Payment
 
 ### Option 2: Bank Transfer
 **Bank Details:**
-- **Bank:** Commercial Bank
-- **Account Name:** MSK Computers
-- **Account Number:** 1000578810
-- **Branch:** Ragama Branch
+- **Bank:** {{ config('bank.bank_name') }}
+- **Account Name:** {{ config('bank.account_name') }}
+- **Account Number:** {{ config('bank.account_number') }}
+- **Branch:** {{ config('bank.branch') }}
 
 **Instructions:**
 1. Transfer LKR {{ number_format($order->total_amount, 2) }}
-2. Send payment slip to WhatsApp: +94 777 506 939
+2. Send payment slip to WhatsApp: {{ config('bank.whatsapp_payment_display') }}
 3. Include order number: {{ $order->order_number }}
 
 ### Option 3: Visit Our Store
-**MSK Computers Showroom**  
+**Ceylon IT Solutions showroom**  
 No.12, Maradana Road, Colombo 08  
 **Hours:** Monday-Saturday 9AM-7PM
 
@@ -83,8 +83,7 @@ No.12, Maradana Road, Colombo 08
 Our team is ready to help you complete your payment:
 
 ### Immediate Support
-- **WhatsApp:** +94 777 506 939 (24/7)
-- **Phone:** 0112 95 9005
+- **WhatsApp:** {{ config('bank.whatsapp_payment_display') }} (24/7)
 - **Email:** payments@ceylonitsolutions.com
 
 ### Common Solutions
@@ -120,14 +119,14 @@ Browse Similar Products
 
 Don't let a payment issue stop you from getting the products you need. Our team will work with you to find a solution.
 
-**Contact us now:** +94 777 506 939
+**Contact us now:** {{ config('bank.whatsapp_payment_display') }}
 
 Best regards,  
-MSK Computers Payment Support Team
+Ceylon IT Solutions payment support team
 
 @component('mail::subcopy')
 Payment failed: {{ now()->format('F d, Y \a\t g:i A') }}  
 Order expires: {{ now()->addHours(24)->format('F d, Y \a\t g:i A') }}  
-Need help? WhatsApp +94 777 506 939
+Need help? WhatsApp {{ config('bank.whatsapp_payment_display') }}
 @endcomponent
 @endcomponent

@@ -391,12 +391,12 @@ function showNotification(message, type = 'success') {
         document.getElementById('specialOrderProductName').textContent = productName;
         
         // Update contact links with product information
-        const whatsappMessage = `Hi MSK Computers! I'm interested in the ${statusType} product: "${productName}". Could you please provide more information about availability and ordering?`;
+        const whatsappMessage = `Hi Ceylon IT Solutions! I'm interested in the ${statusType} product: "${productName}". Could you please provide more information about availability and ordering?`;
         const emailSubject = `Inquiry about ${statusType} Product: ${productName}`;
-        const emailBody = `Dear MSK Computers Team,\n\nI am interested in the following ${statusType} product:\n\nProduct: ${productName}\n\nCould you please provide more information about:\n- Expected availability date\n- Pricing details\n- How to place an order\n- Any special requirements\n\nThank you for your assistance.\n\nBest regards`;
+        const emailBody = `Dear Ceylon IT Solutions Team,\n\nI am interested in the following ${statusType} product:\n\nProduct: ${productName}\n\nCould you please provide more information about:\n- Expected availability date\n- Pricing details\n- How to place an order\n- Any special requirements\n\nThank you for your assistance.\n\nBest regards`;
         
         // Update WhatsApp link
-        document.getElementById('specialOrderWhatsApp').href = `https://wa.me/94777506939?text=${encodeURIComponent(whatsappMessage)}`;
+        document.getElementById('specialOrderWhatsApp').href = `https://wa.me/{{ config('bank.whatsapp_payment_number') }}?text=${encodeURIComponent(whatsappMessage)}`;
         
         // Update Email link
         document.getElementById('specialOrderEmail').href = `mailto:info@ceylonitsolutions.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
@@ -471,7 +471,7 @@ function showNotification(message, type = 'success') {
         <div class="space-y-4 mb-6">
             <!-- Shop Info -->
             <div class="text-center border-b border-gray-700 pb-4">
-                <h4 class="text-lg font-bold text-white">MSK COMPUTERS</h4>
+                <h4 class="text-lg font-bold text-white">CEYLON IT SOLUTIONS</h4>
                 <p class="text-gray-400 text-sm">No.296/3D, Delpe Junction, Ragama</p>
                 <p class="text-gray-400 text-sm">Sri Lanka</p>
             </div>
@@ -485,12 +485,11 @@ function showNotification(message, type = 'success') {
                         </svg>
                     </div>
                     <div>
-                        <p class="text-white font-semibold">0112 95 9005</p>
                         <p class="text-white font-semibold">0777 50 69 39</p>
                         <p class="text-gray-400 text-xs">Call us anytime</p>
                     </div>
                 </div>
-                <a href="tel:0777506939" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <a href="tel:+{{ config('bank.whatsapp_payment_number') }}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                     Call Now
                 </a>
             </div>
