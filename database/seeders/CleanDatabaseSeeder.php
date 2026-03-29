@@ -3,23 +3,19 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 
 class CleanDatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->command->info('🧹 Starting complete database cleanup...');
-        
-        // Clear all data
+        $this->command->info('Starting site database cleanup (data only, schema kept)...');
+
         $this->clearAllData();
-        
-        // Create clean admin account
-        $this->createAdminAccount();
-        
-        $this->command->info('✅ Database cleanup completed successfully!');
+
+        $this->call(SampleUsersSeeder::class);
+
+        $this->command->info('Database cleanup and sample users completed.');
         $this->displaySummary();
     }
     
@@ -33,10 +29,11 @@ class CleanDatabaseSeeder extends Seeder
         // Clear all tables in proper order
         $tables = [
             'activity_logs',
-            'transactions', 
+            'transactions',
             'order_items',
             'orders',
             'quotations',
+            'sliders',
             'carts',
             'user_addresses',
             'password_reset_tokens',
@@ -65,44 +62,11 @@ class CleanDatabaseSeeder extends Seeder
         $this->command->info('✅ All data removed from database');
     }
     
-    private function createAdminAccount(): void
-    {
-        $this->command->info('👤 Creating clean admin account...');
-        
-        // Create main admin user
-        $admin = User::create([
-            'name' => 'CITS Admin',
-            'email' => 'admin@ceylonitsolutions.com',
-            'password' => Hash::make('admin123'),
-            'email_verified_at' => now(),
-            'role' => 'admin',
-            'status' => 'active',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        
-        $this->command->info('✅ Admin account created successfully');
-    }
-    
     private function displaySummary(): void
     {
-        $this->command->info('');
-        $this->command->info('📊 DATABASE CLEANUP SUMMARY:');
-        $this->command->info('=====================================');
-        $this->command->info('🗑️ All user data removed');
-        $this->command->info('🗑️ All orders and order items removed');
-        $this->command->info('🗑️ All activity logs removed');
-        $this->command->info('🗑️ All transactions removed');
-        $this->command->info('🗑️ All carts and sessions removed');
-        $this->command->info('✅ Products database untouched');
-        $this->command->info('✅ Categories database untouched');
-        $this->command->info('=====================================');
-        $this->command->info('');
-        $this->command->info('🔐 ADMIN LOGIN CREDENTIALS:');
-        $this->command->info('Email: admin@ceylonitsolutions.com');
-        $this->command->info('Password: admin123');
-        $this->command->info('');
-        $this->command->info('🌟 Database is now clean and ready for production!');
-        $this->command->info('');
+        $this->command->newLine();
+        $this->command->info('Summary: orders, carts, quotations, sliders, sessions, and users cleared; sample users seeded.');
+        $this->command->warn('Separate products DB (if configured) is not modified.');
+        $this->command->newLine();
     }
 }
