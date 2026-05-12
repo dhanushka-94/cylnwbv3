@@ -9,6 +9,40 @@ use App\Models\SmaAttribute;
 
 class CategoryController extends Controller
 {
+    /**
+     * Category + all descendant category IDs (products often live on leaf categories only).
+     */
+    private function categoryScopeIds(SmaCategory $category): array
+    {
+        $ids = [(int) $category->id];
+        $queue = [(int) $category->id];
+
+        while ($queue !== []) {
+            $parentId = array_shift($queue);
+            $children = SmaCategory::where('parent_id', $parentId)->pluck('id')->all();
+            foreach ($children as $cid) {
+                $cid = (int) $cid;
+                if (! in_array($cid, $ids, true)) {
+                    $ids[] = $cid;
+                    $queue[] = $cid;
+                }
+            }
+        }
+
+        return $ids;
+    }
+
+    /**
+     * Visible products: hide = 0/false or NULL (legacy rows).
+     */
+    private function scopeVisibleProducts($query)
+    {
+        return $query->where(function ($q) {
+            $q->where('hide', 0)
+                ->orWhereNull('hide');
+        });
+    }
+
     public function index()
     {
         // Use cached categories with product counts for better performance
@@ -19,14 +53,15 @@ class CategoryController extends Controller
 
     public function show(SmaCategory $category, Request $request)
     {
-        
-        // Get products query
-        $productsQuery = SmaProduct::where(function($query) use ($category) {
-            $query->where('category_id', $category->id)
-                  ->orWhere('subcategory_id', $category->id);
-        })
-        ->where('hide', 0)
-        ->select(['id', 'name', 'code', 'price', 'promo_price', 'quantity', 'category_id', 'subcategory_id', 'product_status', 'image', 'promotion', 'details', 'slug'])
+        $scopeIds = $this->categoryScopeIds($category);
+
+        // Get products query (include products on this category or any descendant category)
+        $productsQuery = SmaProduct::where(function ($query) use ($scopeIds) {
+            $query->whereIn('category_id', $scopeIds)
+                ->orWhereIn('subcategory_id', $scopeIds);
+        });
+        $this->scopeVisibleProducts($productsQuery);
+        $productsQuery->select(['id', 'name', 'code', 'price', 'promo_price', 'quantity', 'category_id', 'subcategory_id', 'product_status', 'image', 'promotion', 'details', 'slug'])
         ->with([
             'category:id,name,slug',
             'photos:id,product_id,photo',
@@ -40,13 +75,23 @@ class CategoryController extends Controller
         // Apply attribute filters
         $this->applyAttributeFilters($productsQuery, $request);
 
-        // Apply price range filter
+        $priceRange = $this->getPriceRange($scopeIds);
+
+        // Apply price range filter (skip when values match full range — avoids over-filtering from sliders)
         if ($request->filled('min_price') || $request->filled('max_price')) {
+            $fullMin = (float) ($priceRange['min'] ?? 0);
+            $fullMax = (float) ($priceRange['max'] ?? 0);
             if ($request->filled('min_price')) {
-                $productsQuery->where('price', '>=', $request->min_price);
+                $min = (float) $request->min_price;
+                if ($min > $fullMin) {
+                    $productsQuery->where('price', '>=', $min);
+                }
             }
             if ($request->filled('max_price')) {
-                $productsQuery->where('price', '<=', $request->max_price);
+                $max = (float) $request->max_price;
+                if ($max < $fullMax) {
+                    $productsQuery->where('price', '<=', $max);
+                }
             }
         }
 
@@ -96,14 +141,13 @@ class CategoryController extends Controller
             \Log::info("USED LAPTOP Debug - Last page: {$products->lastPage()}");
         }
         
-        // Get available attributes for this category
-        $availableAttributes = $this->getCategoryAttributes($category->id);
-        
-        // Get available product statuses for this category
-        $availableStatuses = $this->getCategoryStatuses($category->id);
-        
-        // Get price range for this category
-        $priceRange = $this->getPriceRange($category->id);
+        // Get available attributes for this category tree
+        $availableAttributes = $this->getCategoryAttributes($scopeIds);
+
+        // Get available product statuses for this category tree
+        $availableStatuses = $this->getCategoryStatuses($scopeIds);
+
+        // Price range already computed for filters
 
         // Handle AJAX requests
         if ($request->ajax() || $request->wantsJson()) {
@@ -258,18 +302,27 @@ class CategoryController extends Controller
     }
 
     /**
-     * Get available attributes for products in a category
+     * Get available attributes for products in a category tree
+     *
+     * @param  array<int>  $scopeIds
      */
-    private function getCategoryAttributes($categoryId)
+    private function getCategoryAttributes(array $scopeIds)
     {
-        // Get all attribute IDs used by products in this category
+        if ($scopeIds === []) {
+            return [];
+        }
+
+        // Get all attribute IDs used by products in this category tree
         $attributeIds = \DB::connection('products_db')->table('sma_product_attributes')
             ->join('sma_products', 'sma_product_attributes.product_id', '=', 'sma_products.id')
-            ->where(function($query) use ($categoryId) {
-                $query->where('sma_products.category_id', $categoryId)
-                      ->orWhere('sma_products.subcategory_id', $categoryId);
+            ->where(function ($query) use ($scopeIds) {
+                $query->whereIn('sma_products.category_id', $scopeIds)
+                    ->orWhereIn('sma_products.subcategory_id', $scopeIds);
             })
-            ->where('sma_products.hide', 0)
+            ->where(function ($q) {
+                $q->where('sma_products.hide', 0)
+                    ->orWhereNull('sma_products.hide');
+            })
             ->where('sma_product_attributes.status', 1)
             ->pluck('sma_product_attributes.attribute_id')
             ->unique();
@@ -283,58 +336,72 @@ class CategoryController extends Controller
             ->with('parent')
             ->where('status', 1)
             ->get()
-            ->groupBy(function($attribute) {
+            ->groupBy(function ($attribute) {
                 return $attribute->parent ? $attribute->parent->attribute_name : 'Other';
             });
 
         // Transform to include counts
         $result = [];
         foreach ($attributes as $parentName => $attributeGroup) {
-            if ($parentName === 'Other') continue; // Skip orphaned attributes
-            
-            $result[$parentName] = $attributeGroup->map(function($attribute) use ($categoryId) {
-                // Count products that have this attribute in this category
+            if ($parentName === 'Other') {
+                continue; // Skip orphaned attributes
+            }
+
+            $result[$parentName] = $attributeGroup->map(function ($attribute) use ($scopeIds) {
+                // Count products that have this attribute in this category tree
                 $productCount = \DB::connection('products_db')->table('sma_product_attributes')
                     ->join('sma_products', 'sma_product_attributes.product_id', '=', 'sma_products.id')
                     ->where('sma_product_attributes.attribute_id', $attribute->id)
-                    ->where(function($query) use ($categoryId) {
-                        $query->where('sma_products.category_id', $categoryId)
-                              ->orWhere('sma_products.subcategory_id', $categoryId);
+                    ->where(function ($query) use ($scopeIds) {
+                        $query->whereIn('sma_products.category_id', $scopeIds)
+                            ->orWhereIn('sma_products.subcategory_id', $scopeIds);
                     })
-                    ->where('sma_products.hide', 0)
+                    ->where(function ($q) {
+                        $q->where('sma_products.hide', 0)
+                            ->orWhereNull('sma_products.hide');
+                    })
                     ->where('sma_product_attributes.status', 1)
                     ->count();
 
                 return [
                     'id' => $attribute->id,
                     'name' => $attribute->attribute_name,
-                    'count' => $productCount
+                    'count' => $productCount,
                 ];
             })->sortBy('name')->values();
         }
 
         // Sort by most used attributes first
-        return collect($result)->sortByDesc(function($attributes) {
+        return collect($result)->sortByDesc(function ($attributes) {
             return $attributes->sum('count');
         })->take(6)->toArray(); // Limit to top 6 attribute categories
     }
 
     /**
-     * Get available product statuses for products in a category
+     * Get available product statuses for products in a category tree
+     *
+     * @param  array<int>  $scopeIds
      */
-    private function getCategoryStatuses($categoryId)
+    private function getCategoryStatuses(array $scopeIds)
     {
-        // Get statuses that exist for products in this category
-        $statusIds = SmaProduct::where(function($query) use ($categoryId) {
-            $query->where('category_id', $categoryId)
-                  ->orWhere('subcategory_id', $categoryId);
+        if ($scopeIds === []) {
+            return [];
+        }
+
+        // Get statuses that exist for products in this category tree
+        $statusIds = SmaProduct::where(function ($query) use ($scopeIds) {
+            $query->whereIn('category_id', $scopeIds)
+                ->orWhereIn('subcategory_id', $scopeIds);
         })
-        ->where('hide', 0)
-        ->whereNotNull('product_status')
-        ->distinct()
-        ->pluck('product_status')
-        ->filter()
-        ->toArray();
+            ->where(function ($q) {
+                $q->where('hide', 0)
+                    ->orWhereNull('hide');
+            })
+            ->whereNotNull('product_status')
+            ->distinct()
+            ->pluck('product_status')
+            ->filter()
+            ->toArray();
 
         if (empty($statusIds)) {
             return [];
@@ -343,23 +410,26 @@ class CategoryController extends Controller
         // Get status details with product counts
         $statuses = \App\Models\SmaProductStatus::whereIn('id', $statusIds)
             ->get()
-            ->map(function($status) use ($categoryId) {
-                // Count products with this status in this category
-                $productCount = SmaProduct::where(function($query) use ($categoryId) {
-                    $query->where('category_id', $categoryId)
-                          ->orWhere('subcategory_id', $categoryId);
+            ->map(function ($status) use ($scopeIds) {
+                // Count products with this status in this category tree
+                $productCount = SmaProduct::where(function ($query) use ($scopeIds) {
+                    $query->whereIn('category_id', $scopeIds)
+                        ->orWhereIn('subcategory_id', $scopeIds);
                 })
-                ->where('hide', 0)
-                ->where('product_status', $status->id)
-                ->count();
+                    ->where(function ($q) {
+                        $q->where('hide', 0)
+                            ->orWhereNull('hide');
+                    })
+                    ->where('product_status', $status->id)
+                    ->count();
 
                 return [
                     'id' => $status->id,
                     'name' => $status->status_name,
-                    'count' => $productCount
+                    'count' => $productCount,
                 ];
             })
-            ->filter(function($status) {
+            ->filter(function ($status) {
                 // Only include "Pre Order" and "Coming Soon" statuses
                 return in_array($status['name'], ['Pre Order', 'Coming Soon']) && $status['count'] > 0;
             })
@@ -371,21 +441,38 @@ class CategoryController extends Controller
     }
 
     /**
-     * Get price range for products in a category
+     * Get price range for products in a category tree
+     *
+     * @param  array<int>  $scopeIds
+     * @return array{min: float, max: float}
      */
-    private function getPriceRange($categoryId)
+    private function getPriceRange(array $scopeIds)
     {
-        $priceData = SmaProduct::where(function($query) use ($categoryId) {
-            $query->where('category_id', $categoryId)
-                  ->orWhere('subcategory_id', $categoryId);
+        if ($scopeIds === []) {
+            return ['min' => 0.0, 'max' => 100000.0];
+        }
+
+        $priceData = SmaProduct::where(function ($query) use ($scopeIds) {
+            $query->whereIn('category_id', $scopeIds)
+                ->orWhereIn('subcategory_id', $scopeIds);
         })
-        ->where('hide', 0)
-        ->selectRaw('MIN(price) as min_price, MAX(price) as max_price')
-        ->first();
+            ->where(function ($q) {
+                $q->where('hide', 0)
+                    ->orWhereNull('hide');
+            })
+            ->selectRaw('MIN(price) as min_price, MAX(price) as max_price')
+            ->first();
+
+        $min = (float) ($priceData->min_price ?? 0);
+        $max = (float) ($priceData->max_price ?? 100000);
+
+        if ($max < $min) {
+            $max = $min;
+        }
 
         return [
-            'min' => (float) ($priceData->min_price ?? 0),
-            'max' => (float) ($priceData->max_price ?? 100000)
+            'min' => $min,
+            'max' => $max > 0 ? $max : 100000.0,
         ];
     }
 }
