@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CheckoutController extends Controller
 {
@@ -102,7 +103,7 @@ class CheckoutController extends Controller
     public function payment()
     {
         return redirect()->route('checkout.index')
-            ->with('info', 'Complete your purchase on checkout: choose Buy now and pay by bank transfer.');
+            ->with('info', 'Choose your payment method on checkout, then use Buy Now to complete your order.');
     }
 
     /**
@@ -124,14 +125,29 @@ class CheckoutController extends Controller
             'request_data' => $request->only(['payment_method', 'first_name', 'last_name', 'customer_phone', 'customer_email'])
         ]);
 
+        $allowedPaymentMethods = ['bank_transfer', 'webxpay'];
+        if (config('kokopay.enabled')) {
+            $allowedPaymentMethods[] = 'kokopay';
+        }
+
+        $paymentMethodsRequiringEmail = ['webxpay'];
+        if (config('kokopay.enabled')) {
+            $paymentMethodsRequiringEmail[] = 'kokopay';
+        }
+
         $validator = Validator::make($request->all(), [
             // Required customer information
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'customer_phone' => ['required', 'string', 'regex:/^0[1-9][0-9]{8}$/', 'max:20'],
             
-            // Optional customer information
-            'customer_email' => 'nullable|email|max:255',
+            // Email required for active card / Koko gateways (bank transfer can omit)
+            'customer_email' => [
+                'nullable',
+                'email',
+                'max:255',
+                Rule::requiredIf(in_array($request->payment_method, $paymentMethodsRequiringEmail, true)),
+            ],
             
             // Required billing address fields (only Address Line 1 and City)
             'billing_address_line_1' => 'required|string|max:255',
@@ -154,8 +170,7 @@ class CheckoutController extends Controller
             'shipping_postal_code' => 'nullable|string|max:20',
             'shipping_country' => 'nullable|string|max:100',
             
-            // Checkout: bank transfer only (card / Koko Pay disabled for now)
-            'payment_method' => 'required|in:bank_transfer',
+            'payment_method' => ['required', Rule::in($allowedPaymentMethods)],
             'terms' => 'required|accepted',
         ], [
             'customer_phone.regex' => 'Please enter a valid Sri Lankan phone number (10 digits starting with 0, e.g., 0771234567)',

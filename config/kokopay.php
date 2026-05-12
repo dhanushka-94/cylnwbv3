@@ -10,6 +10,9 @@ return [
     |
     */
 
+    // Set KOKOPAY_ENABLED=false in .env to hide Koko from checkout and block new payments
+    'enabled' => env('KOKOPAY_ENABLED', true),
+
     'mode' => env('KOKOPAY_MODE', 'sandbox'), // sandbox or live
 
     'merchant_id' => env('KOKOPAY_MERCHANT_ID'),

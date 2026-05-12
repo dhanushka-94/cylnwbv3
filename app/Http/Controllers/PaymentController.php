@@ -652,6 +652,11 @@ class PaymentController extends Controller
     public function initiateKokoPayPayment(Request $request, Order $order)
     {
         try {
+            if (! config('kokopay.enabled')) {
+                return redirect()->route('checkout.index')
+                    ->with('error', 'Koko Pay is temporarily unavailable. Please choose another payment method.');
+            }
+
             // Validate that order belongs to authenticated user or is guest order
             if ($order->user_id && $order->user_id !== auth()->id()) {
                 Log::warning('Unauthorized access to Koko Pay order', [

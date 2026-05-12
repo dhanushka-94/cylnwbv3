@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Checkout - Ceylon IT Solutions')
-@section('description', 'Checkout at Ceylon IT Solutions: get a quote or pay by bank transfer.')
+@section('description', config('kokopay.enabled') ? 'Checkout at Ceylon IT Solutions: bank transfer, WebXPay card, or Koko Pay.' : 'Checkout at Ceylon IT Solutions: bank transfer or WebXPay card.')
 
 @section('content')
+@php
+    $kokopayEnabled = config('kokopay.enabled');
+@endphp
 <div class="min-h-screen bg-[#0f0f0f] py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -12,7 +15,9 @@
             <div class="flex items-start justify-between gap-4 flex-wrap">
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Checkout</h1>
-                    <p class="text-gray-400 text-sm sm:text-base">Get a quotation, or choose Buy now and pay by bank transfer (only payment method available at the moment).</p>
+                    <p class="text-gray-400 text-sm sm:text-base">
+                        Get a quotation, or choose <strong class="text-gray-300">Buy now</strong> with bank transfer or WebXPay (card)@if($kokopayEnabled) or Koko Pay (BNPL)@endif. Gateway fees apply where shown.
+                    </p>
                 </div>
                 
                 @guest
@@ -229,8 +234,11 @@
                             <h3 class="text-lg font-medium text-white">Shipping Address</h3>
                             <label class="flex items-center">
                                 <input type="checkbox" 
+                                       name="different_shipping_address"
                                        id="different_shipping_address" 
-                                       class="h-4 w-4 text-[#f59e0b] focus:ring-[#f59e0b] border-gray-700 rounded bg-[#0f0f0f]">
+                                       value="1"
+                                       class="h-4 w-4 text-[#f59e0b] focus:ring-[#f59e0b] border-gray-700 rounded bg-[#0f0f0f]"
+                                       @checked(old('different_shipping_address'))>
                                 <span class="ml-2 text-sm text-gray-300">📦 Deliver to different address</span>
                             </label>
                         </div>
@@ -328,89 +336,82 @@
                         </div>
                     </div>
 
-                    <!-- Koko Pay notice (disabled) -->
-                    <div class="hidden bg-purple-900/20 border border-purple-700/50 rounded-lg p-4 kokopay-notice" style="display: none;">
-                        <div class="flex items-start space-x-3">
-                            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                            </svg>
-                            <div>
-                                <h4 class="text-purple-400 font-medium text-sm mb-2">Buy Now, Pay Later with Koko Pay</h4>
-                                <p class="text-purple-300 text-sm mb-3">
-                                    Split your payment into 3 easy installments. Pay only 1/3 today, remaining in 30 & 60 days.
-                                </p>
-                                
-                                <!-- 3-Split Payment Breakdown -->
-                                <div class="grid grid-cols-3 gap-2 mb-3">
-                                    <div class="text-center p-2 bg-purple-800/20 rounded-lg">
-                                        <div class="text-xs text-purple-300 mb-1">Today</div>
-                                        <div class="text-sm font-semibold text-white kokopay-split-1">LKR 0.00</div>
-                                    </div>
-                                    <div class="text-center p-2 bg-blue-800/20 rounded-lg">
-                                        <div class="text-xs text-blue-300 mb-1">30 Days</div>
-                                        <div class="text-sm font-semibold text-white kokopay-split-2">LKR 0.00</div>
-                                    </div>
-                                    <div class="text-center p-2 bg-green-800/20 rounded-lg">
-                                        <div class="text-xs text-green-300 mb-1">60 Days</div>
-                                        <div class="text-sm font-semibold text-white kokopay-split-3">LKR 0.00</div>
-                                    </div>
-                                </div>
-                                <p class="text-purple-300 text-sm font-medium">
-                                    කොකෝ පේ සමඟ දැන් මිලදී ගෙන පසුව ගෙවන්න. වාරික 3කින් ගෙවන්න.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bank transfer reference (used when you click Buy Now) -->
+                    <!-- Payment method + gateway panels -->
                     <div class="bg-gradient-to-br from-[#1a1a1c] to-[#2a2a2c] rounded-xl border border-gray-800 p-4 sm:p-6">
                         <div id="payment-methods-section" class="space-y-3 sm:space-y-4">
-                            <h3 class="text-lg font-medium text-white mb-1">Pay by bank transfer</h3>
-                            <p class="text-xs text-gray-400 mb-2">After you place an order with <strong class="text-gray-200">Buy Now</strong> in the summary, complete payment using the details below. <strong class="text-gray-200">Download Quote</strong> only generates a PDF — no payment here.</p>
-                            <h4 class="text-sm sm:text-base font-semibold text-white mb-3 sm:mb-4 flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500/10 border border-green-500/40">
-                                    <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 8h9M5 16h6"/>
-                                    </svg>
-                                </span>
-                                <span>Bank transfer</span>
-                            </h4>
-                            
-                            <!-- Bank transfer (only active method) -->
-                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-green-500/60 bg-gradient-to-r from-green-900/20 via-green-900/10 to-transparent rounded-lg cursor-pointer gap-3">
-                                <input type="radio" 
-                                       name="payment_method" 
+                            <h3 class="text-lg font-medium text-white mb-1">Payment method</h3>
+                            <p class="text-xs text-gray-400 mb-2">Choose how you will pay, then use <strong class="text-gray-200">Buy Now</strong> in the order summary. <strong class="text-gray-200">Download Quote</strong> only generates a PDF — no order or payment.</p>
+
+                            @php
+                                $pm = old('payment_method', 'bank_transfer');
+                                if (! $kokopayEnabled && $pm === 'kokopay') {
+                                    $pm = 'bank_transfer';
+                                }
+                            @endphp
+
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-gray-700 hover:border-green-500/50 rounded-lg cursor-pointer gap-3">
+                                <input type="radio"
+                                       name="payment_method"
                                        value="bank_transfer"
-                                       checked
-                                       class="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0">
+                                       class="payment-method-radio h-4 w-4 text-green-500 focus:ring-green-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0"
+                                       @checked($pm === 'bank_transfer')>
                                 <div class="ml-0 sm:ml-3 flex-1">
                                     <div class="flex flex-wrap items-center gap-2">
-                                        <div class="text-sm font-semibold text-white">Bank Transfer</div>
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-green-600 text-white">
-                                            No gateway fee
-                                        </span>
+                                        <div class="text-sm font-semibold text-white">Bank transfer</div>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-green-600 text-white">No gateway fee</span>
                                     </div>
-                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">
-                                        Pay by direct bank transfer. Upload or email your slip for faster verification. Order is processed after payment is confirmed.
-                                    </p>
-                                </div>
-                                <div class="mt-2 sm:mt-0 flex items-center gap-2 text-green-300 text-xs sm:text-sm">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m11 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2M9 7h6m-6 4h6m-6 4h6m-6 4h6"/>
-                                    </svg>
-                                    <span>Manual payment option</span>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">Pay to our bank account. Send your slip for faster verification.</p>
                                 </div>
                             </label>
-                            
-                            <!-- Bank transfer details (reference for completing payment) -->
+
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-gray-700 hover:border-blue-500/50 rounded-lg cursor-pointer gap-3">
+                                <input type="radio"
+                                       name="payment_method"
+                                       value="webxpay"
+                                       class="payment-method-radio h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0"
+                                       @checked($pm === 'webxpay')>
+                                <div class="ml-0 sm:ml-3 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <div class="text-sm font-semibold text-white">WebXPay (card)</div>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-600 text-white">3% gateway fee</span>
+                                    </div>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">Visa, Mastercard and other cards via WebXPay. You will be redirected to complete payment.</p>
+                                </div>
+                            </label>
+
+                            @if($kokopayEnabled)
+                            <label class="flex flex-col sm:flex-row items-start sm:items-center p-4 sm:p-5 border-2 border-gray-700 hover:border-purple-500/50 rounded-lg cursor-pointer gap-3">
+                                <input type="radio"
+                                       name="payment_method"
+                                       value="kokopay"
+                                       class="payment-method-radio h-4 w-4 text-purple-500 focus:ring-purple-500 border-gray-700 bg-[#0f0f0f] mt-1 sm:mt-0"
+                                       @checked($pm === 'kokopay')>
+                                <div class="ml-0 sm:ml-3 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <div class="text-sm font-semibold text-white">Koko Pay (BNPL)</div>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-purple-600 text-white">10% gateway fee</span>
+                                    </div>
+                                    <p class="mt-1 text-xs sm:text-sm text-gray-300">Buy now, pay later in instalments. You will be redirected to Koko Pay.</p>
+                                </div>
+                            </label>
+                            @endif
+
+                            <p class="text-xs text-amber-200/90 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
+                                @if($kokopayEnabled)
+                                    For WebXPay or Koko Pay, use a valid <strong>email address</strong> above — it is required to complete the gateway checkout.
+                                @else
+                                    For WebXPay, use a valid <strong>email address</strong> above — it is required to complete card checkout.
+                                @endif
+                            </p>
+
+                            <!-- Bank transfer details -->
                             <div class="bg-green-900/20 border border-green-700/50 rounded-lg p-4 bank-transfer-notice">
                                 <div class="flex items-start space-x-3">
                                     <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m11 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2M9 7h6m-6 4h6m-6 4h6m-6 4h6"/>
                                     </svg>
                                     <div class="flex-1">
-                                        <h4 class="text-green-400 font-medium text-sm mb-3">Bank Transfer Details</h4>
-                                        
+                                        <h4 class="text-green-400 font-medium text-sm mb-3">Bank transfer details</h4>
                                         <div class="bg-black/30 rounded-lg p-4 mb-4">
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                                 <div>
@@ -431,21 +432,60 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         <div class="space-y-2 text-sm">
-                                            <p class="text-green-300 font-medium">
-                                                📝 Important Instructions:
-                                            </p>
+                                            <p class="text-green-300 font-medium">Important instructions</p>
                                             <ul class="text-green-200 space-y-1 text-xs ml-4">
-                                                <li>• Please include your <strong>Order Number</strong> in the transfer reference</li>
-                                                <li>• After payment, send your slip on <strong>WhatsApp {{ config('bank.whatsapp_payment_display') }}</strong> (fastest), or email <strong>payments@ceylonitsolutions.com</strong></li>
-                                                <li>• Your order will be processed within 1-2 business days after payment confirmation</li>
-                                                <li>• Keep your payment receipt for tracking purposes</li>
+                                                <li>• Include your <strong>order number</strong> in the transfer reference</li>
+                                                <li>• Send your slip on <strong>WhatsApp {{ config('bank.whatsapp_payment_display') }}</strong> or email <strong>payments@ceylonitsolutions.com</strong></li>
+                                                <li>• Orders are processed after payment is confirmed</li>
                                             </ul>
                                         </div>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- WebXPay info -->
+                            <div class="webxpay-notice bg-blue-900/20 border border-blue-700/50 rounded-lg p-4" style="display: none;">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                    <div>
+                                        <h4 class="text-blue-400 font-medium text-sm mb-1">WebXPay</h4>
+                                        <p class="text-blue-200/90 text-xs sm:text-sm">A <strong>3% processing fee</strong> is added to your order total on the payment page. Ensure your billing details match your card.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if($kokopayEnabled)
+                            <!-- Koko Pay notice -->
+                            <div class="kokopay-notice bg-purple-900/20 border border-purple-700/50 rounded-lg p-4" style="display: none;">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                    </svg>
+                                    <div>
+                                        <h4 class="text-purple-400 font-medium text-sm mb-2">Koko Pay (BNPL)</h4>
+                                        <p class="text-purple-300 text-sm mb-3">Split into three instalments (approx. one third each). A <strong>10% fee</strong> applies to the total charged by Koko Pay.</p>
+                                        <div class="grid grid-cols-3 gap-2 mb-2">
+                                            <div class="text-center p-2 bg-purple-800/20 rounded-lg">
+                                                <div class="text-xs text-purple-300 mb-1">Today</div>
+                                                <div class="text-sm font-semibold text-white kokopay-split-1">LKR 0.00</div>
+                                            </div>
+                                            <div class="text-center p-2 bg-blue-800/20 rounded-lg">
+                                                <div class="text-xs text-blue-300 mb-1">30 days</div>
+                                                <div class="text-sm font-semibold text-white kokopay-split-2">LKR 0.00</div>
+                                            </div>
+                                            <div class="text-center p-2 bg-green-800/20 rounded-lg">
+                                                <div class="text-xs text-green-300 mb-1">60 days</div>
+                                                <div class="text-sm font-semibold text-white kokopay-split-3">LKR 0.00</div>
+                                            </div>
+                                        </div>
+                                        <p class="text-purple-300 text-xs">කොකෝ පේ සමඟ දැන් මිලදී ගෙන පසුව ගෙවන්න.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
 
@@ -532,6 +572,7 @@
                                 </span>
                             </div>
 
+                            @if($kokopayEnabled)
                             <!-- Koko Pay Transaction Fee (shown only when Koko Pay is selected) -->
                             <div class="flex justify-between text-sm kokopay-fee" style="display: none;">
                                 <span class="text-gray-400">
@@ -542,6 +583,7 @@
                                     LKR 0.00
                                 </span>
                             </div>
+                            @endif
                             
                             <div class="border-t border-gray-700 pt-2">
                                 <div class="flex justify-between">
@@ -586,7 +628,13 @@
                                     Buy Now
                                 </button>
                             </div>
-                            <p class="text-xs text-gray-500 text-center mt-1">Download Quote saves a PDF (no payment). Buy Now places your order for bank transfer.</p>
+                            <p class="text-xs text-gray-500 text-center mt-1">
+                                @if($kokopayEnabled)
+                                    Download Quote saves a PDF only. Buy Now creates your order and sends you to bank transfer, WebXPay, or Koko Pay depending on your selection.
+                                @else
+                                    Download Quote saves a PDF only. Buy Now creates your order and sends you to bank transfer or WebXPay depending on your selection.
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -644,6 +692,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updatePaymentFees() {
         const orderTotalElement = document.querySelector('.order-total');
+        const selected = document.querySelector('input[name="payment_method"]:checked');
+        const method = selected ? selected.value : 'bank_transfer';
 
         document.querySelectorAll('.webxpay-notice, .kokopay-notice').forEach(function (el) {
             el.style.display = 'none';
@@ -652,8 +702,52 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.display = 'none';
         });
 
+        const bankNotice = document.querySelector('.bank-transfer-notice');
+        if (bankNotice) {
+            bankNotice.style.display = method === 'bank_transfer' ? '' : 'none';
+        }
+
+        let displayTotal = baseOrderTotal;
+        const webxpayFee = baseOrderTotal * 0.03;
+        const kokopayFee = baseOrderTotal * 0.10;
+
+        if (method === 'webxpay') {
+            document.querySelectorAll('.webxpay-notice').forEach(function (el) {
+                el.style.display = 'block';
+            });
+            document.querySelectorAll('.webxpay-fee').forEach(function (el) {
+                el.style.display = 'flex';
+            });
+            const feeEl = document.querySelector('.webxpay-fee-amount');
+            if (feeEl) {
+                feeEl.textContent = formatCurrency(webxpayFee);
+            }
+            displayTotal = baseOrderTotal + webxpayFee;
+        } else if (method === 'kokopay') {
+            document.querySelectorAll('.kokopay-notice').forEach(function (el) {
+                el.style.display = 'block';
+            });
+            document.querySelectorAll('.kokopay-fee').forEach(function (el) {
+                el.style.display = 'flex';
+            });
+            const feeEl = document.querySelector('.kokopay-fee-amount');
+            if (feeEl) {
+                feeEl.textContent = formatCurrency(kokopayFee);
+            }
+            displayTotal = baseOrderTotal + kokopayFee;
+            const kokoTotal = displayTotal;
+            const third = kokoTotal / 3;
+            const thirdStr = 'LKR ' + third.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.querySelectorAll('.kokopay-split-1, .kokopay-split-2, .kokopay-split-3').forEach(function (el) {
+                el.textContent = thirdStr;
+            });
+        }
+
         if (orderTotalElement) {
-            orderTotalElement.textContent = formatCurrency(baseOrderTotal);
+            orderTotalElement.textContent = formatCurrency(displayTotal);
         }
 
         const transferSlipInput = document.getElementById('transfer_slip');

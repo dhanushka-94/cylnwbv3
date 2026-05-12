@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'About Us - Ceylon IT Solutions (CITS)')
-@section('description', 'Vision, goal, mission, brand positioning and group purpose of Ceylon IT Solutions (CITS).')
+@section('description', 'Ceylon IT Solutions (CITS): UAE and Sri Lanka IT retail and wholesale, serving Africa, Middle East and South Asia with quality products and service.')
 @section('keywords', 'about Ceylon IT Solutions, computer company Sri Lanka, warranty, delivery service, after sales service, computer retailer')
 
 @section('content')
@@ -19,7 +19,7 @@
                 About <span class="text-[#f59e0b]">Ceylon IT Solutions</span>
             </h1>
             <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Ceylon IT Solutions (CITS) — strategy, purpose, and commitment to our stakeholders and markets.
+                From our roots as an online business in the UAE to a trusted name in computer retail and wholesale — serving markets across Africa, the Middle East, and South Asia.
             </p>
         </div>
     </div>
@@ -59,11 +59,20 @@
 
 <!-- Our Story Section -->
 <section class="py-16 bg-black">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Our Story</h2>
-        <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Our Story</h2>
+        <div class="bg-[#1a1a1c] border border-gray-800 rounded-xl p-8 md:p-10 space-y-6 text-left">
             <p class="text-gray-300 text-lg leading-relaxed">
-                Ceylon IT Solutions (CITS) has grown from a small shop into one of Sri Lanka's most trusted computer retailers. We proudly serve students, professionals, businesses, and government institutions with quality products, competitive pricing, and exceptional customer service. Staying ahead with the latest technology, we remain committed to our core values of trust, quality, and customer satisfaction.
+                Ceylon IT Solutions (CITS) has grown from an online-based business in the United Arab Emirates, serving African and South Asian markets, into a trusted and reliable name in the computer retail and wholesale industry. Over the years, we have proudly served students, professionals, businesses, and government institutions by delivering high-quality IT products, competitive pricing, and exceptional customer service.
+            </p>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                Expanding our global presence, CITS continues to strengthen its operations in both the UAE and Sri Lanka, positioning itself as a leading international IT solutions provider. In addition to our retail services, we are a dedicated wholesale distributor, supplying a wide range of laptops and IT products to clients across African, Middle Eastern, and South Asian countries.
+            </p>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                With a strong global network and an efficient supply chain, we ensure our partners receive premium-quality products at the best possible value. Our commitment to staying ahead with the latest technology enables us to meet the evolving demands of customers worldwide.
+            </p>
+            <p class="text-gray-300 text-lg leading-relaxed border-t border-gray-800 pt-6">
+                At CITS, we remain guided by our core values — trust, quality, and customer satisfaction — as we continue to grow and build long-term partnerships across the globe.
             </p>
         </div>
     </div>
